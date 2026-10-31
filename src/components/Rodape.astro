@@ -1,0 +1,59 @@
+---
+const ano = new Date().getFullYear();
+---
+
+<footer class="rodape">
+  <div class="container grade">
+    <div>
+      <h2>Letramento Racial na Escola</h2>
+      <p>E. E. Profª Carolina Cintra da Silveira</p>
+    </div>
+
+    <nav aria-label="Navegação rápida">
+      <h3>Navegação</h3>
+      <ul>
+        <li><a href="/">Início</a></li>
+        <li><a href="/projetos/">Projetos</a></li>
+        <li><a href="/sobre/">Sobre o projeto</a></li>
+        <li><a href="/referencias/">Referências</a></li>
+        <li><a href="/privacidade/">Privacidade</a></li>
+      </ul>
+    </nav>
+
+    <div>
+      <h3>Créditos</h3>
+      <p>Imagens e materiais produzidos pela comunidade escolar, publicados com autorização. Referência teórica: <a href="/referencias/">veja as referências bibliográficas</a>.</p>
+      <p>Para solicitar correção ou retirada de materiais, consulte a página de <a href="/privacidade/">privacidade</a>.</p>
+    </div>
+  </div>
+  <p class="atualizacao">Site atualizado em {ano}</p>
+</footer>
+
+<style>
+  .rodape {
+    background: var(--marrom);
+    color: var(--bege);
+    border-top: 4px solid var(--ocre);
+    padding-top: 2rem;
+  }
+  .rodape h2 { font-size: 1.4rem; }
+  .rodape h3 { font-size: 1.1rem; }
+  .rodape a { color: var(--ocre); }
+  .rodape ul { list-style: none; margin: 0; padding: 0; }
+  .rodape li a { display: inline-block; padding-block: 0.3rem; }
+  .rodape :focus-visible { outline-color: var(--ocre); }
+  .grade {
+    display: grid;
+    gap: 1.5rem;
+  }
+  .atualizacao {
+    text-align: center;
+    margin: 2rem 0 0;
+    padding: 1rem;
+    font-size: 0.9rem;
+    border-top: 1px solid rgb(245 240 230 / 0.25);
+  }
+  @media (min-width: 48em) {
+    .grade { grid-template-columns: 1.2fr 1fr 1.5fr; }
+  }
+</style>

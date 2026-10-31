@@ -1,0 +1,131 @@
+:root {
+  --terracota: #a44732;
+  --ocre: #d3a64b;
+  --verde: #6c5740;
+  --marrom: #332821;
+  --bege: #f5f0e6;
+  --branco: #ffffff;
+
+  --fonte-titulo: "Fraunces Variable", Georgia, "Times New Roman", serif;
+  --fonte-texto: "Source Sans 3 Variable", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --espaco: 1rem;
+  --largura-max: 72rem;
+  --raio: 0.75rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bege);
+  color: var(--marrom);
+  font-family: var(--fonte-texto);
+  font-size: 1.125rem;
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--fonte-titulo);
+  line-height: 1.2;
+  margin: 0 0 0.75rem;
+}
+
+h1 { font-size: clamp(2rem, 6vw, 3rem); }
+h2 { font-size: clamp(1.5rem, 4.5vw, 2.25rem); }
+h3 { font-size: 1.25rem; }
+
+p { margin: 0 0 1rem; }
+
+img { max-width: 100%; height: auto; display: block; }
+
+a { color: var(--terracota); }
+
+:focus-visible {
+  outline: 3px solid var(--terracota);
+  outline-offset: 3px;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--largura-max);
+  margin-inline: auto;
+  padding-inline: var(--espaco);
+}
+
+.secao {
+  padding-block: 2.5rem;
+}
+
+.botao {
+  display: inline-block;
+  min-height: 2.75rem;
+  padding: 0.7rem 1.4rem;
+  background: var(--terracota);
+  color: var(--branco);
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: var(--raio);
+  border: 2px solid var(--terracota);
+}
+
+.botao:hover {
+  background: var(--marrom);
+  border-color: var(--marrom);
+}
+
+.botao--contorno {
+  background: transparent;
+  color: var(--terracota);
+}
+
+.botao--contorno:hover {
+  background: var(--terracota);
+  color: var(--branco);
+}
+
+.link-pular {
+  position: absolute;
+  left: 0.5rem;
+  top: -4rem;
+  background: var(--marrom);
+  color: var(--branco);
+  padding: 0.75rem 1rem;
+  z-index: 100;
+  border-radius: var(--raio);
+}
+
+.link-pular:focus {
+  top: 0.5rem;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { animation: none !important; transition: none !important; }
+}

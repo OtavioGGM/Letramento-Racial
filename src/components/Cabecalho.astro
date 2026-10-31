@@ -1,0 +1,179 @@
+---
+const caminho = Astro.url.pathname;
+const links = [
+  { href: "/", texto: "Início" },
+  { href: "/projetos/", texto: "Projetos" },
+  { href: "/sobre/", texto: "Sobre o projeto" },
+  { href: "/referencias/", texto: "Referências" },
+];
+const ativo = (href) =>
+  href === "/" ? caminho === "/" : caminho.startsWith(href);
+---
+
+<header class="cabecalho">
+  <div class="container barra">
+    <a class="marca" href="/">
+      <img src="/images/identidade/logo.png" alt="Logotipo da escola" width="48" height="48" />
+      <span>Letramento Racial<br /><small>na Escola</small></span>
+    </a>
+
+    <button class="menu-botao" aria-expanded="false" aria-controls="menu-principal">
+      <span class="sr-only">Abrir menu</span>
+      <span aria-hidden="true" class="menu-icone"></span>
+    </button>
+
+    <nav id="menu-principal" class="menu" aria-label="Principal">
+      <ul>
+        {links.map((l) => (
+          <li>
+            <a href={l.href} aria-current={ativo(l.href) ? "page" : undefined}>{l.texto}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .cabecalho {
+    background: var(--verde);
+    color: var(--bege);
+    border-bottom: 4px solid var(--ocre);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+  .barra {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-block: 0.5rem;
+    position: relative;
+  }
+  .marca {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--bege);
+    text-decoration: none;
+    font-family: var(--fonte-titulo);
+    font-weight: 700;
+    line-height: 1.1;
+  }
+  .marca img {
+    background: var(--branco);
+    border-radius: 50%;
+    padding: 2px;
+    object-fit: contain;
+  }
+  .marca small {
+    font-weight: 400;
+    font-size: 0.85em;
+  }
+  .menu-botao {
+    min-width: 2.75rem;
+    min-height: 2.75rem;
+    background: transparent;
+    border: 2px solid var(--bege);
+    border-radius: var(--raio);
+    color: var(--bege);
+    cursor: pointer;
+  }
+  .menu-icone,
+  .menu-icone::before,
+  .menu-icone::after {
+    display: block;
+    width: 1.4rem;
+    height: 2px;
+    background: currentColor;
+    margin-inline: auto;
+    position: relative;
+  }
+  .menu-icone::before,
+  .menu-icone::after {
+    content: "";
+    position: absolute;
+    left: 0;
+  }
+  .menu-icone::before { top: -6px; }
+  .menu-icone::after { top: 6px; }
+
+  .menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--verde);
+    border-top: 1px solid rgb(245 240 230 / 0.3);
+    padding: 0.5rem var(--espaco) 1rem;
+  }
+  .menu.aberto { display: block; }
+  .menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .menu a {
+    display: block;
+    padding: 0.85rem 0.5rem;
+    color: var(--bege);
+    text-decoration: none;
+    font-weight: 600;
+    border-bottom: 1px solid rgb(245 240 230 / 0.2);
+  }
+  .menu a[aria-current="page"] {
+    color: var(--ocre);
+    box-shadow: inset 4px 0 0 var(--ocre);
+    padding-left: 1rem;
+  }
+  .menu a:hover { text-decoration: underline; }
+
+  :global(.cabecalho :focus-visible) {
+    outline-color: var(--ocre);
+  }
+
+  @media (min-width: 48em) {
+    .menu-botao { display: none; }
+    .menu {
+      display: block;
+      position: static;
+      background: transparent;
+      border: 0;
+      padding: 0;
+    }
+    .menu ul { display: flex; gap: 0.25rem; }
+    .menu a {
+      border: 0;
+      padding: 0.6rem 0.9rem;
+      border-radius: var(--raio);
+    }
+    .menu a[aria-current="page"] {
+      box-shadow: inset 0 -3px 0 var(--ocre);
+      padding-left: 0.9rem;
+      border-radius: 0;
+    }
+  }
+</style>
+
+<script>
+  const botao = document.querySelector(".menu-botao");
+  const menu = document.querySelector("#menu-principal");
+
+  function alternar(abrir) {
+    menu.classList.toggle("aberto", abrir);
+    botao.setAttribute("aria-expanded", String(abrir));
+    botao.querySelector(".sr-only").textContent = abrir ? "Fechar menu" : "Abrir menu";
+  }
+
+  botao.addEventListener("click", () => {
+    alternar(botao.getAttribute("aria-expanded") !== "true");
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && menu.classList.contains("aberto")) {
+      alternar(false);
+      botao.focus();
+    }
+  });
+</script>

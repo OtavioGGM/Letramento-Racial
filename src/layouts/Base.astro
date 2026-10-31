@@ -1,0 +1,35 @@
+---
+import "@fontsource-variable/fraunces";
+import "@fontsource-variable/source-sans-3";
+import "../styles/global.css";
+import Cabecalho from "../components/Cabecalho.astro";
+import Rodape from "../components/Rodape.astro";
+
+const { titulo, descricao = "Acervo digital do projeto de Letramento Racial da E. E. Profª Carolina Cintra da Silveira." } = Astro.props;
+const tituloCompleto = titulo
+  ? `${titulo} | Letramento Racial na Escola`
+  : "Letramento Racial na Escola";
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{tituloCompleto}</title>
+    <meta name="description" content={descricao} />
+    <meta property="og:title" content={tituloCompleto} />
+    <meta property="og:description" content={descricao} />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#28513c" />
+    <link rel="icon" type="image/png" href="/images/identidade/logo.png" />
+  </head>
+  <body>
+    <a class="link-pular" href="#conteudo">Pular para o conteúdo</a>
+    <Cabecalho />
+    <main id="conteudo">
+      <slot />
+    </main>
+    <Rodape />
+  </body>
+</html>
