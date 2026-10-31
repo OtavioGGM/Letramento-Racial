@@ -1,0 +1,27 @@
+---
+import Base from "../../layouts/Base.astro";
+import AvisoDemonstracao from "../../components/AvisoDemonstracao.astro";
+import { projetosPublicados, getTurma } from "../../lib/dados.js";
+
+export function getStaticPaths() {
+  return projetosPublicados.map((p) => ({
+    params: { slug: p.slug },
+    props: { projeto: p },
+  }));
+}
+
+const { projeto } = Astro.props;
+const turma = getTurma(projeto.turmaId);
+---
+
+<Base titulo={projeto.titulo} descricao={projeto.descricao}>
+  <article class="secao">
+    <div class="container">
+      {projeto.demonstracao && <AvisoDemonstracao />}
+      <h1>{projeto.titulo}</h1>
+      <p>{turma?.rotulo} | {projeto.ano}</p>
+      <p>{projeto.descricao}</p>
+      <p><a href="/projetos/">Voltar aos projetos</a></p>
+    </div>
+  </article>
+</Base>

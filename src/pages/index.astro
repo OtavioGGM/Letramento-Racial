@@ -1,13 +1,174 @@
 ---
 import Base from "../layouts/Base.astro";
+import CartaoProjeto from "../components/CartaoProjeto.astro";
+import { projetosDestaque } from "../lib/dados.js";
+
+const pilares = [
+  {
+    nome: "Conhecer",
+    texto: "Estudar a história do Brasil e da África, incluindo a vida e a cultura dos povos africanos e afro-brasileiros antes, durante e depois da escravização.",
+  },
+  {
+    nome: "Compreender",
+    texto: "Entender como o racismo se formou historicamente e como funciona como estrutura, para além do preconceito individual.",
+  },
+  {
+    nome: "Reconhecer",
+    texto: "Identificar o racismo nas instituições, nas relações cotidianas e na escola, e perceber como o silêncio e os estereótipos o mantêm.",
+  },
+  {
+    nome: "Transformar",
+    texto: "Passar do conhecimento à ação: atitudes individuais e coletivas e propostas de intervenção antirracista no ambiente escolar.",
+  },
+];
 ---
 
 <Base>
-  <section class="secao">
+  <section class="banner">
     <div class="container">
       <h1>Letramento Racial na Escola</h1>
-      <p>Conhecer a história, reconhecer as desigualdades e construir uma sociedade antirracista.</p>
-      <a class="botao" href="/projetos/">Conheça nossos projetos</a>
+      <p class="destaque">Conhecer a história, reconhecer as desigualdades e construir uma sociedade antirracista.</p>
+      <p>Projeto da E. E. Profª Carolina Cintra da Silveira, inspirado no livro Pequeno Manual Antirracista, de Djamila Ribeiro.</p>
+      <a class="botao botao--claro" href="/projetos/">Conheça nossos projetos</a>
+    </div>
+  </section>
+
+  <section class="secao">
+    <div class="container estreito">
+      <h2>Sobre o projeto</h2>
+      <p>A escola é um espaço de formação humana, cidadã e social, e não apenas de transmissão de conteúdos. O projeto leva os estudantes a compreender como o racismo se constituiu historicamente no Brasil e como continua presente nas estruturas sociais e nas relações do dia a dia.</p>
+      <a class="botao botao--contorno" href="/sobre/">Conheça o projeto completo</a>
+    </div>
+  </section>
+
+  <section class="secao fundo-branco">
+    <div class="container">
+      <h2>Quatro pilares</h2>
+      <ul class="pilares">
+        {pilares.map((p, i) => (
+          <li class="pilar">
+            <span class="numero" aria-hidden="true">{i + 1}</span>
+            <h3>{p.nome}</h3>
+            <p>{p.texto}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="secao">
+    <div class="container duas-colunas">
+      <!-- TROCAR: quando houver imagem da capa de fonte autorizada, use
+           <img src="/images/livro/capa.jpg" alt="Capa do livro Pequeno Manual Antirracista" /> -->
+      <div class="imagem-pendente" role="img" aria-label="Espaço reservado para a capa do livro">Capa do livro (inserir imagem autorizada)</div>
+      <div>
+        <h2>Nossa inspiração literária</h2>
+        <p><strong>Pequeno Manual Antirracista</strong>, de Djamila Ribeiro.</p>
+        <p>A obra é a base teórica do projeto. O capítulo sobre as bases históricas do racismo no Brasil questiona a ideia da população negra como vítima passiva da escravidão e mostra que seus efeitos continuam presentes na sociedade.</p>
+        <p class="ref">RIBEIRO, Djamila. <em>Pequeno manual antirracista</em>. São Paulo: Companhia das Letras, 2019.</p>
+        <a class="botao botao--contorno" href="/referencias/">Ver referências</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="secao fundo-branco">
+    <div class="container duas-colunas">
+      <!-- TROCAR: fotografia autorizada em /images/autora/ -->
+      <div class="imagem-pendente" role="img" aria-label="Espaço reservado para a fotografia da autora">Fotografia da autora (inserir imagem autorizada)</div>
+      <div>
+        <h2>Sobre a autora</h2>
+        <p><strong>Djamila Ribeiro</strong> é filósofa, escritora e ativista brasileira, autora de Pequeno Manual Antirracista (2019) e O que é lugar de fala? (2017).</p>
+        <p><em>Texto provisório. A biografia completa será redigida com fontes confiáveis.</em></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="secao">
+    <div class="container">
+      <h2>Projetos em destaque</h2>
+      <div class="grade-cartoes">
+        {projetosDestaque.map((p) => <CartaoProjeto projeto={p} />)}
+      </div>
+      <p class="centro"><a class="botao" href="/projetos/">Ver todos os projetos</a></p>
     </div>
   </section>
 </Base>
+
+<style>
+  .banner {
+    background:
+      repeating-linear-gradient(135deg, transparent 0 22px, rgb(211 166 75 / 0.12) 22px 24px),
+      var(--verde);
+    color: var(--bege);
+    padding-block: 3rem;
+    border-bottom: 6px solid var(--ocre);
+  }
+  .banner .destaque {
+    font-family: var(--fonte-titulo);
+    font-size: clamp(1.25rem, 4vw, 1.75rem);
+    max-width: 38rem;
+  }
+  .banner p { max-width: 38rem; }
+  .botao--claro {
+    background: var(--ocre);
+    border-color: var(--ocre);
+    color: var(--marrom);
+  }
+  .botao--claro:hover { background: var(--bege); border-color: var(--bege); color: var(--marrom); }
+  .banner :global(:focus-visible) { outline-color: var(--ocre); }
+
+  .estreito { max-width: 46rem; }
+  .fundo-branco { background: var(--branco); }
+
+  .pilares {
+    list-style: none;
+    margin: 1.5rem 0 0;
+    padding: 0;
+    display: grid;
+    gap: 1rem;
+  }
+  .pilar {
+    background: var(--bege);
+    border-radius: var(--raio);
+    border-top: 5px solid var(--terracota);
+    padding: 1.25rem;
+  }
+  .numero {
+    display: inline-grid;
+    place-items: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background: var(--ocre);
+    color: var(--marrom);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  .duas-colunas { display: grid; gap: 1.5rem; align-items: center; }
+  .imagem-pendente {
+    display: grid;
+    place-items: center;
+    text-align: center;
+    min-height: 16rem;
+    padding: 1rem;
+    border: 2px dashed var(--terracota);
+    border-radius: var(--raio);
+    background: var(--bege);
+    font-size: 0.95rem;
+  }
+  .ref { font-size: 0.95rem; }
+
+  .grade-cartoes { display: grid; gap: 1.25rem; }
+  .centro { text-align: center; margin-top: 2rem; }
+
+  @media (min-width: 48em) {
+    .pilares { grid-template-columns: repeat(2, 1fr); }
+    .duas-colunas { grid-template-columns: 1fr 1.5fr; }
+    .grade-cartoes { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (min-width: 64em) {
+    .pilares { grid-template-columns: repeat(4, 1fr); }
+    .grade-cartoes { grid-template-columns: repeat(3, 1fr); }
+  }
+</style>

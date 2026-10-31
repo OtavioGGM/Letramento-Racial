@@ -1,0 +1,75 @@
+---
+import { getTurma, getTema } from "../lib/dados.js";
+import AvisoDemonstracao from "./AvisoDemonstracao.astro";
+
+const { projeto } = Astro.props;
+const turma = getTurma(projeto.turmaId);
+const responsavel =
+  projeto.categoria === "turma" ? turma?.rotulo : projeto.professorResponsavel;
+const categoria = projeto.categoria === "turma" ? "Turma" : "Educadores";
+const temas = projeto.temas.map((id) => getTema(id)).filter(Boolean);
+const temFotos = projeto.imagens.length > 0;
+const temVideos = projeto.videos.length > 0;
+const href = `/projetos/${projeto.slug}/`;
+---
+
+<article class="cartao">
+  <a class="capa" href={href} tabindex="-1" aria-hidden="true">
+    {projeto.imagemCapa ? (
+      <img src={projeto.imagemCapa} alt={projeto.imagemCapaAlt} loading="lazy" width="640" height="400" />
+    ) : (
+      <div class="sem-capa">Sem imagem de capa</div>
+    )}
+  </a>
+  <div class="corpo">
+    <p class="meta">
+      <strong>{categoria}</strong>
+      {responsavel && <span> | {responsavel}</span>}
+      <span> | {projeto.ano}</span>
+    </p>
+    <h3><a href={href}>{projeto.titulo}</a></h3>
+    <p>{projeto.descricao}</p>
+    {temas.length > 0 && (
+      <p class="temas">
+        {temas.map((t) => <span title={t.nome}>Tema {t.numero}</span>)}
+      </p>
+    )}
+    <p class="midia">
+      {temFotos && <span>Fotografias</span>}
+      {temVideos && <span>Vídeos</span>}
+    </p>
+    {projeto.demonstracao && <AvisoDemonstracao />}
+  </div>
+</article>
+
+<style>
+  .cartao {
+    background: var(--branco);
+    border-radius: var(--raio);
+    overflow: hidden;
+    border: 1px solid rgb(51 40 33 / 0.15);
+    display: flex;
+    flex-direction: column;
+  }
+  .capa img,
+  .sem-capa {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+  }
+  .sem-capa {
+    display: grid;
+    place-items: center;
+    background: var(--bege);
+    color: var(--marrom);
+    font-size: 0.95rem;
+  }
+  .corpo { padding: 1rem; }
+  .meta { font-size: 0.9rem; margin-bottom: 0.4rem; }
+  .cartao h3 { margin-bottom: 0.5rem; }
+  .cartao h3 a { color: var(--marrom); text-decoration: none; }
+  .cartao h3 a:hover { text-decoration: underline; }
+  .temas, .midia { display: flex; flex-wrap: wrap; gap: 0.4rem; font-size: 0.85rem; margin-bottom: 0.6rem; }
+  .temas span { border: 1px solid var(--terracota); color: var(--terracota); border-radius: 999px; padding: 0.1rem 0.6rem; }
+  .midia span { background: var(--bege); border-radius: 999px; padding: 0.1rem 0.6rem; }
+</style>

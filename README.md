@@ -138,6 +138,7 @@ Cada projeto é um objeto com os campos abaixo. Campos não aplicáveis a uma ca
   "disciplinas": [],
   "temas": [],
   "imagemCapa": "",
+  "imagemCapaAlt": "",
   "imagens": [],
   "videos": [],
   "creditos": "",
@@ -254,11 +255,17 @@ Concluído:
 - `turmas.json` e `temas.json`.
 - CSS global, layout base, cabeçalho com menu mobile e rodapé.
 - Páginas provisórias: início, projetos, sobre, referências, privacidade.
+- Página inicial completa (banner, sobre, quatro pilares, livro, autora, projetos em destaque).
+- Módulo `src/lib/dados.js` (leitura e filtragem dos JSON, ignora temas reservados e projetos não publicados).
+- Componentes `CartaoProjeto` e `AvisoDemonstracao`.
+- `src/data/projetos.json` com dois projetos de demonstração (`demonstracao: true`).
+- Página individual provisória `src/pages/projetos/[slug].astro`.
 
 Pendente:
 
-- Página inicial completa (banner, pilares, livro, autora, destaques).
-- `projetos.json`, página `[slug].astro` e galeria de projetos.
+- Página individual de projeto completa (galeria de fotos, vídeos, créditos).
+- Acervo `/projetos/` com listagem dos cartões.
+- Capa do livro e fotografia da autora (fonte autorizada) e biografia da autora com fontes confiáveis.
 - Filtros combináveis e busca.
 - Componentes de galeria de fotos e vídeo sob demanda.
 - Páginas Sobre e Referências com conteúdo real.
