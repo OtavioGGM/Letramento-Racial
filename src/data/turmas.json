@@ -1,0 +1,42 @@
+{
+  "etapas": ["Ensino Médio"],
+  "series": ["1ª série", "2ª série", "3ª série"],
+  "cursos": [
+    { "sigla": "REG", "nome": "Ensino Médio regular" },
+    { "sigla": "ADM", "nome": "Administração" },
+    { "sigla": "DS",  "nome": "Desenvolvimento de Sistemas" }
+  ],
+
+  "turmas": [
+    { "id": "1a", "rotulo": "1º A", "serie": "1ª série", "curso": "REG" },
+    { "id": "1b", "rotulo": "1º B", "serie": "1ª série", "curso": "REG" },
+    { "id": "1c", "rotulo": "1º C", "serie": "1ª série", "curso": "REG" },
+    { "id": "1d", "rotulo": "1º D", "serie": "1ª série", "curso": "REG" },
+    { "id": "1e", "rotulo": "1º E", "serie": "1ª série", "curso": "REG" },
+    { "id": "1f", "rotulo": "1º F", "serie": "1ª série", "curso": "REG" },
+    { "id": "1g", "rotulo": "1º G", "serie": "1ª série", "curso": "REG" },
+
+    { "id": "2a", "rotulo": "2º A", "serie": "2ª série", "curso": "REG" },
+    { "id": "2b", "rotulo": "2º B", "serie": "2ª série", "curso": "REG" },
+    { "id": "2c", "rotulo": "2º C", "serie": "2ª série", "curso": "REG" },
+    { "id": "2d", "rotulo": "2º D", "serie": "2ª série", "curso": "REG" },
+    { "id": "2e", "rotulo": "2º E", "serie": "2ª série", "curso": "REG" },
+    { "id": "2f", "rotulo": "2º F", "serie": "2ª série", "curso": "REG" },
+
+    { "id": "2a-adm", "rotulo": "2º A ADM", "serie": "2ª série", "curso": "ADM" },
+    { "id": "2b-adm", "rotulo": "2º B ADM", "serie": "2ª série", "curso": "ADM" },
+    { "id": "2c-adm", "rotulo": "2º C ADM", "serie": "2ª série", "curso": "ADM" },
+
+    { "id": "2a-ds", "rotulo": "2º A DS", "serie": "2ª série", "curso": "DS" },
+    { "id": "2e-ds", "rotulo": "2º E DS", "serie": "2ª série", "curso": "DS" },
+    { "id": "2f-ds", "rotulo": "2º F DS", "serie": "2ª série", "curso": "DS" },
+
+    { "id": "3a", "rotulo": "3º A", "serie": "3ª série", "curso": "REG" },
+    { "id": "3b", "rotulo": "3º B", "serie": "3ª série", "curso": "REG" },
+    { "id": "3c", "rotulo": "3º C", "serie": "3ª série", "curso": "REG" },
+
+    { "id": "3a-adm", "rotulo": "3º A ADM", "serie": "3ª série", "curso": "ADM" },
+    { "id": "3b-ds", "rotulo": "3º B DS", "serie": "3ª série", "curso": "DS" }
+
+    ]
+}

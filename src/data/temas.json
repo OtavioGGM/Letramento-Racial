@@ -1,0 +1,146 @@
+[
+    {
+        "id": "racismo-no-brasil",
+        "nome": "Peculiaridades do racismo no Brasil: o equívoco de que o Brasil não é racista",
+        "turmaId": "2e",
+        "numero": 1
+    },
+    {
+        "id": "negro-mundo-brancos",
+        "nome": "O negro no mundo dos brancos: eurocentrismo",
+        "turmaId": "2a",
+        "numero": 2
+    },
+    {
+        "id": "lugar-do-negro",
+        "nome": "O lugar do negro: desnaturalizando o olhar condicionado pelo racismo",
+        "turmaId": "3b",
+        "numero": 3
+    },
+    {
+        "id": "somos-racistas",
+        "nome": "Somos racistas? É possível não ser racista numa sociedade racista?",
+        "turmaId": "3c",
+        "numero": 4
+    },
+    {
+        "id": "politicas-publicas-afirmativas",
+        "nome": "Políticas públicas afirmativas: reparação ao racismo estrutural",
+        "turmaId": "2d",
+        "numero": 5
+    },
+    {
+        "id": "racismo-no-trabalho",
+        "nome": "As dimensões do racismo no trabalho",
+        "turmaId": "1e",
+        "numero": 6
+    },
+    {
+        "id": "epistemicidio",
+        "nome": "Epistemicídio: constatação e reações",
+        "turmaId": "3a-adm",
+        "numero": 7
+    },
+    {
+        "id": "cultura-movimento-antirracista",
+        "nome": "A cultura como movimento antirracista",
+        "turmaId": "1a",
+        "numero": 8
+    },
+    {
+        "id": "mulher-negra-sexualizacao",
+        "nome": "O engrandecimento da mulher negra: reagindo à sexualização",
+        "turmaId": "2b",
+        "numero": 9
+    },
+    {
+        "id": "combate-violencia-racial",
+        "nome": "Combatendo a violência racial: assumindo o combate ao racismo",
+        "turmaId": "1b",
+        "numero": 10
+    },
+    {
+        "id": "riqueza-cultura-negra",
+        "nome": "A riqueza da cultura negra: explorando a diversidade da cultura negra",
+        "turmaId": "3a",
+        "numero": 11
+    },
+    {
+        "id": "racismo-estrutural-bases-historicas",
+        "nome": "Problematizando o racismo estrutural: as bases históricas do racismo no Brasil",
+        "turmaId": "3b-ds",
+        "numero": 12
+    },
+    {
+        "id": "antirracismo-compromisso",
+        "nome": "O antirracismo como compromisso de todos",
+        "turmaId": "1f",
+        "numero": 13
+    },
+    {
+        "id": "informacao-combate-racismo",
+        "nome": "A informação como combate ao racismo",
+        "turmaId": "1g",
+        "numero": 14
+    },
+    {
+        "id": "onde-quando-falar-racismo",
+        "nome": "Onde e quando falar sobre o racismo",
+        "turmaId": "1c",
+        "numero": 15
+    },
+    {
+        "id": "alvo-guerra-drogas",
+        "nome": "O alvo da guerra às drogas",
+        "turmaId": "1d",
+        "numero": 16
+    },
+    {
+        "id": "relacionamentos-inter-raciais",
+        "nome": "Relacionamentos inter-raciais",
+        "turmaId": "2f",
+        "numero": 17
+    },
+    {
+        "id": "cinema-negro",
+        "nome": "Cinema negro",
+        "turmaId": "2c",
+        "numero": 18
+    },
+    {
+        "id": "inserir-tema-19",
+        "nome": "(INSERIR TEMA)",
+        "turmaId": "2a-adm",
+        "numero": 19
+    },
+    {
+        "id": "inserir-tema-20",
+        "nome": "(INSERIR TEMA)",
+        "turmaId": "2b-adm",
+        "numero": 20
+    },
+    {
+        "id": "inserir-tema-21",
+        "nome": "(INSERIR TEMA)",
+        "turmaId": "2c-adm",
+        "numero": 21
+    },
+    {
+        "id": "inserir-tema-22",
+        "nome": "(INSERIR TEMA)",
+        "turmaId": "2a-ds",
+        "numero": 22
+    },
+    {
+        "id": "inserir-tema-23",
+        "nome": "(INSERIR TEMA)",
+        "turmaId": "2e-ds",
+        "numero": 23
+    },
+    {
+        "id": "inserir-tema-24",
+        "nome": "(INSERIR TEMA)",
+        "turmaId": "2f-ds",
+        "numero": 24
+    }
+]
