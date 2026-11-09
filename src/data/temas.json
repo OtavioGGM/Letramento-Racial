@@ -2,13 +2,13 @@
     {
         "id": "racismo-no-brasil",
         "nome": "Peculiaridades do racismo no Brasil: o equívoco de que o Brasil não é racista",
-        "turmaId": "2e",
+        "turmaId": "2e-ds",
         "numero": 1
     },
     {
         "id": "negro-mundo-brancos",
         "nome": "O negro no mundo dos brancos: eurocentrismo",
-        "turmaId": "2a",
+        "turmaId": "2a-ds",
         "numero": 2
     },
     {
@@ -26,7 +26,7 @@
     {
         "id": "politicas-publicas-afirmativas",
         "nome": "Políticas públicas afirmativas: reparação ao racismo estrutural",
-        "turmaId": "2d",
+        "turmaId": "2d-adm",
         "numero": 5
     },
     {
@@ -104,43 +104,7 @@
     {
         "id": "cinema-negro",
         "nome": "Cinema negro",
-        "turmaId": "2c",
-        "numero": 18
-    },
-    {
-        "id": "inserir-tema-19",
-        "nome": "(INSERIR TEMA)",
-        "turmaId": "2a-adm",
-        "numero": 19
-    },
-    {
-        "id": "inserir-tema-20",
-        "nome": "(INSERIR TEMA)",
-        "turmaId": "2b-adm",
-        "numero": 20
-    },
-    {
-        "id": "inserir-tema-21",
-        "nome": "(INSERIR TEMA)",
         "turmaId": "2c-adm",
-        "numero": 21
-    },
-    {
-        "id": "inserir-tema-22",
-        "nome": "(INSERIR TEMA)",
-        "turmaId": "2a-ds",
-        "numero": 22
-    },
-    {
-        "id": "inserir-tema-23",
-        "nome": "(INSERIR TEMA)",
-        "turmaId": "2e-ds",
-        "numero": 23
-    },
-    {
-        "id": "inserir-tema-24",
-        "nome": "(INSERIR TEMA)",
-        "turmaId": "2f-ds",
-        "numero": 24
+        "numero": 18
     }
 ]

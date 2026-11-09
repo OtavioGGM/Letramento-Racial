@@ -16,20 +16,18 @@
     { "id": "1f", "rotulo": "1º F", "serie": "1ª série", "curso": "REG" },
     { "id": "1g", "rotulo": "1º G", "serie": "1ª série", "curso": "REG" },
 
-    { "id": "2a", "rotulo": "2º A", "serie": "2ª série", "curso": "REG" },
-    { "id": "2b", "rotulo": "2º B", "serie": "2ª série", "curso": "REG" },
-    { "id": "2c", "rotulo": "2º C", "serie": "2ª série", "curso": "REG" },
-    { "id": "2d", "rotulo": "2º D", "serie": "2ª série", "curso": "REG" },
-    { "id": "2e", "rotulo": "2º E", "serie": "2ª série", "curso": "REG" },
-    { "id": "2f", "rotulo": "2º F", "serie": "2ª série", "curso": "REG" },
-
-    { "id": "2a-adm", "rotulo": "2º A ADM", "serie": "2ª série", "curso": "ADM" },
-    { "id": "2b-adm", "rotulo": "2º B ADM", "serie": "2ª série", "curso": "ADM" },
-    { "id": "2c-adm", "rotulo": "2º C ADM", "serie": "2ª série", "curso": "ADM" },
 
     { "id": "2a-ds", "rotulo": "2º A DS", "serie": "2ª série", "curso": "DS" },
+
+    { "id": "2b", "rotulo": "2º B", "serie": "2ª série", "curso": "REG" },
+
+    { "id": "2c-adm", "rotulo": "2º C ADM", "serie": "2ª série", "curso": "ADM" },
+    { "id": "2d-adm", "rotulo": "2º D ADM", "serie": "2ª série", "curso": "ADM" },
+
     { "id": "2e-ds", "rotulo": "2º E DS", "serie": "2ª série", "curso": "DS" },
-    { "id": "2f-ds", "rotulo": "2º F DS", "serie": "2ª série", "curso": "DS" },
+
+    { "id": "2f", "rotulo": "2º F", "serie": "2ª série", "curso": "REG" },
+
 
     { "id": "3a", "rotulo": "3º A", "serie": "3ª série", "curso": "REG" },
     { "id": "3b", "rotulo": "3º B", "serie": "3ª série", "curso": "REG" },
