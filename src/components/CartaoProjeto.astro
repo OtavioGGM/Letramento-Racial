@@ -31,7 +31,7 @@ const href = `/projetos/${projeto.slug}/`;
     <p>{projeto.descricao}</p>
     {temas.length > 0 && (
       <p class="temas">
-        {temas.map((t) => <span title={t.nome}>Tema {t.numero}</span>)}
+        {temas.map((t) => <span>{t.nome}</span>)}
       </p>
     )}
     <p class="midia">
@@ -70,6 +70,6 @@ const href = `/projetos/${projeto.slug}/`;
   .cartao h3 a { color: var(--marrom); text-decoration: none; }
   .cartao h3 a:hover { text-decoration: underline; }
   .temas, .midia { display: flex; flex-wrap: wrap; gap: 0.4rem; font-size: 0.85rem; margin-bottom: 0.6rem; }
-  .temas span { border: 1px solid var(--terracota); color: var(--terracota); border-radius: 999px; padding: 0.1rem 0.6rem; }
-  .midia span { background: var(--bege); border-radius: 999px; padding: 0.1rem 0.6rem; }
+  .temas span { border: 1px solid var(--terracota); color: var(--terracota); border-radius: 0.75rem; padding: 0.1rem 0.6rem; }
+  .midia span { background: var(--bege); border-radius: 0.75rem; padding: 0.1rem 0.6rem; }
 </style>

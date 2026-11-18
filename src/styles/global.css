@@ -54,7 +54,12 @@ h3 { font-size: 1.25rem; }
 
 p { margin: 0 0 1rem; }
 
-img { max-width: 100%; height: auto; display: block; }
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+}
 
 a { color: var(--terracota); }
 
