@@ -3,6 +3,7 @@ import Base from "../../layouts/Base.astro";
 import AvisoDemonstracao from "../../components/AvisoDemonstracao.astro";
 import GaleriaFotos from "../../components/GaleriaFotos.astro";
 import { projetosPublicados, getTurma, getTema } from "../../lib/dados.js";
+import CarrosselCapa from "../../components/CarrosselCapa.astro";
 
 export function getStaticPaths() {
   return projetosPublicados.map((p) => ({
@@ -31,8 +32,23 @@ const temas = projeto.temas.map((id) => getTema(id)).filter(Boolean);
         <span> | {projeto.ano}</span>
       </p>
 
-      {projeto.imagemCapa && (
-        <img class="capa" src={projeto.imagemCapa} alt={projeto.imagemCapaAlt} />
+      {projeto.id === "educador-003" ? (
+        <CarrosselCapa
+          imagens={[
+            {
+              src: "/images/projetos/educadores/abertura-solene-letramento-racial/banda1.jpeg",
+              alt: "Banda convidada se apresentando no evento",
+            },
+            {
+              src: "/images/projetos/educadores/abertura-solene-letramento-racial/slideCapa.jpeg",
+              alt: "Capa do projeto Abertura solene do Projeto Letramento Racial",
+            },
+          ]}
+        />
+      ) : (
+        projeto.imagemCapa && (
+          <img class="capa" src={projeto.imagemCapa} alt={projeto.imagemCapaAlt} />
+        )
       )}
 
       <p>{projeto.descricao}</p>

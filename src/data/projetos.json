@@ -59,7 +59,7 @@
     "professorResponsavel": "Anderson C. Santiago",
     "disciplinas": [],
     "temas": [],
-    "imagemCapa": "/images/projetos/educadores/olhar-negro-na-fotografia/santiago1.jpeg",
+    "imagemCapa": "/images/projetos/educadores/olhar-negro-na-fotografia/capa.jpeg",
     "imagemCapaAlt": "Capa do projeto Olhar negro na fotografia",
     "imagens": [
     {
@@ -112,12 +112,22 @@
     "professorResponsavel": "Felipe Johnny S. Brito",
     "disciplinas": [],
     "temas": [],
-    "imagemCapa": "/images/projetos/educadores/abertura-solene-letramento-racial/slideCapa.jpeg",
-    "imagemCapaAlt": "Capa do projeto Abertura solene do Projeto Letramento Racial",
+    "imagemCapa": "/images/projetos/educadores/abertura-solene-letramento-racial/banda1.jpeg",
+    "imagemCapaAlt": "Banda convidada se apresentando no evento",
     "imagens": [
       {
-        "src": "/images/projetos/educadores/abertura-solene-letramento-racial/slideCapa.jpeg",
+        "src": "/images/projetos/educadores/abertura-solene-letramento-racial/slideConstrucaoDoRacismo.jpeg",
         "alt": "Capa do projeto Abertura solene do Projeto Letramento Racial",
+        "legenda": ""
+      },
+      {
+        "src": "/images/projetos/educadores/abertura-solene-letramento-racial/slideSemente.jpeg",
+        "alt": "Slide com frases racistas que contribuiram para a construção de uma sociedade racista, com a frase '*O que regava essa semente?'",
+        "legenda": ""
+      },
+      {
+        "src": "/images/projetos/educadores/abertura-solene-letramento-racial/slideDjamila.jpeg",
+        "alt": "Slide com a imagem da escritora Djamila Ribeiro, que foi homenageada no evento, reforçando sua visão sobre o papel antirracista na sociedade",
         "legenda": ""
       },
       {
@@ -143,21 +153,6 @@
       {
         "src": "/images/projetos/educadores/abertura-solene-letramento-racial/johnny3.jpeg",
         "alt": "Felipe Johnny S. Brito apresentando no palco escolar",
-        "legenda": ""
-      },
-      {
-        "src": "/images/projetos/educadores/abertura-solene-letramento-racial/plateia.jpeg",
-        "alt": "Plateia do evento, com estudantes assistindo a apresentação",
-        "legenda": ""
-      },
-      {
-        "src": "/images/projetos/educadores/abertura-solene-letramento-racial/slideSemente.jpeg",
-        "alt": "Slide com frases racistas que contribuiram para a construção de uma sociedade racista, com a frase '*O que regava essa semente?'",
-        "legenda": ""
-      },
-      {
-        "src": "/images/projetos/educadores/abertura-solene-letramento-racial/slideDjamila.jpeg",
-        "alt": "Slide com a imagem da escritora Djamila Ribeiro, que foi homenageada no evento, reforçando sua visão sobre o papel antirracista na sociedade",
         "legenda": ""
       }
     ],

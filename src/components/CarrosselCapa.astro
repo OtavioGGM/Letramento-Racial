@@ -1,0 +1,127 @@
+
+---
+const { imagens, mostrarControles = true } = Astro.props;
+---
+
+<div class="carrossel-capa" data-carrossel>
+  {imagens.map((imagem, indice) => (
+    <img
+      class:list={["slide", { ativo: indice === 0 }]}
+      src={imagem.src}
+      alt={imagem.alt}
+      loading={indice === 0 ? "eager" : "lazy"}
+    />
+  ))}
+
+  {mostrarControles && (
+    <>
+      <button class="anterior" type="button" aria-label="Imagem anterior">
+        &#10094;
+      </button>
+
+      <button class="proximo" type="button" aria-label="Próxima imagem">
+        &#10095;
+      </button>
+    </>
+  )}
+</div>
+
+<script>
+  document.querySelectorAll("[data-carrossel]").forEach((carrossel) => {
+    const slides = carrossel.querySelectorAll(".slide");
+    const anterior = carrossel.querySelector(".anterior");
+    const proximo = carrossel.querySelector(".proximo");
+
+    if (slides.length < 2) return;
+
+    let atual = 0;
+
+    function mostrarSlide(indice) {
+      slides[atual].classList.remove("ativo");
+      atual = (indice + slides.length) % slides.length;
+      slides[atual].classList.add("ativo");
+    }
+
+    if (anterior) {
+      anterior.addEventListener("click", () => {
+        mostrarSlide(atual - 1);
+      });
+    }
+
+    if (proximo) {
+      proximo.addEventListener("click", () => {
+        mostrarSlide(atual + 1);
+      });
+    }
+
+    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setInterval(() => {
+        mostrarSlide(atual + 1);
+      }, 4000);
+    }
+  });
+</script>
+
+<style>
+.carrossel-capa {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-radius: var(--raio);
+  background: #222;
+}
+
+  .slide {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+  }
+
+  .slide.ativo {
+    opacity: 1;
+  }
+
+  .anterior,
+  .proximo {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 0;
+    border-radius: 50%;
+    padding: 0.7rem 0.9rem;
+    background: rgb(0 0 0 / 65%);
+    color: white;
+    cursor: pointer;
+  }
+
+  .anterior {
+    left: 0.75rem;
+  }
+
+  .proximo {
+    right: 0.75rem;
+  }
+
+  .anterior:focus-visible,
+  .proximo:focus-visible {
+    outline: 3px solid white;
+    outline-offset: 3px;
+  }
+
+@media (max-width: 600px) {
+  .carrossel-capa {
+    aspect-ratio: 16 / 10;
+  }
+}
+
+  @media (prefers-reduced-motion: reduce) {
+    .slide {
+      transition: none;
+    }
+  }
+</style>

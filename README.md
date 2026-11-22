@@ -348,6 +348,16 @@ Pendente:
 - Nunca inventar dados da escola. Quando faltar informação, perguntar ou usar campo configurável com texto provisório claramente marcado.
 - Informar ao final de cada etapa o que atualizar neste README.
 
+## Carrossel de imagens nos projetos
+
+- Criado o componente `src/components/CarrosselCapa.astro`.
+- O componente permite alternar imagens automaticamente a cada 4 segundos.
+- Possui controles manuais opcionais (setas).
+- Respeita a preferência de acessibilidade `prefers-reduced-motion`.
+- Na página individual, o projeto `educador-003` utiliza imagens da banda e do Felipe Johnny.
+- A galeria original do projeto permanece independente do carrossel.
+- A integração do carrossel no cartão da página de projetos ainda está pendente.
+
 ### Etapas do desenvolvimento
 
 1. Planejamento técnico e visual (concluída).

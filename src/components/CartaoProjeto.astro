@@ -1,6 +1,7 @@
 ---
 import { getTurma, getTema } from "../lib/dados.js";
 import AvisoDemonstracao from "./AvisoDemonstracao.astro";
+import CarrosselCapa from "./CarrosselCapa.astro";
 
 const { projeto } = Astro.props;
 const turma = getTurma(projeto.turmaId);
@@ -14,13 +15,33 @@ const href = `/projetos/${projeto.slug}/`;
 ---
 
 <article class="cartao">
-  <a class="capa" href={href} tabindex="-1" aria-hidden="true">
-    {projeto.imagemCapa ? (
-      <img src={projeto.imagemCapa} alt={projeto.imagemCapaAlt} loading="lazy" width="640" height="400" />
-    ) : (
-      <div class="sem-capa">Sem imagem de capa</div>
-    )}
-  </a>
+<a class="capa" href={href} tabindex="-1" aria-hidden="true">
+  {projeto.id === "educador-003" ? (
+    <CarrosselCapa
+      imagens={[
+        {
+          src: "/images/projetos/educadores/abertura-solene-letramento-racial/banda1.jpeg",
+          alt: "Banda convidada se apresentando no evento",
+        },
+        {
+          src: "/images/projetos/educadores/abertura-solene-letramento-racial/slideCapa.jpeg",
+          alt: "Capa do projeto Abertura solene do Projeto Letramento Racial",
+        },
+      ]}
+      mostrarControles={false}
+    />
+  ) : projeto.imagemCapa ? (
+    <img
+      src={projeto.imagemCapa}
+      alt={projeto.imagemCapaAlt}
+      loading="lazy"
+      width="640"
+      height="400"
+    />
+  ) : (
+    <div class="sem-capa">Sem imagem de capa</div>
+  )}
+</a>
   <div class="corpo">
     <p class="meta">
       <strong>{categoria}</strong>
