@@ -1,7 +1,8 @@
 ---
 import Base from "../../layouts/Base.astro";
 import AvisoDemonstracao from "../../components/AvisoDemonstracao.astro";
-import { projetosPublicados, getTurma } from "../../lib/dados.js";
+import GaleriaFotos from "../../components/GaleriaFotos.astro";
+import { projetosPublicados, getTurma, getTema } from "../../lib/dados.js";
 
 export function getStaticPaths() {
   return projetosPublicados.map((p) => ({
@@ -12,16 +13,63 @@ export function getStaticPaths() {
 
 const { projeto } = Astro.props;
 const turma = getTurma(projeto.turmaId);
+const responsavel =
+  projeto.categoria === "turma" ? turma?.rotulo : projeto.professorResponsavel;
+const categoria =
+  projeto.categoria === "turma" ? "Projeto de turma" : "Projeto de educadores";
+const temas = projeto.temas.map((id) => getTema(id)).filter(Boolean);
 ---
 
 <Base titulo={projeto.titulo} descricao={projeto.descricao}>
   <article class="secao">
-    <div class="container">
+    <div class="container estreito">
       {projeto.demonstracao && <AvisoDemonstracao />}
       <h1>{projeto.titulo}</h1>
-      <p>{projeto.categoria === "turma" ? turma?.rotulo : projeto.professorResponsavel} | {projeto.ano}</p>
+      <p class="meta">
+        <strong>{categoria}</strong>
+        {responsavel && <span> | {responsavel}</span>}
+        <span> | {projeto.ano}</span>
+      </p>
+
+      {projeto.imagemCapa && (
+        <img class="capa" src={projeto.imagemCapa} alt={projeto.imagemCapaAlt} />
+      )}
+
       <p>{projeto.descricao}</p>
+
+      {projeto.objetivoPedagogico && (
+        <section>
+          <h2>Objetivo pedagógico</h2>
+          <p>{projeto.objetivoPedagogico}</p>
+        </section>
+      )}
+
+      {projeto.disciplinas.length > 0 && (
+        <p><strong>Disciplinas:</strong> {projeto.disciplinas.join(", ")}</p>
+      )}
+
+      {temas.length > 0 && (
+        <p><strong>Temas:</strong> {temas.map((t) => t.nome).join("; ")}</p>
+      )}
+
+      <GaleriaFotos imagens={projeto.imagens} titulo={projeto.titulo} />
+
+      {projeto.creditos && <p class="creditos"><strong>Créditos:</strong> {projeto.creditos}</p>}
+
       <p><a href="/projetos/">Voltar aos projetos</a></p>
     </div>
   </article>
 </Base>
+
+<style>
+  .estreito { max-width: 52rem; }
+  .meta { font-size: 0.95rem; }
+  .capa {
+    width: 100%;
+    max-height: 28rem;
+    object-fit: cover;
+    border-radius: var(--raio);
+    margin-block: 1rem;
+  }
+  .creditos { font-size: 0.95rem; }
+</style>

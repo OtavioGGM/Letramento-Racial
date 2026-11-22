@@ -11,9 +11,35 @@
     "professorResponsavel": "Felipe Rodrigues",
     "disciplinas": [],
     "temas": [],
-    "imagemCapa": "/images/projetos/educadores/ProjetoFelipeRodrigues/slideCapa.jpeg",
+    "imagemCapa": "/images/projetos/educadores/blues-como-protesto/slideCapa.jpeg",
     "imagemCapaAlt": "Capa do projeto Blues como protesto",
-    "imagens": [],
+    "imagens": [
+      {
+      "src": "/images/projetos/educadores/blues-como-protesto/slideCapa.jpeg",
+      "alt": "Capa do projeto Blues como protesto",
+      "legenda": ""
+      },
+      {
+      "src": "/images/projetos/educadores/blues-como-protesto/felipe1.jpeg",
+      "alt": "Felipe Rodrigues apresentando o projeto para estudantes com o slide da capa da apresentação ao fundo",
+      "legenda": ""
+      },
+      {
+      "src": "/images/projetos/educadores/blues-como-protesto/felipe2.jpeg",
+      "alt": "Felipe Rodrigues em uma das sessões do projeto",
+      "legenda": ""
+      },
+      {
+      "src": "/images/projetos/educadores/blues-como-protesto/felipe3.jpeg",
+      "alt": "Felipe Rodrigues em uma das sessões do projeto",
+      "legenda": ""
+      },
+      {
+      "src": "/images/projetos/educadores/blues-como-protesto/plateia.jpeg",
+      "alt": "Plateia do evento, com estudantes assistindo a apresentação",
+      "legenda": ""
+      }
+    ],
     "videos": [],
     "creditos": "",
     "dataPublicacao": "2026-11-18",
@@ -33,9 +59,40 @@
     "professorResponsavel": "Anderson C. Santiago",
     "disciplinas": [],
     "temas": [],
-    "imagemCapa": "",
-    "imagemCapaAlt": "",
-    "imagens": [],
+    "imagemCapa": "/images/projetos/educadores/olhar-negro-na-fotografia/santiago1.jpeg",
+    "imagemCapaAlt": "Capa do projeto Olhar negro na fotografia",
+    "imagens": [
+    {
+      "src": "/images/projetos/educadores/olhar-negro-na-fotografia/santiago1.jpeg",
+      "alt": "Capa do projeto Olhar negro na fotografia e Anderson C. Santiago ao fundo",
+      "legenda": ""
+      },
+    {
+      "src": "/images/projetos/educadores/olhar-negro-na-fotografia/santiago2.jpeg",
+      "alt": "Anderson C. Santiago em uma das sessões do projeto",
+      "legenda": ""
+    },
+    {
+      "src": "/images/projetos/educadores/olhar-negro-na-fotografia/santiago3.jpeg",
+      "alt": "Anderson C. Santiago em outra sessão do projeto",
+      "legenda": ""
+    },
+    {
+      "src": "/images/projetos/educadores/olhar-negro-na-fotografia/santiago4.jpeg",
+      "alt": "Anderson C. Santiago visto de costas, apresentando para plateia de estudantes",
+      "legenda": ""
+    },
+    {
+      "src": "/images/projetos/educadores/olhar-negro-na-fotografia/camera.jpeg",
+      "alt": "Foco em máquina fotográfica e suas diferentes lentes com estudantes assistindo a apresentação ao fundo",
+      "legenda": ""
+    },
+    {
+      "src": "/images/projetos/educadores/olhar-negro-na-fotografia/plateia.jpeg",
+      "alt": "Plateia do evento, com estudantes assistindo a apresentação",
+      "legenda": ""
+    }
+    ],
     "videos": [],
     "creditos": "",
     "dataPublicacao": "2026-11-17",
@@ -55,9 +112,55 @@
     "professorResponsavel": "Felipe Johnny S. Brito",
     "disciplinas": [],
     "temas": [],
-    "imagemCapa": "",
-    "imagemCapaAlt": "",
-    "imagens": [],
+    "imagemCapa": "/images/projetos/educadores/abertura-solene-letramento-racial/slideCapa.jpeg",
+    "imagemCapaAlt": "Capa do projeto Abertura solene do Projeto Letramento Racial",
+    "imagens": [
+      {
+        "src": "/images/projetos/educadores/abertura-solene-letramento-racial/slideCapa.jpeg",
+        "alt": "Capa do projeto Abertura solene do Projeto Letramento Racial",
+        "legenda": ""
+      },
+      {
+        "src": "/images/projetos/educadores/abertura-solene-letramento-racial/banda1.jpeg",
+        "alt": "Banda convidada se apresentando no evento",
+        "legenda": ""
+      },
+      {
+        "src": "/images/projetos/educadores/abertura-solene-letramento-racial/banda2.jpeg",
+        "alt": "Banda convidada se apresentando no evento",
+        "legenda": ""
+      },
+      {
+        "src": "/images/projetos/educadores/abertura-solene-letramento-racial/johnny1.jpeg",
+        "alt": "Felipe Johnny S. Brito apresentando no palco escolar",
+        "legenda": ""
+      },
+      {
+        "src": "/images/projetos/educadores/abertura-solene-letramento-racial/johnny2.jpeg",
+        "alt": "Felipe Johnny S. Brito apresentando no palco escolar",
+        "legenda": ""
+      },
+      {
+        "src": "/images/projetos/educadores/abertura-solene-letramento-racial/johnny3.jpeg",
+        "alt": "Felipe Johnny S. Brito apresentando no palco escolar",
+        "legenda": ""
+      },
+      {
+        "src": "/images/projetos/educadores/abertura-solene-letramento-racial/plateia.jpeg",
+        "alt": "Plateia do evento, com estudantes assistindo a apresentação",
+        "legenda": ""
+      },
+      {
+        "src": "/images/projetos/educadores/abertura-solene-letramento-racial/slideSemente.jpeg",
+        "alt": "Slide com frases racistas que contribuiram para a construção de uma sociedade racista, com a frase '*O que regava essa semente?'",
+        "legenda": ""
+      },
+      {
+        "src": "/images/projetos/educadores/abertura-solene-letramento-racial/slideDjamila.jpeg",
+        "alt": "Slide com a imagem da escritora Djamila Ribeiro, que foi homenageada no evento, reforçando sua visão sobre o papel antirracista na sociedade",
+        "legenda": ""
+      }
+    ],
     "videos": [],
     "creditos": "",
     "dataPublicacao": "2026-11-16",

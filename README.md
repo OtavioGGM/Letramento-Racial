@@ -306,7 +306,7 @@ node -e "JSON.parse(require('fs').readFileSync('src/data/turmas.json','utf8')); 
 Concluído:
 
 - Projeto Astro base (template Empty) e estrutura de pastas.
-- projetos.json com três projetos de educadores (Felipe Araújo, Anderson Santiago, Felipe Johnny), em demonstração até receberem conteúdo real.
+- projetos.json com três projetos de educadores (Felipe Rodrigues, Anderson Santiago, Felipe Johnny), em demonstração até receberem conteúdo real.
 - CSS global, layout base, cabeçalho com menu mobile e rodapé.
 - Página inicial completa (banner, sobre, quatro pilares, livro, autora, projetos em destaque).
 - Módulo `src/lib/dados.js` e componentes `CartaoProjeto` e `AvisoDemonstracao`.

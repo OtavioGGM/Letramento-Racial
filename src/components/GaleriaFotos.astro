@@ -1,0 +1,157 @@
+---
+const { imagens = [], titulo = "" } = Astro.props;
+
+// Aceita objeto {src, alt, legenda}. Texto puro também funciona, com alt provisório.
+const fotos = imagens.map((i, n) => {
+  const base = typeof i === "string" ? { src: i } : i;
+  return {
+    src: base.src,
+    alt: base.alt || `Fotografia ${n + 1} do projeto ${titulo}`,
+    legenda: base.legenda || "",
+  };
+});
+---
+
+{fotos.length > 0 && (
+  <section class="galeria" aria-labelledby="titulo-galeria">
+    <h2 id="titulo-galeria">Fotografias</h2>
+    <ul class="miniaturas">
+      {fotos.map((f, n) => (
+        <li>
+          <button
+            type="button"
+            class="miniatura"
+            data-src={f.src}
+            data-alt={f.alt}
+            data-legenda={f.legenda}
+            aria-label={`Ampliar fotografia ${n + 1} de ${fotos.length}`}
+          >
+            <img src={f.src} alt="" loading="lazy" />
+          </button>
+        </li>
+      ))}
+    </ul>
+
+    <dialog class="visualizador" aria-label="Visualizador de fotografias">
+      <button type="button" class="fechar">Fechar</button>
+      <figure>
+        <img class="ampliada" alt="" />
+        <figcaption></figcaption>
+      </figure>
+      <div class="navegacao">
+        <button type="button" class="anterior">Anterior</button>
+        <span class="contador" aria-live="polite"></span>
+        <button type="button" class="proxima">Próxima</button>
+      </div>
+    </dialog>
+  </section>
+)}
+
+<style>
+  .galeria { margin-block: 2rem; }
+  .miniaturas {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+  .miniatura {
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: 0;
+    border-radius: var(--raio);
+    overflow: hidden;
+    cursor: zoom-in;
+    background: var(--branco);
+  }
+  .miniatura img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+  .visualizador {
+    width: min(95vw, 60rem);
+    max-height: 95vh;
+    padding: 1rem;
+    border: 0;
+    border-radius: var(--raio);
+    background: var(--marrom);
+    color: var(--bege);
+  }
+  .visualizador::backdrop { background: rgb(0 0 0 / 0.8); }
+  .visualizador figure { margin: 0.75rem 0; }
+  .ampliada {
+    width: 100%;
+    max-height: 70vh;
+    object-fit: contain;
+  }
+  .visualizador figcaption { margin-top: 0.5rem; font-size: 0.95rem; }
+  .navegacao {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+  .visualizador button {
+    min-height: 2.75rem;
+    min-width: 2.75rem;
+    padding: 0.5rem 1rem;
+    background: var(--bege);
+    color: var(--marrom);
+    border: 2px solid var(--bege);
+    border-radius: var(--raio);
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .visualizador button:focus-visible { outline-color: var(--ocre); }
+  .fechar { display: block; margin-left: auto; }
+
+  @media (min-width: 48em) {
+    .miniaturas { grid-template-columns: repeat(3, 1fr); }
+  }
+</style>
+
+<script>
+  const galeria = document.querySelector(".galeria");
+
+  if (galeria) {
+    const botoes = [...galeria.querySelectorAll(".miniatura")];
+    const dialogo = galeria.querySelector(".visualizador");
+    const imagem = dialogo.querySelector(".ampliada");
+    const legenda = dialogo.querySelector("figcaption");
+    const contador = dialogo.querySelector(".contador");
+    let atual = 0;
+
+    function mostrar(n) {
+      atual = (n + botoes.length) % botoes.length;
+      const b = botoes[atual];
+      imagem.src = b.dataset.src;
+      imagem.alt = b.dataset.alt;
+      legenda.textContent = b.dataset.legenda;
+      contador.textContent = `${atual + 1} de ${botoes.length}`;
+    }
+
+    botoes.forEach((b, n) =>
+      b.addEventListener("click", () => {
+        mostrar(n);
+        dialogo.showModal();
+      })
+    );
+
+    dialogo.querySelector(".fechar").addEventListener("click", () => dialogo.close());
+    dialogo.querySelector(".anterior").addEventListener("click", () => mostrar(atual - 1));
+    dialogo.querySelector(".proxima").addEventListener("click", () => mostrar(atual + 1));
+
+    dialogo.addEventListener("click", (e) => {
+      if (e.target === dialogo) dialogo.close();
+    });
+
+    dialogo.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowLeft") mostrar(atual - 1);
+      if (e.key === "ArrowRight") mostrar(atual + 1);
+    });
+  }
+</script>

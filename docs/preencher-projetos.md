@@ -79,7 +79,7 @@ Crie uma subpasta por projeto, com o `slug` como nome:
 ```text
 public/images/projetos/
 ├── educadores/
-│   └── blues-como-protesto/
+│   └── nomeEducador/
 │       ├── capa.webp
 │       ├── foto-01.webp
 │       └── foto-02.webp
