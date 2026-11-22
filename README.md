@@ -133,6 +133,8 @@ Regras:
 - O campo numérico se chama `numero`. Todos os itens devem usar o mesmo nome de campo.
 - Itens com `nome` iniciado por `(INSERIR` são reservas e não são exibidos no site publicado.
 - Nos filtros e nos cartões, o rótulo é o nome do tema. O campo numero serve só para ordenação.
+- DS significa Desenvolvimento de Sistemas
+- ADM significa Administração
 
 Atribuição dos temas oficiais às turmas, conforme informado pela escola:
 
@@ -306,35 +308,35 @@ node -e "JSON.parse(require('fs').readFileSync('src/data/turmas.json','utf8')); 
 Concluído:
 
 - Projeto Astro base (template Empty) e estrutura de pastas.
-- projetos.json com três projetos de educadores (Felipe Rodrigues, Anderson Santiago, Felipe Johnny), em demonstração até receberem conteúdo real.
+- `turmas.json`, `temas.json` e `projetos.json` com os dados oficiais.
 - CSS global, layout base, cabeçalho com menu mobile e rodapé.
 - Página inicial completa (banner, sobre, quatro pilares, livro, autora, projetos em destaque).
-- Módulo `src/lib/dados.js` e componentes `CartaoProjeto` e `AvisoDemonstracao`.
-- Página individual provisória `src/pages/projetos/[slug].astro`.
+- Módulo `src/lib/dados.js` e componentes `CartaoProjeto`, `AvisoDemonstracao` e `GaleriaFotos`.
+- Página individual completa (capa, objetivo, disciplinas, temas, galeria com ampliação, créditos).
+- Três projetos de educadores cadastrados (Felipe Rodrigues, Anderson Santiago, Felipe Johnny), com rostos borrados e em demonstração até receberem conteúdo real.
+- Guia de cadastro de projetos em `docs/preencher-projetos.md`.
 - Deploy na Vercel funcionando em https://letramento-racial.vercel.app.
 
 Pendente:
 
-- Corrigir `turmas.json`, `temas.json` e `projetos.json` conforme os fatos confirmados da 2ª série (`2a-ds`, `2e-ds`, `2c-adm`, `2d-adm`) e fechar a lista completa de turmas.
+- Remover da página inicial os resquícios marcados como "remover" referentes aos Quatro Pilares e atualizar as seções do README que citam os quatro pilares.
 - Acervo `/projetos/` com listagem dos cartões, filtros combináveis e busca.
-- Página individual de projeto completa (galeria de fotos, vídeos, créditos).
-- Componentes de galeria de fotos e de vídeo sob demanda.
-- Capa do livro e fotografia da autora (fonte autorizada) e biografia da autora com fontes confiáveis.
+- Componente `VideoYoutube` (sob demanda) e vídeos na página individual.
 - Páginas Sobre e Referências com conteúdo real.
 - Página de privacidade com canal de contato.
 - Página 404, sitemap, `site` no `astro.config.mjs` e metadados de compartilhamento.
 - Script de validação dos dados no build.
 - Otimização de imagens (WebP) e testes de acessibilidade.
-- Confirmação do nome por extenso dos cursos ADM e DS e preenchimento dos temas reservados.
-- Cadastro dos projetos reais (duas apresentações com 14 fotos), com rostos cobertos e autorização confirmada.
+- Trocar os textos alternativos provisórios das galerias por descrições reais, sem identificar estudantes.
+
 
 ## Informações úteis para IAs que ajudam no projeto
 
 ### Contexto e pessoas
 
-- O projeto é conduzido por uma equipe de três pessoas, cada uma em seu computador, usando GitHub. A divisão sugerida é: interface e identidade visual, lógica e dados, conteúdo e curadoria.
+- O projeto é conduzido por uma equipe de três pessoas. Uma é a programadora, que conversa com a IA. As outras duas dão suporte, coletando imagens e desenvolvendo textos.
 - A pessoa que conversa com a IA é iniciante em Astro e Git. Explique o motivo de cada comando e diga exatamente em qual pasta ele deve ser executado.
-- A pessoa cuida do envio de logos e fotos. A IA deve focar no desenvolvimento e apontar o que a pessoa precisa fazer.
+- A programadora também cuida do envio de logos e fotos. A IA deve focar no desenvolvimento e apontar o que a pessoa precisa fazer.
 
 ### Ambiente
 
@@ -354,7 +356,7 @@ Pendente:
 1. Planejamento técnico e visual (concluída).
 2. Interface mobile-first: layout, menu, cartões (concluída).
 3. Funcionalidades: página inicial, acervo, filtros, busca, páginas individuais, mídias (em andamento).
-4. Integração de conteúdo: dados demonstrativos e projetos reais.
+4. Integração de conteúdo: dados demonstrativos e projetos reais (em andamento).
 5. Testes: responsividade, acessibilidade, desempenho, filtros.
 6. Publicação e verificação em produção.
 7. Documentação de manutenção para pessoas sem experiência técnica.
@@ -373,10 +375,11 @@ Pendente:
 - Mudar o `id` de uma turma exige atualizar `turmaId` em `temas.json` e `projetos.json`. Validar o JSON depois.
 - Texto ocre sobre fundo claro ou sobre `--verde` reprova no contraste.
 - Dois campos com o mesmo nome em arquivos diferentes confundem. Em `temas.json` o número é `numero`, e não `tema`.
+- Um arquivo `public/index.html` vazio sobrescreveu `src/pages/index.astro` na Vercel e deixou a página inicial em branco. No `npm run dev` funcionava, e o aviso `Skipping src/pages/index.astro` aparecia só no log de build. Nunca criar `index.html` dentro de `public/`.
+- Terminal do VS Code abre em PowerShell. Comandos do projeto são para Git Bash. Conferir a raiz com `ls package.json` antes de rodar caminhos relativos.
 
 ### Pontos em aberto que exigem decisão humana
 
-- Nome por extenso dos cursos ADM e DS.
 - Lista completa de turmas da 2ª série.
 - Conteúdo dos temas 19 em diante.
 - Autorização de imagem das fotografias e dados das duas apresentações (título, turma, ano, tema, orientador).
