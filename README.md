@@ -69,7 +69,7 @@ Fotografias originais, sem censura, nunca entram no repositório. Se forem manti
 
 | Arquivo | URL | Função |
 |---|---|---|
-| `src/pages/index.astro` | `/` | Início: banner, sobre, pilares, livro, autora, projetos em destaque |
+| `src/pages/index.astro` | `/` | Início: banner, sobre, livro, autora, projetos em destaque |
 | `src/pages/projetos/index.astro` | `/projetos/` | Acervo com filtros e busca (hoje, página provisória) |
 | `src/pages/projetos/[slug].astro` | `/projetos/<slug>/` | Página individual, gerada a partir dos dados (versão provisória) |
 | `src/pages/sobre.astro` | `/sobre/` | Apresentação ampliada do projeto (provisória) |
@@ -222,7 +222,7 @@ Existentes:
 | `CartaoProjeto.astro` | Cartão de projeto: capa, categoria, responsável, ano, temas, tipos de mídia, selo de demonstração |
 | `AvisoDemonstracao.astro` | Selo "Conteúdo de demonstração" |
 
-Os blocos de banner e pilares da página inicial estão escritos diretamente em `pages/index.astro`.
+Os blocos de banner e demais seções da página inicial estão escritos diretamente em `pages/index.astro`.
 
 Planejados: `Filtros`, `GaleriaFotos`, `VideoYoutube` (carrega sob demanda).
 
@@ -278,9 +278,7 @@ Diretrizes:
 
 ## Fonte de conteúdo pedagógico
 
-A fundamentação pedagógica, histórica e legal do projeto vem do documento "Contexto Geral do Projeto: Letramento Racial na Escola". Textos do site (Sobre o projeto, pilares, referências) devem ser aproveitados desse documento, sem criar fundamentação paralela. Livro de referência: Pequeno Manual Antirracista, de Djamila Ribeiro.
-
-Os quatro pilares exibidos na página inicial são: Conhecer, Compreender, Reconhecer, Transformar. Os textos atuais dos pilares e o texto sobre a autora são provisórios e aguardam revisão da coordenação.
+A fundamentação pedagógica, histórica e legal do projeto vem do documento "Contexto Geral do Projeto: Letramento Racial na Escola". Textos do site (Sobre o projeto, referências) devem ser aproveitados desse documento, sem criar fundamentação paralela. Livro de referência: Pequeno Manual Antirracista, de Djamila Ribeiro.
 
 ## Comandos
 
@@ -310,7 +308,7 @@ Concluído:
 - Projeto Astro base (template Empty) e estrutura de pastas.
 - `turmas.json`, `temas.json` e `projetos.json` com os dados oficiais.
 - CSS global, layout base, cabeçalho com menu mobile e rodapé.
-- Página inicial completa (banner, sobre, quatro pilares, livro, autora, projetos em destaque).
+- Página inicial completa (banner, sobre, livro, autora, projetos em destaque).
 - Módulo `src/lib/dados.js` e componentes `CartaoProjeto`, `AvisoDemonstracao` e `GaleriaFotos`.
 - Página individual completa (capa, objetivo, disciplinas, temas, galeria com ampliação, créditos).
 - Três projetos de educadores cadastrados (Felipe Rodrigues, Anderson Santiago, Felipe Johnny), com rostos borrados e em demonstração até receberem conteúdo real.
@@ -319,7 +317,6 @@ Concluído:
 
 Pendente:
 
-- Remover da página inicial os resquícios marcados como "remover" referentes aos Quatro Pilares e atualizar as seções do README que citam os quatro pilares.
 - Acervo `/projetos/` com listagem dos cartões, filtros combináveis e busca.
 - Componente `VideoYoutube` (sob demanda) e vídeos na página individual.
 - Páginas Sobre e Referências com conteúdo real.

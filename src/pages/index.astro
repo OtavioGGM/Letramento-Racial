@@ -2,13 +2,6 @@
 import Base from "../layouts/Base.astro";
 import CartaoProjeto from "../components/CartaoProjeto.astro";
 import { projetosDestaque } from "../lib/dados.js";
-
-const pilares = [
-  {
-    nome: "remover",
-    texto: "remover",
-  }
-];
 ---
 
 <Base>
@@ -21,26 +14,11 @@ const pilares = [
     </div>
   </section>
 
-  <section class="secao">
+  <section class="secao fundo-branco">
     <div class="container estreito">
       <h2>Sobre o projeto</h2>
       <p>A escola é um espaço de formação humana, cidadã e social. O projeto leva os estudantes a compreender como o racismo se constituiu historicamente no Brasil e como continua presente nas estruturas sociais e nas relações do dia a dia.</p>
       <a class="botao botao--contorno" href="/sobre/">Conheça o projeto completo</a>
-    </div>
-  </section>
-
-  <section class="secao fundo-branco">
-    <div class="container">
-      <h2>Quatro pilares</h2>
-      <ul class="pilares">
-        {pilares.map((p, i) => (
-          <li class="pilar">
-            <span class="numero" aria-hidden="true">{i + 1}</span>
-            <h3>{p.nome}</h3>
-            <p>{p.texto}</p>
-          </li>
-        ))}
-      </ul>
     </div>
   </section>
 
@@ -108,31 +86,6 @@ const pilares = [
   .estreito { max-width: 46rem; }
   .fundo-branco { background: var(--branco); }
 
-  .pilares {
-    list-style: none;
-    margin: 1.5rem 0 0;
-    padding: 0;
-    display: grid;
-    gap: 1rem;
-  }
-  .pilar {
-    background: var(--bege);
-    border-radius: var(--raio);
-    border-top: 5px solid var(--terracota);
-    padding: 1.25rem;
-  }
-  .numero {
-    display: inline-grid;
-    place-items: center;
-    width: 2rem;
-    height: 2rem;
-    border-radius: 50%;
-    background: var(--ocre);
-    color: var(--marrom);
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-  }
-
   .duas-colunas { display: grid; gap: 1.5rem; align-items: center; }
   .imagem-pendente {
     display: grid;
@@ -151,12 +104,10 @@ const pilares = [
   .centro { text-align: center; margin-top: 2rem; }
 
   @media (min-width: 48em) {
-    .pilares { grid-template-columns: repeat(2, 1fr); }
     .duas-colunas { grid-template-columns: 1fr 1.5fr; }
     .grade-cartoes { grid-template-columns: repeat(2, 1fr); }
   }
   @media (min-width: 64em) {
-    .pilares { grid-template-columns: repeat(4, 1fr); }
     .grade-cartoes { grid-template-columns: repeat(3, 1fr); }
   }
 </style>
