@@ -6,7 +6,7 @@ Este guia é para quem for editar `src/data/projetos.json`. Ele explica cada cam
 
 O site não tem páginas manuais para projetos. Tudo vem do arquivo `src/data/projetos.json`:
 
-- Cada objeto do arquivo vira um cartão na página inicial (se `destaque: true`), no acervo `/projetos/` e uma página própria em `/projetos/<slug>/`.
+- Cada objeto do arquivo vira um cartão na página inicial (se `destaque: true`), no acervo `/projetos/` (quando o acervo estiver pronto) e uma página própria em `/projetos/<slug>/`.
 - Para criar um projeto, copie um bloco existente, troque os valores e salve. Para tirar do site, mude `publicado` para `false`.
 - O site é estático. Depois de editar, o deploy na Vercel acontece quando a alteração chega à branch `main`.
 
@@ -32,7 +32,7 @@ O site não tem páginas manuais para projetos. Tudo vem do arquivo `src/data/pr
 | `categoria` | texto | sim | `turma` ou `educador` |
 | `turmaId` | texto | só se `categoria` for `turma` | `id` existente em `src/data/turmas.json`. Para `educador`, deixar `""` |
 | `ano` | número | sim | Ano de realização, sem aspas (exemplo: `2026`) |
-| `professorResponsavel` | texto | só se `categoria` for `educador` | Nome do professor ou da equipe. Em projeto de turma, pode ser o orientador, se a escola autorizar divulgar |
+| `professorResponsavel` | texto | só se `categoria` for `educador` | Nome do professor ou da equipe. Em projeto de turma, pode ser o orientador, se a escola autorizar divulgar | 
 | `disciplinas` | lista de textos | não | Exemplo: `["História", "Arte"]` |
 | `temas` | lista de `id` | não | `id` existentes em `src/data/temas.json`. Projetos de educadores podem deixar `[]` |
 | `imagemCapa` | texto | recomendado | Caminho da capa, começando por `/images/` |
@@ -45,9 +45,11 @@ O site não tem páginas manuais para projetos. Tudo vem do arquivo `src/data/pr
 | `publicado` | verdadeiro/falso | sim | `false` esconde o projeto de todo o site |
 | `demonstracao` | verdadeiro/falso | sim | `true` exibe o selo "Conteúdo de demonstração". Trocar para `false` só quando o conteúdo for real e autorizado |
 
-## Formato de `imagens` e `videos` (proposto)
+## Formato de `imagens` e `videos`
 
-Estes formatos ainda serão consumidos pelos componentes `GaleriaFotos` e `VideoYoutube`, planejados para a Etapa 3. Hoje o cartão apenas verifica se as listas têm itens. Se a equipe decidir outro formato, atualize este guia e o README junto com o componente.
+O formato de `imagens` é definitivo e já é lido pelo componente `GaleriaFotos`. O formato de `videos` é proposto e será usado pelo componente `VideoYoutube`, ainda não criado. Se a equipe mudar o formato de vídeos, atualize este guia e o README junto com o componente.
+
+Cada item de `imagens` deve ser um objeto. Texto puro funciona na galeria, mas gera texto alternativo provisório.
 
 ```json
 "imagens": [
@@ -79,7 +81,7 @@ Crie uma subpasta por projeto, com o `slug` como nome:
 ```text
 public/images/projetos/
 ├── educadores/
-│   └── nomeEducador/
+│   └── <slug-do-projeto>/
 │       ├── capa.webp
 │       ├── foto-01.webp
 │       └── foto-02.webp
@@ -142,7 +144,7 @@ Os valores abaixo são fictícios e servem só de modelo. Não copie o texto par
 
 ## Exemplo de projeto de turma
 
-Mude `categoria` para `turma`, informe `turmaId` e deixe `professorResponsavel` conforme a política da escola:
+Mude `categoria` para `turma`, informe `turmaId` e deixe `professorResponsavel` (Em projetos de turma o site mostra o rótulo da turma, e não este campo.) conforme a política da escola:
 
 ```json
 {
@@ -174,6 +176,7 @@ Estes são apenas os campos que mudam. O objeto completo continua com todos os c
 ## Validar antes de enviar
 
 Rode na raiz do projeto (pasta do `package.json`), no Git Bash. O script confere sintaxe, `id` e `slug` repetidos, `turmaId` e temas inexistentes, imagens sem texto alternativo e arquivos de imagem que não existem.
+Use o Git Bash, na pasta do package.json. No PowerShell o heredoc e o grep não funcionam.
 
 ```bash
 node <<'EOF'
@@ -197,7 +200,9 @@ projetos.forEach(p => {
   if (p.imagemCapa && !p.imagemCapaAlt) erro(p, 'capa sem texto alternativo');
   if (p.imagemCapa && !existe(p.imagemCapa)) erro(p, 'arquivo da capa nao encontrado: ' + p.imagemCapa);
   (p.imagens || []).forEach(i => {
+    if (typeof i === 'string') { erro(p, 'imagem deve ser objeto com src e alt: ' + i); return; }
     if (!i.alt) erro(p, 'imagem sem alt: ' + i.src);
+    else if (/^Fotografia \d+ do projeto/.test(i.alt)) console.log(p.id + ': AVISO alt provisorio: ' + i.src);
     if (!existe(i.src)) erro(p, 'arquivo nao encontrado: ' + i.src);
   });
 });
@@ -242,11 +247,11 @@ Antes do `git add .`, confira em `git status` que nenhuma foto sem censura está
 | Página individual dá 404 | `slug` mudou, ou o projeto está com `publicado: false` |
 | Dois projetos sobrescrevem um ao outro | `slug` repetido |
 | Erro em `turmaId` | `id` da turma não existe em `turmas.json` (exemplo: `2c` em vez de `2c-adm`) |
+| Página inicial em branco só no site publicado | Existe `public/index.html`, que sobrescreve `src/pages/index.astro`. Apagar o arquivo |
 
 ## Regras que não podem ser quebradas
 
-- Não publicar nomes completos de estudantes menores de idade.
-- Não publicar foto sem autorização e sem rostos cobertos.
+- Publicar foto somente com autorização e somente com rostos cobertos.
 - Não inventar descrição, objetivo ou créditos. Se faltar informação, deixe o campo vazio ou com texto provisório claramente marcado e mantenha `demonstracao: true`.
-- Não usar emojis em textos do site.
-- Não armazenar vídeos no repositório.
+- Usar somente caracteres e simbolos. Nunca usar emojis em textos do site.
+- Não pode armazenar vídeos no repositório.
