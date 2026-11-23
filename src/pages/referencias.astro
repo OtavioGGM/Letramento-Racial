@@ -2,11 +2,123 @@
 import Base from "../layouts/Base.astro";
 ---
 
-<Base titulo="Referências">
-  <section class="secao">
-    <div class="container">
+<Base
+  titulo="Referências"
+  descricao="Referências bibliográficas, marcos legais e fontes teóricas do projeto Letramento Racial na Escola."
+>
+  <section class="secao cabecalho-referencias">
+    <div class="container estreito">
       <h1>Referências</h1>
-      <p>Página em construção.</p>
+      <p class="destaque">
+        Fundamentação bibliográfica, pedagógica e legal que sustenta as ações e debates do projeto.
+      </p>
+    </div>
+  </section>
+
+  <section class="secao fundo-branco">
+    <div class="container estreito">
+      <h2>Inspiração e literatura de referência</h2>
+      <ul class="lista-referencias">
+        <li>
+          <strong>RIBEIRO, Djamila.</strong> <em>Pequeno manual antirracista</em>. São Paulo: Companhia das Letras, 2019. 168 p.
+          <p class="nota-ref">Obra que fundamenta os 18 temas debatidos pelas turmas no projeto.</p>
+        </li>
+        <li>
+          <strong>RIBEIRO, Djamila.</strong> <em>O que é lugar de fala?</em>. Belo Horizonte: Letramento / Justificando, 2017. (Coleção Feminismos Plurais).
+        </li>
+      </ul>
+
+      <h2>Reportagens e perfis autorizados</h2>
+      <ul class="lista-referencias">
+        <li>
+          <strong>TEPERMAN, Flavio.</strong> <em>O mergulho ancestral de Djamila Ribeiro</em>. Revista ELLE Brasil, 2021.
+          <p class="nota-ref">
+            Fonte autorizada para a biografia e trajetória formativa da autora. 
+            <a href="https://elle.com.br/cultura/o-mergulho-ancestral-de-djamila-ribeiro" target="_blank" rel="noopener noreferrer">Acessar reportagem na ELLE</a>.
+          </p>
+        </li>
+      </ul>
+
+      <h2>Legislação e diretrizes educacionais</h2>
+      <ul class="lista-referencias">
+        <li>
+          <strong>BRASIL.</strong> <em>Lei nº 10.639, de 9 de janeiro de 2003</em>. Altera a Lei nº 9.394, de 20 de dezembro de 1996, que estabelece as diretrizes e bases da educação nacional, para incluir no currículo oficial da Rede de Ensino a obrigatoriedade da temática "História e Cultura Afro-Brasileira".
+        </li>
+        <li>
+          <strong>BRASIL. Conselho Nacional de Educação.</strong> <em>Diretrizes Curriculares Nacionais para a Educação das Relações Étnico-Raciais e para o Ensino de História e Cultura Afro-Brasileira e Africana</em>. Parecer CNE/CP nº 3/2004 e Resolução CNE/CP nº 1/2004.
+        </li>
+      </ul>
+
+      <h2>Documentos institucionais da escola</h2>
+      <ul class="lista-referencias">
+        <li>
+          <strong>E. E. PROFª CAROLINA CINTRA DA SILVEIRA.</strong> <em>Contexto Geral do Projeto: Letramento Racial na Escola</em>. Documento pedagógico interno e plano de trabalho multidisciplinar. São Paulo, 2026.
+        </li>
+      </ul>
+
+      <div class="navegacao-retorno">
+        <a class="botao botao--contorno" href="/sobre/">Conhecer mais sobre o projeto</a>
+        <a class="botao" href="/projetos/">Explorar o acervo</a>
+      </div>
     </div>
   </section>
 </Base>
+
+<style>
+  .cabecalho-referencias {
+    padding-bottom: 2rem;
+  }
+  .destaque {
+    font-family: var(--fonte-titulo);
+    font-size: clamp(1.2rem, 3.5vw, 1.5rem);
+    color: var(--marrom);
+    line-height: 1.4;
+  }
+  .estreito {
+    max-width: 48rem;
+  }
+  .fundo-branco {
+    background: var(--branco);
+    border-top: 1px solid rgb(51 40 33 / 0.1);
+  }
+  h2 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    color: var(--marrom);
+  }
+  .lista-referencias {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+  .lista-referencias li {
+    padding: 1rem 1.25rem;
+    background: var(--bege);
+    border-radius: var(--raio);
+    border-left: 4px solid var(--ocre);
+    line-height: 1.6;
+    color: var(--marrom);
+  }
+  .nota-ref {
+    margin-top: 0.5rem;
+    margin-bottom: 0;
+    font-size: 0.95rem;
+  }
+  .navegacao-retorno {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgb(51 40 33 / 0.15);
+  }
+  @media (max-width: 36em) {
+    .navegacao-retorno .botao {
+      width: 100%;
+      text-align: center;
+    }
+  }
+</style>

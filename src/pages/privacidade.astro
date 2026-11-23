@@ -2,11 +2,128 @@
 import Base from "../layouts/Base.astro";
 ---
 
-<Base titulo="Privacidade">
-  <section class="secao">
-    <div class="container">
-      <h1>Privacidade</h1>
-      <p>Página em construção.</p>
+<Base
+  titulo="Privacidade e Proteção de Dados"
+  descricao="Diretrizes de proteção de dados, privacidade de estudantes e canal institucional do projeto Letramento Racial na Escola."
+>
+  <section class="secao cabecalho-privacidade">
+    <div class="container estreito">
+      <h1>Privacidade e Proteção de Imagem</h1>
+      <p class="destaque">
+        Nosso compromisso institucional com a privacidade, a segurança de crianças e adolescentes e a conformidade com a LGPD.
+      </p>
+    </div>
+  </section>
+
+  <section class="secao fundo-branco">
+    <div class="container estreito">
+      <h2>Compromisso institucional</h2>
+      <p>
+        O site do <strong>Projeto Letramento Racial na Escola</strong> é uma iniciativa pedagógica, pública e sem fins lucrativos da <strong>E. E. Profª Carolina Cintra da Silveira</strong>. Sua única finalidade é documentar e divulgar o trabalho educacional e a pesquisa antirracista desenvolvida pela comunidade escolar.
+      </p>
+
+      <h2>Proteção da identidade de estudantes menores</h2>
+      <p>
+        Em respeito ao Estatuto da Criança e do Adolescente (ECA) e à Lei Geral de Proteção de Dados (LGPD - Lei nº 13.709/2018), adotamos medidas rigorosas para proteger a identidade dos nossos estudantes:
+      </p>
+      <ul>
+        <li><strong>Sem exposição de dados pessoais:</strong> Não publicamos nomes completos de estudantes menores de idade, dados de contato, endereços ou horários de rotina.</li>
+        <li><strong>Proteção visual em fotografias:</strong> Em imagens que envolvam estudantes menores, aplicamos procedimentos adequados de proteção (como corte de enquadramento ou tarjas sólidas opacas sobre rostos e identificadores de crachá/uniforme), evitando a exposição direta da identidade visual.</li>
+        <li><strong>Metadados de imagens:</strong> As fotos publicadas passam por remoção de metadados EXIF (como localização geográfica por GPS e modelo de equipamento).</li>
+        <li><strong>Textos alternativos acessíveis:</strong> As descrições em textos alternativos priorizam o contexto pedagógico e educacional, sem jamais identificar individualmente menores de idade.</li>
+      </ul>
+
+      <h2>Uso de dados de navegação e cookies</h2>
+      <p>
+        Este site é 100% estático, não requer cadastro, login ou senhas, não exibe anúncios comerciais e não utiliza cookies de rastreamento de perfil de usuário.
+      </p>
+
+      <h2>Canal institucional para atendimento e solicitações</h2>
+      <p>
+        Estudantes, pais, responsáveis legais ou membros da comunidade escolar têm o direito de solicitar a qualquer momento a retificação, substituição ou retirada de qualquer imagem, produção autoral ou menção veiculada neste portal.
+      </p>
+      <div class="caixa-contato">
+        <h3>E. E. Profª Carolina Cintra da Silveira</h3>
+        <p>
+          Para solicitações relativas a imagens ou informações deste acervo, procure a coordenação pedagógica da escola ou utilize nosso canal de contato institucional:
+        </p>
+        <p>
+          <strong>Coordenação Pedagógica / Direção Escolar</strong><br />
+          E-mail: <em>eecarolinacintra@educacao.sp.gov.br</em> (ou procure diretamente a secretaria escolar)
+        </p>
+      </div>
+
+      <div class="navegacao-retorno">
+        <a class="botao botao--contorno" href="/">Voltar à página inicial</a>
+        <a class="botao" href="/projetos/">Acessar o acervo de projetos</a>
+      </div>
     </div>
   </section>
 </Base>
+
+<style>
+  .cabecalho-privacidade {
+    padding-bottom: 2rem;
+  }
+  .destaque {
+    font-family: var(--fonte-titulo);
+    font-size: clamp(1.2rem, 3.5vw, 1.5rem);
+    color: var(--marrom);
+    line-height: 1.4;
+  }
+  .estreito {
+    max-width: 48rem;
+  }
+  .fundo-branco {
+    background: var(--branco);
+    border-top: 1px solid rgb(51 40 33 / 0.1);
+  }
+  h2 {
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    color: var(--marrom);
+  }
+  ul {
+    padding-left: 1.5rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    color: var(--marrom);
+    line-height: 1.6;
+  }
+  .caixa-contato {
+    background: var(--bege);
+    border: 1px solid rgb(51 40 33 / 0.15);
+    border-left: 5px solid var(--terracota);
+    border-radius: var(--raio);
+    padding: 1.5rem;
+    margin-top: 1.75rem;
+  }
+  .caixa-contato h3 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    color: var(--marrom);
+  }
+  .caixa-contato p {
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+  }
+  .caixa-contato p:last-child {
+    margin-bottom: 0;
+  }
+  .navegacao-retorno {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgb(51 40 33 / 0.15);
+  }
+  @media (max-width: 36em) {
+    .navegacao-retorno .botao {
+      width: 100%;
+      text-align: center;
+    }
+  }
+</style>

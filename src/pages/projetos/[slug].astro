@@ -21,7 +21,11 @@ const categoria =
 const temas = projeto.temas.map((id) => getTema(id)).filter(Boolean);
 ---
 
-<Base titulo={projeto.titulo} descricao={projeto.descricao}>
+<Base
+  titulo={projeto.titulo}
+  descricao={projeto.descricao}
+  imagem={projeto.imagemCapa || undefined}
+>
   <article class="secao">
     <div class="container estreito">
       {projeto.demonstracao && <AvisoDemonstracao />}
@@ -32,7 +36,7 @@ const temas = projeto.temas.map((id) => getTema(id)).filter(Boolean);
         <span> | {projeto.ano}</span>
       </p>
 
-      {projeto.id === "educador-003" ? (
+      {projeto.slug === "abertura-solene-letramento-racial" || projeto.id === "educador-001" ? (
         <CarrosselCapa
           imagens={[
             {
@@ -72,7 +76,9 @@ const temas = projeto.temas.map((id) => getTema(id)).filter(Boolean);
 
       {projeto.creditos && <p class="creditos"><strong>Créditos:</strong> {projeto.creditos}</p>}
 
-      <p><a href="/projetos/">Voltar aos projetos</a></p>
+      <div class="rodape-projeto">
+        <a class="botao botao--contorno" href="/projetos/">Voltar ao acervo de projetos</a>
+      </div>
     </div>
   </article>
 </Base>
@@ -88,4 +94,9 @@ const temas = projeto.temas.map((id) => getTema(id)).filter(Boolean);
     margin-block: 1rem;
   }
   .creditos { font-size: 0.95rem; }
+  .rodape-projeto {
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgb(51 40 33 / 0.15);
+  }
 </style>

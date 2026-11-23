@@ -1,107 +1,6 @@
 [
   {
     "id": "educador-001",
-    "slug": "blues-como-protesto",
-    "titulo": "Blues como protesto: a história da música negra",
-    "descricao": "Descrição a preencher.",
-    "objetivoPedagogico": "",
-    "categoria": "educador",
-    "turmaId": "",
-    "ano": 2026,
-    "professorResponsavel": "Felipe Rodrigues",
-    "disciplinas": [],
-    "temas": [],
-    "imagemCapa": "/images/projetos/educadores/blues-como-protesto/slideCapa.jpeg",
-    "imagemCapaAlt": "Capa do projeto Blues como protesto",
-    "imagens": [
-      {
-      "src": "/images/projetos/educadores/blues-como-protesto/slideCapa.jpeg",
-      "alt": "Capa do projeto Blues como protesto",
-      "legenda": ""
-      },
-      {
-      "src": "/images/projetos/educadores/blues-como-protesto/felipe1.jpeg",
-      "alt": "Felipe Rodrigues apresentando o projeto para estudantes com o slide da capa da apresentação ao fundo",
-      "legenda": ""
-      },
-      {
-      "src": "/images/projetos/educadores/blues-como-protesto/felipe2.jpeg",
-      "alt": "Felipe Rodrigues em uma das sessões do projeto",
-      "legenda": ""
-      },
-      {
-      "src": "/images/projetos/educadores/blues-como-protesto/felipe3.jpeg",
-      "alt": "Felipe Rodrigues em uma das sessões do projeto",
-      "legenda": ""
-      },
-      {
-      "src": "/images/projetos/educadores/blues-como-protesto/plateia.jpeg",
-      "alt": "Plateia do evento, com estudantes assistindo a apresentação",
-      "legenda": ""
-      }
-    ],
-    "videos": [],
-    "creditos": "",
-    "dataPublicacao": "2026-11-18",
-    "destaque": true,
-    "publicado": true,
-    "demonstracao": true
-  },
-  {
-    "id": "educador-002",
-    "slug": "olhar-negro-na-fotografia",
-    "titulo": "Olhar negro na fotografia",
-    "descricao": "Descrição a preencher.",
-    "objetivoPedagogico": "",
-    "categoria": "educador",
-    "turmaId": "",
-    "ano": 2026,
-    "professorResponsavel": "Anderson C. Santiago",
-    "disciplinas": [],
-    "temas": [],
-    "imagemCapa": "/images/projetos/educadores/olhar-negro-na-fotografia/capa.jpeg",
-    "imagemCapaAlt": "Capa do projeto Olhar negro na fotografia",
-    "imagens": [
-    {
-      "src": "/images/projetos/educadores/olhar-negro-na-fotografia/santiago1.jpeg",
-      "alt": "Capa do projeto Olhar negro na fotografia e Anderson C. Santiago ao fundo",
-      "legenda": ""
-      },
-    {
-      "src": "/images/projetos/educadores/olhar-negro-na-fotografia/santiago2.jpeg",
-      "alt": "Anderson C. Santiago em uma das sessões do projeto",
-      "legenda": ""
-    },
-    {
-      "src": "/images/projetos/educadores/olhar-negro-na-fotografia/santiago3.jpeg",
-      "alt": "Anderson C. Santiago em outra sessão do projeto",
-      "legenda": ""
-    },
-    {
-      "src": "/images/projetos/educadores/olhar-negro-na-fotografia/santiago4.jpeg",
-      "alt": "Anderson C. Santiago visto de costas, apresentando para plateia de estudantes",
-      "legenda": ""
-    },
-    {
-      "src": "/images/projetos/educadores/olhar-negro-na-fotografia/camera.jpeg",
-      "alt": "Foco em máquina fotográfica e suas diferentes lentes com estudantes assistindo a apresentação ao fundo",
-      "legenda": ""
-    },
-    {
-      "src": "/images/projetos/educadores/olhar-negro-na-fotografia/plateia.jpeg",
-      "alt": "Plateia do evento, com estudantes assistindo a apresentação",
-      "legenda": ""
-    }
-    ],
-    "videos": [],
-    "creditos": "",
-    "dataPublicacao": "2026-11-17",
-    "destaque": true,
-    "publicado": true,
-    "demonstracao": true
-  },
-  {
-    "id": "educador-003",
     "slug": "abertura-solene-letramento-racial",
     "titulo": "Abertura solene do Projeto Letramento Racial",
     "descricao": "Descrição a preencher.",
@@ -153,6 +52,107 @@
       {
         "src": "/images/projetos/educadores/abertura-solene-letramento-racial/johnny3.jpeg",
         "alt": "Felipe Johnny S. Brito apresentando no palco escolar",
+        "legenda": ""
+      }
+    ],
+    "videos": [],
+    "creditos": "",
+    "dataPublicacao": "2026-11-18",
+    "destaque": true,
+    "publicado": true,
+    "demonstracao": true
+  },
+  {
+    "id": "educador-002",
+    "slug": "blues-como-protesto",
+    "titulo": "Blues como protesto: a história da música negra",
+    "descricao": "Descrição a preencher.",
+    "objetivoPedagogico": "",
+    "categoria": "educador",
+    "turmaId": "",
+    "ano": 2026,
+    "professorResponsavel": "Felipe Rodrigues",
+    "disciplinas": [],
+    "temas": [],
+    "imagemCapa": "/images/projetos/educadores/blues-como-protesto/slideCapa.jpeg",
+    "imagemCapaAlt": "Capa do projeto Blues como protesto",
+    "imagens": [
+      {
+        "src": "/images/projetos/educadores/blues-como-protesto/slideCapa.jpeg",
+        "alt": "Capa do projeto Blues como protesto",
+        "legenda": ""
+      },
+      {
+        "src": "/images/projetos/educadores/blues-como-protesto/felipe1.jpeg",
+        "alt": "Felipe Rodrigues apresentando o projeto para estudantes com o slide da capa da apresentação ao fundo",
+        "legenda": ""
+      },
+      {
+        "src": "/images/projetos/educadores/blues-como-protesto/felipe2.jpeg",
+        "alt": "Felipe Rodrigues em uma das sessões do projeto",
+        "legenda": ""
+      },
+      {
+        "src": "/images/projetos/educadores/blues-como-protesto/felipe3.jpeg",
+        "alt": "Felipe Rodrigues em uma das sessões do projeto",
+        "legenda": ""
+      },
+      {
+        "src": "/images/projetos/educadores/blues-como-protesto/plateia.jpeg",
+        "alt": "Plateia do evento, com estudantes assistindo a apresentação",
+        "legenda": ""
+      }
+    ],
+    "videos": [],
+    "creditos": "",
+    "dataPublicacao": "2026-11-17",
+    "destaque": true,
+    "publicado": true,
+    "demonstracao": true
+  },
+  {
+    "id": "educador-003",
+    "slug": "olhar-negro-na-fotografia",
+    "titulo": "Olhar negro na fotografia",
+    "descricao": "Descrição a preencher.",
+    "objetivoPedagogico": "",
+    "categoria": "educador",
+    "turmaId": "",
+    "ano": 2026,
+    "professorResponsavel": "Anderson C. Santiago",
+    "disciplinas": [],
+    "temas": [],
+    "imagemCapa": "/images/projetos/educadores/olhar-negro-na-fotografia/capa.jpeg",
+    "imagemCapaAlt": "Capa do projeto Olhar negro na fotografia",
+    "imagens": [
+      {
+        "src": "/images/projetos/educadores/olhar-negro-na-fotografia/santiago1.jpeg",
+        "alt": "Capa do projeto Olhar negro na fotografia e Anderson C. Santiago ao fundo",
+        "legenda": ""
+      },
+      {
+        "src": "/images/projetos/educadores/olhar-negro-na-fotografia/santiago2.jpeg",
+        "alt": "Anderson C. Santiago em uma das sessões do projeto",
+        "legenda": ""
+      },
+      {
+        "src": "/images/projetos/educadores/olhar-negro-na-fotografia/santiago3.jpeg",
+        "alt": "Anderson C. Santiago em outra sessão do projeto",
+        "legenda": ""
+      },
+      {
+        "src": "/images/projetos/educadores/olhar-negro-na-fotografia/santiago4.jpeg",
+        "alt": "Anderson C. Santiago visto de costas, apresentando para plateia de estudantes",
+        "legenda": ""
+      },
+      {
+        "src": "/images/projetos/educadores/olhar-negro-na-fotografia/camera.jpeg",
+        "alt": "Foco em máquina fotográfica e suas diferentes lentes com estudantes assistindo a apresentação ao fundo",
+        "legenda": ""
+      },
+      {
+        "src": "/images/projetos/educadores/olhar-negro-na-fotografia/plateia.jpeg",
+        "alt": "Plateia do evento, com estudantes assistindo a apresentação",
         "legenda": ""
       }
     ],

@@ -1,405 +1,302 @@
 # Letramento Racial na Escola
 
-Site institucional e acervo digital do projeto de Letramento Racial da E. E. Profª Carolina Cintra da Silveira (Ensino Médio). O site apresenta o projeto, o livro de referência, a autora e as produções de turmas e educadores.
+Site institucional e acervo digital do projeto de Letramento Racial da E. E. Profª Carolina Cintra da Silveira (Ensino Médio).
 
-Este documento descreve a arquitetura, as regras e o estado atual do projeto. Ele foi escrito para ser lido por desenvolvedores e por assistentes de IA que precisem entender o repositório antes de alterá-lo.
+O site apresenta o projeto pedagógico, seu livro de referência, a autora e as produções desenvolvidas por estudantes, turmas e educadores.
 
-## Resumo técnico
+## 1. Resumo técnico
 
 | Item | Definição |
 |---|---|
-| Framework | Astro, em modo estático (Static Site Generation) |
-| Linguagens | HTML, CSS e JavaScript simples. TypeScript em modo relaxed |
-| Renderização | Somente estática. Sem SSR, sem funções serverless, sem backend |
-| Banco de dados | Nenhum. Os conteúdos ficam em arquivos JSON versionados no Git |
-| Hospedagem | Vercel (plano gratuito), com deploy automático a partir da branch `main` do GitHub |
-| Endereço de produção | https://letramento-racial.vercel.app |
-| Fontes | Fraunces Variable (títulos) e Source Sans 3 Variable (texto), instaladas via npm (`@fontsource-variable`), sem depender do Google Fonts |
-| Abordagem de layout | Mobile-first |
-| Idioma do site | Português do Brasil (`lang="pt-BR"`) |
+| Framework | Astro |
+| Renderização | Estática (SSG) |
+| Linguagens | HTML, CSS e JavaScript; TypeScript relaxed |
+| Backend | Não possui |
+| Banco de dados | Não possui |
+| Conteúdo | Arquivos JSON versionados no Git |
+| Hospedagem | Vercel (plano gratuito) |
+| Repositório | GitHub |
+| Deploy | Automático pela branch `main` |
+| Produção | https://letramento-racial.vercel.app |
+| Fontes | Fraunces Variable e Source Sans 3 Variable |
+| Idioma | Português do Brasil (`pt-BR`) |
+| Layout | Mobile-first |
 
-## Regras obrigatórias
+## 2. Regras obrigatórias
 
-Qualquer alteração deve respeitar estas regras:
-
-1. O site deve continuar 100% estático. Não adicionar SSR, adapters de servidor, APIs próprias ou serviços pagos.
+1. Manter o site 100% estático. Não adicionar SSR, APIs próprias, backend ou serviços pagos.
 2. Não adicionar banco de dados nem painel administrativo na primeira versão.
-3. Todo conteúdo de projetos vem dos arquivos em `src/data/`. Não criar páginas manuais para turmas ou projetos.
-4. Conteúdo de demonstração deve ter o campo `demonstracao: true` e exibir um aviso visível. Nunca apresentar exemplo como projeto real.
-5. Não inventar conteúdo institucional, citações, dados históricos, estatísticas ou referências bibliográficas.
-6. Não publicar nomes completos de estudantes menores de idade. Não publicar fotos sem autorização adequada (LGPD) e sem os rostos de estudantes cobertos (ver seção Privacidade).
-7. Não armazenar vídeos no repositório. Vídeos são incorporados do YouTube, carregados somente sob demanda (clique do usuário).
-8. Não comprometer a experiência mobile em favor de elementos visuais. Poucas animações. Respeitar `prefers-reduced-motion`.
-9. Não deixar botões ou links sem funcionalidade.
-10. Não usar emojis em textos do site nem em documentação.
+3. Todo conteúdo de projetos deve vir de `src/data/`.
+4. Não criar páginas manuais para turmas ou projetos.
+5. Conteúdos de demonstração devem ter `demonstracao: true` e aviso visível.
+6. Nunca inventar informações institucionais, pedagógicas, históricas, estatísticas ou bibliográficas.
+7. Não publicar nomes completos de estudantes menores de idade.
+8. Não publicar fotografias sem autorização adequada e sem aplicar os procedimentos de proteção de imagem.
+9. Vídeos devem ser incorporados do YouTube e carregados somente após interação do usuário.
+10. Não armazenar vídeos no repositório.
+11. Priorizar acessibilidade, responsividade e desempenho mobile.
+12. Respeitar `prefers-reduced-motion`.
+13. Não deixar botões ou links sem funcionalidade.
+14. Não utilizar emojis nos textos do site ou na documentação.
 
-## Estrutura de pastas
+## 3. Estrutura do projeto
 
 A raiz do repositório é a pasta que contém o `package.json`.
 
 ```text
 Letramento-Racial/
 ├── src/
-│   ├── components/     Componentes reutilizáveis (.astro)
-│   ├── layouts/        Layouts de página (Base.astro)
-│   ├── lib/            Funções auxiliares (dados.js)
-│   ├── pages/          Cada arquivo vira uma rota
-│   ├── styles/         CSS global (global.css)
-│   └── data/           Dados em JSON (turmas, temas, projetos)
+│   ├── components/
+│   ├── layouts/
+│   ├── lib/
+│   ├── pages/
+│   ├── styles/
+│   └── data/
 ├── public/
 │   ├── images/
-│   │   ├── identidade/   Logo da escola (logo.png)
-│   │   ├── autora/       Fotografia autorizada da autora
-│   │   ├── livro/        Capa do livro (somente de fonte autorizada)
+│   │   ├── identidade/
+│   │   ├── autora/
+│   │   ├── livro/
 │   │   └── projetos/
-│   │       ├── turmas/
-│   │       └── educadores/
 │   ├── icons/
 │   └── fonts/
+├── docs/
 ├── astro.config.mjs
 ├── package.json
-└── README.md
+├── README.md
+└── AGENTS.md
 ```
 
-Os dados ficam em `src/data/` (e não em uma pasta `data/` na raiz) para que o Astro os importe diretamente, sem configuração adicional.
+Os arquivos JSON ficam em `src/data/`. O módulo `src/lib/dados.js` centraliza a leitura e disponibilização dos dados.
 
-Fotografias originais, sem censura, nunca entram no repositório. Se forem mantidas dentro da pasta do projeto, ficam em `originais/`, listada no `.gitignore`.
+Fotografias originais, sem censura, não podem entrar no repositório. Arquivos originais mantidos localmente devem ficar em pastas excluídas pelo `.gitignore`.
 
-## Rotas
+## 4. Rotas e páginas
 
 | Arquivo | URL | Função |
 |---|---|---|
-| `src/pages/index.astro` | `/` | Início: banner, sobre, livro, autora, projetos em destaque |
-| `src/pages/projetos/index.astro` | `/projetos/` | Acervo com filtros e busca (hoje, página provisória) |
-| `src/pages/projetos/[slug].astro` | `/projetos/<slug>/` | Página individual, gerada a partir dos dados (versão provisória) |
-| `src/pages/sobre.astro` | `/sobre/` | Apresentação ampliada do projeto (provisória) |
-| `src/pages/referencias.astro` | `/referencias/` | Referências bibliográficas e legais (provisória) |
-| `src/pages/privacidade.astro` | `/privacidade/` | Privacidade e canal para correção ou retirada de materiais (provisória) |
-| `src/pages/404.astro` | página de erro | Erro amigável (a criar) |
+| `pages/index.astro` | `/` | Página inicial |
+| `pages/projetos/index.astro` | `/projetos/` | Acervo, filtros e busca |
+| `pages/projetos/[slug].astro` | `/projetos/slug/` | Página individual do projeto |
+| `pages/sobre.astro` | `/sobre/` | Apresentação do projeto |
+| `pages/referencias.astro` | `/referencias/` | Referências bibliográficas e legais |
+| `pages/privacidade.astro` | `/privacidade/` | Privacidade e contato institucional |
+| `pages/404.astro` | — | Página de erro |
 
-O menu principal tem quatro itens: Início, Projetos, Sobre o projeto, Referências. A página de privacidade aparece apenas no rodapé.
+O menu principal contém Início, Projetos, Sobre o projeto e Referências. Privacidade aparece no rodapé.
 
-## Modelo de dados
+## 5. Modelo de dados
 
-### `src/data/turmas.json`
+Os dados são organizados em três arquivos:
 
-Estrutura com quatro chaves: `etapas`, `series`, `cursos`, `turmas`.
+- `src/data/turmas.json`: etapas, séries, cursos e turmas.
+- `src/data/temas.json`: temas oficiais e itens reservados.
+- `src/data/projetos.json`: produções de estudantes, turmas e educadores.
 
-```json
-{
-  "etapas": ["Ensino Médio"],
-  "series": ["1ª série", "2ª série", "3ª série"],
-  "cursos": [
-    { "sigla": "REG", "nome": "Ensino Médio regular" },
-    { "sigla": "ADM", "nome": "CONFIRMAR NOME POR EXTENSO" },
-    { "sigla": "DS",  "nome": "CONFIRMAR NOME POR EXTENSO" }
-  ],
-  "turmas": [
-    { "id": "2c-adm", "rotulo": "2º C ADM", "serie": "2ª série", "curso": "ADM" }
-  ]
-}
-```
+Regras fundamentais:
 
-Regras:
+- Identificadores em minúsculas, sem espaços e com hífen quando necessário.
+- Projetos referenciam turmas por `turmaId` e temas por seus identificadores.
+- Série e curso são derivados da turma.
+- Temas reservados, iniciados por `(INSERIR`, não aparecem no site.
+- Projetos com `publicado: false` não são exibidos.
+- Projetos com `destaque: true` podem aparecer na página inicial.
+- Toda imagem precisa de texto alternativo.
+- O build deverá validar referências inexistentes e imagens sem descrição alternativa.
 
-- `id` é único, em minúsculas, sem espaços (exemplos: `1a`, `2c-adm`, `3b-ds`). Turmas de curso técnico levam o sufixo do curso.
-- `serie` deve existir em `series`. `curso` deve existir em `cursos[].sigla`.
-- O filtro de etapa de ensino fica oculto enquanto houver apenas uma etapa.
+O módulo `src/lib/dados.js` é o único ponto de acesso aos JSON. Páginas e componentes devem importar os dados desse módulo.
 
-Fatos confirmados pela escola sobre a 2ª série:
+A documentação completa dos campos, relacionamentos e regras de cadastro ficará em `docs/modelo-de-dados.md`.
 
-- Os 2º A e 2º E são do curso DS (`2a-ds`, `2e-ds`).
-- Os 2º C e 2º D são do curso ADM (`2c-adm`, `2d-adm`).
-- Não existem 2º A, 2º C, 2º D e 2º E do ensino regular. Não criar essas turmas.
-- A 2ª série tem seis turmas, uma letra por sala, independente do curso: 2º A DS, 2º B, 2º C ADM, 2º D ADM, 2º E DS e 2º F. Os 2º B e 2º F são do ensino regular.
-- Na 3ª série, a mesma letra pode repetir entre regular e um curso (sendo as salar 3º A regular e 3º A ADM, 3º B regular e 3º B DS).
+## 6. Componentes
 
-### `src/data/temas.json`
+Componentes existentes:
 
-Lista de temas, cada um atribuído a uma turma. Há 18 temas oficiais, numerados de 1 a 18, e itens reservados a partir do 19, com nome `(INSERIR TEMA)`.
+- `Base.astro`: estrutura HTML, metadados, fontes e CSS global.
+- `Cabecalho.astro`: logo e navegação responsiva.
+- `Rodape.astro`: identificação institucional e navegação complementar.
+- `CartaoProjeto.astro`: apresentação dos projetos.
+- `AvisoDemonstracao.astro`: identificação de conteúdo demonstrativo.
+- `GaleriaFotos.astro`: galeria com ampliação de imagens.
+- `CarrosselCapa.astro`: carrossel automático, com intervalo de quatro segundos, controles manuais opcionais e suporte a `prefers-reduced-motion`.
 
-```json
-{
-  "id": "cinema-negro",
-  "nome": "Cinema negro",
-  "turmaId": "2c-adm",
-  "numero": 18
-}
-```
+Componentes e funcionalidades ainda pendentes incluem filtros, busca e incorporação de vídeos do YouTube sob demanda.
 
-Regras:
+## 7. Identidade visual e acessibilidade
 
-- `turmaId` deve existir em `turmas.json`. Não usar texto livre.
-- O campo numérico se chama `numero`. Todos os itens devem usar o mesmo nome de campo.
-- Itens com `nome` iniciado por `(INSERIR` são reservas e não são exibidos no site publicado.
-- Nos filtros e nos cartões, o rótulo é o nome do tema. O campo numero serve só para ordenação.
-- DS significa Desenvolvimento de Sistemas
-- ADM significa Administração
+As cores principais estão definidas em `src/styles/global.css`:
 
-Atribuição dos temas oficiais às turmas, conforme informado pela escola:
-
-| Tema | Turma | Tema | Turma |
-|---|---|---|---|
-| 1 | 2º E DS | 10 | 1º B |
-| 2 | 2º A DS | 11 | 3º A |
-| 3 | 3º B | 12 | 3º B DS |
-| 4 | 3º C | 13 | 1º F |
-| 5 | 2º D ADM | 14 | 1º G |
-| 6 | 1º E | 15 | 1º C |
-| 7 | 3º A ADM | 16 | 1º D |
-| 8 | 1º A | 17 | 2º F |
-| 9 | 2º B | 18 | 2º C ADM |
-
-### `src/data/projetos.json`
-
-Cada projeto é um objeto com os campos abaixo. Campos não aplicáveis a uma categoria aceitam valor vazio. O arquivo hoje contém dois projetos de demonstração.
-
-```json
-{
-  "id": "projeto-001",
-  "slug": "titulo-do-projeto",
-  "titulo": "",
-  "descricao": "",
-  "objetivoPedagogico": "",
-  "categoria": "turma",
-  "turmaId": "",
-  "ano": 2026,
-  "professorResponsavel": "",
-  "disciplinas": [],
-  "temas": [],
-  "imagemCapa": "",
-  "imagemCapaAlt": "",
-  "imagens": [],
-  "videos": [],
-  "creditos": "",
-  "dataPublicacao": "2026-10-30",
-  "destaque": false,
-  "publicado": true,
-  "demonstracao": false
-}
-```
-
-Regras:
-
-- `categoria` aceita `turma` ou `educador`.
-- `turmaId` referencia `turmas.json`. Série e curso são derivados da turma.
-- `temas` é uma lista de `id` de `temas.json`.
-- Registros com `publicado: false` não aparecem no site.
-- `destaque: true` faz o projeto aparecer na página inicial (de três a seis projetos).
-- Toda imagem precisa de texto alternativo (`imagemCapaAlt` para a capa).
-- O build deve falhar, com mensagem clara, se houver turma inexistente, tema fora da lista ou imagem sem texto alternativo (validação planejada).
-
-### `src/lib/dados.js`
-
-Único ponto de leitura dos JSON. Páginas e componentes devem importar daqui, e não diretamente dos arquivos de dados.
-
-| Exportação | Função |
+| Variável | Valor |
 |---|---|
-| `turmas` | Lista de turmas |
-| `temasValidos` | Temas sem os itens reservados `(INSERIR` |
-| `getTurma(id)` | Busca turma por `id` |
-| `getTema(id)` | Busca tema válido por `id` |
-| `projetosPublicados` | Projetos com `publicado: true`, mais recentes primeiro |
-| `projetosDestaque` | Até seis projetos publicados com `destaque: true` |
+| `--terracota` | `#a44732` |
+| `--ocre` | `#d3a64b` |
+| `--verde` | `#6c5740` |
+| `--marrom` | `#332821` |
+| `--bege` | `#f5f0e6` |
+| `--branco` | `#ffffff` |
 
-## Filtros e busca (planejado)
+Observação: `--verde` é o nome histórico de uma variável cujo valor atual corresponde a um marrom terroso.
 
-- Ficam em `/projetos/` e funcionam em conjunto: categoria, série, curso, turma, tema, tipo de mídia e busca por título, descrição ou palavra-chave.
-- O estado dos filtros é guardado em parâmetros da URL (exemplo: `?serie=3&tema=12`), para que links filtrados possam ser compartilhados.
-- Implementação em JavaScript no navegador, lendo um índice gerado no build. Sem servidor.
-- Ordenação padrão: data de publicação, mais recentes primeiro.
-- Contador de resultados, mensagem para busca sem resultado e painel de filtros recolhível no celular.
-
-## Componentes
-
-Existentes:
-
-| Componente | Função |
-|---|---|
-| `layouts/Base.astro` | Estrutura HTML, metadados (título, descrição, Open Graph), fontes, CSS global, link "Pular para o conteúdo" |
-| `Cabecalho.astro` | Logo, menu principal, menu recolhível no celular (botão com `aria-expanded`, fecha com Esc) |
-| `Rodape.astro` | Identificação da escola, navegação rápida, créditos, ano de atualização |
-| `CartaoProjeto.astro` | Cartão de projeto: capa, categoria, responsável, ano, temas, tipos de mídia, selo de demonstração |
-| `AvisoDemonstracao.astro` | Selo "Conteúdo de demonstração" |
-
-Os blocos de banner e demais seções da página inicial estão escritos diretamente em `pages/index.astro`.
-
-Planejados: `Filtros`, `GaleriaFotos`, `VideoYoutube` (carrega sob demanda).
-
-## Identidade visual
-
-Variáveis CSS definidas em `src/styles/global.css`:
-
-| Variável | Valor | Uso |
-|---|---|---|
-| `--terracota` | `#a44732` | Destaques, botões, links |
-| `--ocre` | `#d3a64b` | Detalhes, faixas e fundo de botão com texto escuro. Não usar como cor de texto sobre fundo claro nem sobre `--verde` (contraste de cerca de 3:1, abaixo do mínimo AA) |
-| `--verde` | `#6c5740` | Elementos institucionais (cabeçalho, banner). O nome da variável é histórico: o valor atual é um marrom terroso, e não verde |
-| `--marrom` | `#332821` | Texto, títulos, rodapé |
-| `--bege` | `#f5f0e6` | Fundo geral |
-| `--branco` | `#ffffff` | Superfícies e cartões |
+Meta de acessibilidade: WCAG 2.2 nível AA.
 
 Diretrizes:
+- Contraste adequado em todos os elementos.
+- Foco visível e navegação por teclado.
+- HTML semântico e hierarquia correta de títulos.
+- Um único `h1` por página.
+- Textos alternativos em imagens.
+- Elementos interativos com área de toque mínima de 2,75rem.
+- Evitar animações desnecessárias.
+- Não utilizar texto ocre em fundos claros ou sobre `--verde`.
 
-- Meta de acessibilidade: WCAG 2.2 nível AA.
-- No cabeçalho, o link da página ativa usa texto branco com barra ocre. Não usar texto ocre ali.
-- Grafismos geométricos abstratos e discretos. Evitar estereótipos e uso indiscriminado de símbolos culturais.
-- Fotografias autênticas dos projetos, apenas com autorização.
+## 8. Privacidade e LGPD
 
-## Convenções de código
+O site não possui cadastro de visitantes nem coleta intencional de dados pessoais.
 
-- Nomes de arquivos de dados, rotas e `id` em minúsculas, sem acentos, com hífen.
-- Textos da interface em português do Brasil, com acentuação correta.
-- Componentes Astro com estilos escopados no próprio arquivo. Estilos globais apenas em `global.css`.
-- HTML semântico, hierarquia de títulos correta, um `h1` por página.
-- Elementos interativos com área de toque mínima de 2,75rem e foco visível.
-- Sem dependências desnecessárias. Cada nova dependência deve ser justificada.
-- Imports relativos dependem da profundidade do arquivo. Em `src/pages/` use `../layouts/Base.astro`. Em `src/pages/projetos/` use `../../layouts/Base.astro`. Em `src/components/` use `../lib/dados.js`.
-
-## Acessibilidade e SEO
-
-- Contraste adequado, texto alternativo em imagens, navegação por teclado, foco visível, compatibilidade com leitores de tela.
-- Título e descrição individuais por página, URLs legíveis, Open Graph, imagem de compartilhamento, sitemap e favicon.
-- Pendente: configurar `site: "https://letramento-racial.vercel.app"` em `astro.config.mjs`, necessário para sitemap e URLs absolutas de Open Graph.
-
-## Privacidade (LGPD)
-
-- Sem cadastro de visitantes e sem coleta de dados pessoais. Não ativar Web Analytics nem Speed Insights da Vercel sem atualizar a página de privacidade.
-- Sem comentários públicos.
-- Não divulgar nomes completos de menores de idade, localização ou rotina de estudantes.
+Regras essenciais:
+- Não divulgar nomes completos de menores, localização ou rotina de estudantes.
 - Verificar autorização antes de publicar fotografias identificáveis ou vídeos.
-- Rostos de estudantes devem ser cobertos antes de a foto entrar no repositório. Usar tarja sólida opaca ou recorte. Evitar desfoque leve e pixelização.
-- Cobrir também crachás, nomes em uniformes ou cadernos e qualquer texto que identifique alguém.
-- Remover metadados (EXIF) das imagens antes de publicar.
-- Textos alternativos não devem identificar estudantes.
-- Fotos originais e materiais recebidos ficam fora do repositório, em espaço privado.
-- Arquivos enviados ao GitHub permanecem no histórico do Git mesmo depois de apagados. Nunca commitar foto sem censura.
-- A página `/privacidade/` informa um canal institucional para pedidos de correção ou retirada.
+- Cobrir rostos, crachás, nomes em uniformes e demais elementos identificadores antes de inserir imagens no repositório.
+- Utilizar tarja sólida opaca ou recorte, nunca desfoque leve ou pixelização.
+- Remover metadados EXIF das imagens.
+- Não identificar estudantes nos textos alternativos.
+- Manter fotografias originais e materiais recebidos em espaço privado.
+- Não ativar Web Analytics ou Speed Insights sem atualizar a política de privacidade.
+- Não utilizar comentários públicos.
 
-## Fonte de conteúdo pedagógico
+A página `/privacidade/` deverá informar um canal institucional para solicitações de correção ou retirada de materiais.
 
-A fundamentação pedagógica, histórica e legal do projeto vem do documento "Contexto Geral do Projeto: Letramento Racial na Escola". Textos do site (Sobre o projeto, referências) devem ser aproveitados desse documento, sem criar fundamentação paralela. Livro de referência: Pequeno Manual Antirracista, de Djamila Ribeiro.
+Os procedimentos completos estão previstos em `docs/privacidade-e-imagens.md`.
 
-## Comandos
+## 9. Conteúdo pedagógico e referências
+
+A fundamentação pedagógica, histórica e legal deve utilizar exclusivamente o documento institucional:
+
+**Contexto Geral do Projeto: Letramento Racial na Escola.**
+
+Não criar fundamentação paralela nem inserir referências não confirmadas.
+
+Livro de referência: *Pequeno Manual Antirracista*, de Djamila Ribeiro.
+
+Textos institucionais, biografia da autora, referências e demais informações devem utilizar fontes autorizadas.
+
+## 10. Ambiente e comandos
+
+Ambiente de desenvolvimento:
+- Sistema operacional: Windows.
+- Terminal: Git Bash.
+- Editor: VS Code.
+- Node.js LTS.
+- Gerenciador de pacotes: npm.
+
+O VS Code deve estar aberto na pasta que contém o `package.json`.
+
+Comandos executados nessa pasta:
 
 ```bash
-npm install        # instalar dependências
-npm run dev        # servidor local em http://localhost:4321
-npm run build      # gerar o site estático em dist/
-npm run preview    # visualizar o build localmente
+npm install
+npm run dev
+npm run build
+npm run preview
 ```
 
-## Fluxo de trabalho com Git
+Função dos comandos:
+- `npm install`: instala as dependências.
+- `npm run dev`: inicia o servidor local em `http://localhost:4321`.
+- `npm run build`: gera o site estático em `dist/`.
+- `npm run preview`: permite visualizar o build localmente.
 
-- `main` é a branch estável. Cada push em `main` dispara deploy na Vercel.
-- Cada integrante trabalha em sua própria branch e envia alterações por pull request, revisado por outro integrante.
-- Pull requests geram link de pré-visualização na Vercel.
-- Sequência de commit: `git status`, `git add .`, `git commit -m "mensagem descritiva"`, `git push origin main`.
-- Antes de commitar alterações em JSON, validar a sintaxe:
+Não fornecer comandos de PowerShell. Utilizar comandos compatíveis com Git Bash.
+
+## 11. Fluxo de trabalho com Git
+
+- `main` é a branch estável.
+- Cada integrante deve trabalhar em sua própria branch.
+- Alterações devem ser revisadas por pull request.
+- Pull requests geram pré-visualizações na Vercel.
+- Push na branch `main` dispara o deploy de produção.
+
+Antes de alterações, conferir:
 
 ```bash
-node -e "JSON.parse(require('fs').readFileSync('src/data/turmas.json','utf8')); console.log('OK')"
+git status
 ```
 
-## Estado atual
+Após revisar as alterações:
 
-Concluído:
+```bash
+git add .
+git commit -m "mensagem descritiva"
+git push origin main
+```
 
-- Projeto Astro base (template Empty) e estrutura de pastas.
-- `turmas.json`, `temas.json` e `projetos.json` com os dados oficiais.
-- CSS global, layout base, cabeçalho com menu mobile e rodapé.
-- Página inicial completa (banner, sobre, livro, autora, projetos em destaque).
-- Módulo `src/lib/dados.js` e componentes `CartaoProjeto`, `AvisoDemonstracao` e `GaleriaFotos`.
-- Página individual completa (capa, objetivo, disciplinas, temas, galeria com ampliação, créditos).
-- Três projetos de educadores cadastrados (Felipe Rodrigues, Anderson Santiago, Felipe Johnny), com rostos borrados e em demonstração até receberem conteúdo real.
-- Guia de cadastro de projetos em `docs/preencher-projetos.md`.
-- Deploy na Vercel funcionando em https://letramento-racial.vercel.app.
+Validar os arquivos JSON antes de realizar commits.
 
-Pendente:
+## 12. Estado atual
 
-- Acervo `/projetos/` com listagem dos cartões, filtros combináveis e busca.
-- Componente `VideoYoutube` (sob demanda) e vídeos na página individual.
-- Páginas Sobre e Referências com conteúdo real.
-- Página de privacidade com canal de contato.
-- Página 404, sitemap, `site` no `astro.config.mjs` e metadados de compartilhamento.
-- Script de validação dos dados no build.
-- Otimização de imagens (WebP) e testes de acessibilidade.
-- Trocar os textos alternativos provisórios das galerias por descrições reais, sem identificar estudantes.
+### Concluído
 
+- Projeto Astro e estrutura de pastas.
+- Arquivos JSON com dados oficiais.
+- CSS global, layout base, cabeçalho e rodapé.
+- Página inicial completa com hero/banner compatível com imagem de fundo e contraste WCAG AA.
+- Aprimoramentos mobile-first na página inicial (dimensões proporcionais de imagens, botões ergonômicos e redução suave no scroll com respeito a `prefers-reduced-motion`).
+- Página de Acervo `/projetos/` completa: listagem de projetos, busca instantânea por palavras-chave, filtros combináveis por categoria e tema oficial, contador de resultados e aviso sobre apresentações estudantis em desenvolvimento.
+- Páginas institucionais estruturadas com conteúdo oficial: Sobre o projeto (`/sobre/`), Referências bibliográficas e legais (`/referencias/`) e Privacidade/LGPD com canal institucional de contato (`/privacidade/`).
+- Página personalizada de erro 404 (`src/pages/404.astro`).
+- Configuração de `site` no `astro.config.mjs` para URLs canônicas em produção.
+- Metadados completos de compartilhamento social e mensageiros (Open Graph e Twitter Cards com suporte a imagem de capa customizada por página).
+- Módulo `dados.js`.
+- Componentes de cartão e demonstração.
+- Galeria de imagens.
+- Página individual dos projetos.
+- Três projetos de educadores cadastrados em demonstração: Felipe Johnny, Felipe Rodrigues e Anderson Santiago.
+- Componente Carrossel de capas (`CarrosselCapa.astro`).
+- Guia `docs/preencher-projetos.md`.
+- Deploy na Vercel funcionando.
 
-## Informações úteis para IAs que ajudam no projeto
+### Pendente
 
-### Contexto e pessoas
+- Integração do carrossel em todos os cartões que possuem múltiplas fotos.
+- Componente de vídeo do YouTube sob demanda (previsto para quando houver vídeos disponíveis).
+- Cadastro das produções e pesquisas dos estudantes conforme as apresentações ocorrerem.
+- Script de validação dos dados durante o build.
+- Otimização e revisão contínua dos textos alternativos das imagens.
 
-- O projeto é conduzido por uma equipe de três pessoas. Uma é a programadora, que conversa com a IA. As outras duas dão suporte, coletando imagens e desenvolvendo textos.
-- A pessoa que conversa com a IA é iniciante em Astro e Git. Explique o motivo de cada comando e diga exatamente em qual pasta ele deve ser executado.
-- A programadora também cuida do envio de logos e fotos. A IA deve focar no desenvolvimento e apontar o que a pessoa precisa fazer.
+## 13. Decisões técnicas importantes
 
-### Ambiente
+1. A hospedagem foi transferida da InfinityFree para a Vercel. Não utilizar FTP, `htdocs` ou instruções da hospedagem anterior.
+2. Os dados ficam em `src/data/`, e não em uma pasta `data/` na raiz.
+3. O filtro de temas utiliza os 18 temas oficiais da escola, não os nove temas genéricos da especificação original.
+4. A etapa de ensino é única (Ensino Médio), portanto seu filtro permanece oculto.
+5. A estrutura de turmas deve respeitar as informações oficiais fornecidas pela escola.
+6. Não criar `public/index.html`, pois ele pode sobrescrever a página inicial gerada pelo Astro na publicação.
 
-- Sistema operacional: Windows. Terminal: Git Bash, que usa comandos estilo Linux (`ls`, `mv`, `grep`, `sed`, `find`). Não fornecer comandos de PowerShell.
-- Editor: VS Code, aberto na pasta que contém o `package.json`. Abrir a pasta errada gera erros falsos de import.
-- Node.js LTS instalado. Gerenciador de pacotes: npm.
+O histórico detalhado de decisões, problemas e soluções ficará em `docs/historico-de-decisoes.md`.
 
-### Forma de trabalhar
+## 14. Orientações para continuidade
 
-- Entregar passo a passo e aguardar a confirmação da pessoa (s/n) antes de avançar de etapa.
-- Comunicar em português do Brasil, de forma direta. Não usar emojis.
-- Nunca inventar dados da escola. Quando faltar informação, perguntar ou usar campo configurável com texto provisório claramente marcado.
-- Informar ao final de cada etapa o que atualizar neste README.
+O projeto é desenvolvido por uma equipe de três pessoas. A pessoa responsável pela programação é iniciante em Astro e Git; as demais colaboram com textos e coleta de imagens.
 
-## Carrossel de imagens nos projetos
+Toda assistência técnica deve:
 
-- Criado o componente `src/components/CarrosselCapa.astro`.
-- O componente permite alternar imagens automaticamente a cada 4 segundos.
-- Possui controles manuais opcionais (setas).
-- Respeita a preferência de acessibilidade `prefers-reduced-motion`.
-- Na página individual, o projeto `educador-003` utiliza imagens da banda e do Felipe Johnny.
-- A galeria original do projeto permanece independente do carrossel.
-- A integração do carrossel no cartão da página de projetos ainda está pendente.
+1. Trabalhar por etapas e aguardar confirmação antes de avançar.
+2. Explicar a finalidade de cada comando.
+3. Informar exatamente em qual pasta executar cada comando.
+4. Conferir os caminhos relativos dos imports conforme a profundidade do arquivo.
+5. Não inventar informações da escola ou dos projetos.
+6. Indicar claramente quando uma informação precisa ser confirmada.
+7. Priorizar soluções simples, sem dependências desnecessárias.
+8. Verificar responsividade, acessibilidade e privacidade antes de propor alterações.
+9. Indicar como testar cada implementação e o resultado esperado.
+10. Informar quais documentos precisam ser atualizados ao final de cada etapa.
 
-### Etapas do desenvolvimento
+Antes de propor alterações, verificar:
+- Estrutura e arquivos existentes.
+- Dados em `src/data/`.
+- Compatibilidade com a arquitetura estática.
+- Integridade dos relacionamentos entre turmas, temas e projetos.
+- Privacidade das imagens.
+- Acessibilidade e funcionamento mobile.
 
-1. Planejamento técnico e visual (concluída).
-2. Interface mobile-first: layout, menu, cartões (concluída).
-3. Funcionalidades: página inicial, acervo, filtros, busca, páginas individuais, mídias (em andamento).
-4. Integração de conteúdo: dados demonstrativos e projetos reais (em andamento).
-5. Testes: responsividade, acessibilidade, desempenho, filtros.
-6. Publicação e verificação em produção.
-7. Documentação de manutenção para pessoas sem experiência técnica.
-
-### Decisões que divergem dos documentos originais
-
-- A especificação original previa hospedagem na InfinityFree, com envio da pasta `dist` por FTP. Foi substituída pela Vercel, porque a InfinityFree foi sinalizada como insegura para as fotografias. Ignorar as instruções de FTP, `htdocs` e limites de arquivo da InfinityFree.
-- O filtro de temas usa os 18 temas reais da escola (um por turma), e não os nove temas genéricos da especificação.
-- A etapa de ensino é única (Ensino Médio), então esse filtro fica oculto.
-- Os dados ficam em `src/data/`, e não em `data/` na raiz.
-
-### Armadilhas já encontradas
-
-- Imports relativos errados quando o conteúdo de `pages/index.astro` foi colado em `pages/projetos/index.astro`. Conferir sempre a profundidade do arquivo.
-- Pasta do projeto aninhada (`Letramento-Racial/Letramento-Racial`). A raiz de trabalho é a pasta interna, onde está o `package.json`. Mover pastas no Windows falha com "Device or resource busy" se o VS Code, um terminal ou o `npm run dev` estiver usando a pasta.
-- Mudar o `id` de uma turma exige atualizar `turmaId` em `temas.json` e `projetos.json`. Validar o JSON depois.
-- Texto ocre sobre fundo claro ou sobre `--verde` reprova no contraste.
-- Dois campos com o mesmo nome em arquivos diferentes confundem. Em `temas.json` o número é `numero`, e não `tema`.
-- Um arquivo `public/index.html` vazio sobrescreveu `src/pages/index.astro` na Vercel e deixou a página inicial em branco. No `npm run dev` funcionava, e o aviso `Skipping src/pages/index.astro` aparecia só no log de build. Nunca criar `index.html` dentro de `public/`.
-- Terminal do VS Code abre em PowerShell. Comandos do projeto são para Git Bash. Conferir a raiz com `ls package.json` antes de rodar caminhos relativos.
-
-### Pontos em aberto que exigem decisão humana
-
-- Lista completa de turmas da 2ª série.
-- Conteúdo dos temas 19 em diante.
-- Autorização de imagem das fotografias e dados das duas apresentações (título, turma, ano, tema, orientador).
-- Biografia da autora, capa do livro e fotografia da autora, todas de fonte autorizada.
-- Se o repositório no GitHub é público ou privado. Em repositório público, tudo em `public/` é visível.
-- Termos do plano gratuito (Hobby) da Vercel para projeto escolar e limite de colaboradores.
-
-### Checklist antes de propor uma alteração
-
-1. Ler este README e os arquivos de `src/data/`.
-2. Confirmar em qual pasta cada arquivo será criado e qual é o caminho relativo correto.
-3. Verificar se a alteração mantém o site estático e mobile-first.
-4. Verificar contraste, texto alternativo e foco visível.
-5. Verificar que nenhum dado inventado ou foto sem autorização entra no código.
-6. Indicar como testar (`npm run dev`) e o que a pessoa deve ver.
-7. Atualizar as seções "Estado atual" e "Pendente" deste README.
+As instruções permanentes para assistentes de IA serão detalhadas em `AGENTS.md`.

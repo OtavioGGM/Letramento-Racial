@@ -5,10 +5,19 @@ import "../styles/global.css";
 import Cabecalho from "../components/Cabecalho.astro";
 import Rodape from "../components/Rodape.astro";
 
-const { titulo, descricao = "Acervo digital do projeto de Letramento Racial da E. E. Profª Carolina Cintra da Silveira." } = Astro.props;
+const {
+  titulo,
+  descricao = "Acervo digital do projeto de Letramento Racial da E. E. Profª Carolina Cintra da Silveira.",
+  imagem = "/images/identidade/logo.png",
+} = Astro.props;
+
 const tituloCompleto = titulo
   ? `${titulo} | Letramento Racial na Escola`
   : "Letramento Racial na Escola";
+
+const siteUrl = Astro.site ?? "https://letramento-racial.vercel.app";
+const urlCanonica = new URL(Astro.url.pathname, siteUrl).toString();
+const urlImagem = new URL(imagem, siteUrl).toString();
 ---
 
 <!doctype html>
@@ -18,10 +27,24 @@ const tituloCompleto = titulo
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{tituloCompleto}</title>
     <meta name="description" content={descricao} />
+    <link rel="canonical" href={urlCanonica} />
+
+    <!-- Open Graph / Redes Sociais / WhatsApp -->
+    <meta property="og:site_name" content="Letramento Racial na Escola" />
     <meta property="og:title" content={tituloCompleto} />
     <meta property="og:description" content={descricao} />
     <meta property="og:type" content="website" />
-    <meta name="theme-color" content="#28513c" />
+    <meta property="og:url" content={urlCanonica} />
+    <meta property="og:image" content={urlImagem} />
+    <meta property="og:locale" content="pt_BR" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={tituloCompleto} />
+    <meta name="twitter:description" content={descricao} />
+    <meta name="twitter:image" content={urlImagem} />
+
+    <meta name="theme-color" content="#332821" />
     <link rel="icon" type="image/png" href="/images/identidade/logo.png" />
   </head>
   <body>

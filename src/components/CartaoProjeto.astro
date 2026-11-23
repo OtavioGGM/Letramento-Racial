@@ -16,7 +16,7 @@ const href = `/projetos/${projeto.slug}/`;
 
 <article class="cartao">
 <a class="capa" href={href} tabindex="-1" aria-hidden="true">
-  {projeto.id === "educador-003" ? (
+  {projeto.slug === "abertura-solene-letramento-racial" || projeto.id === "educador-001" ? (
     <CarrosselCapa
       imagens={[
         {

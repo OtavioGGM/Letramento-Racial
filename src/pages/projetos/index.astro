@@ -1,12 +1,370 @@
 ---
 import Base from "../../layouts/Base.astro";
+import CartaoProjeto from "../../components/CartaoProjeto.astro";
+import { projetosPublicados, temasValidos, getTurma } from "../../lib/dados.js";
+
+const temasOrdenados = [...temasValidos].sort((a, b) => (a.numero || 99) - (b.numero || 99));
 ---
 
-<Base titulo="Projetos">
-  <section class="secao">
+<Base
+  titulo="Acervo de Projetos"
+  descricao="Conheça os projetos, pesquisas e atividades de Letramento Racial desenvolvidos por educadores e estudantes da E. E. Profª Carolina Cintra da Silveira."
+>
+  <section class="secao cabecalho-acervo">
     <div class="container">
-      <h1>Projetos</h1>
-      <p>Página em construção.</p>
+      <h1>Acervo de Projetos</h1>
+      <p class="subtitulo">
+        Registros, pesquisas e produções desenvolvidas no âmbito do projeto pedagógico de Letramento Racial da E. E. Profª Carolina Cintra da Silveira.
+      </p>
+
+      <div class="aviso-estudantes" role="region" aria-label="Aviso sobre produções estudantis">
+        <div class="aviso-icone" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="8" x2="12" y2="12"></line>
+            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+          </svg>
+        </div>
+        <div class="aviso-conteudo">
+          <h2>Produções das turmas em desenvolvimento</h2>
+          <p>
+            As apresentações dos estudantes do Ensino Médio estão programadas para os próximos dias. Conforme as turmas realizarem suas atividades sobre os 18 temas oficiais inspirados no livro <em>Pequeno Manual Antirracista</em>, os trabalhos, fotos e pesquisas serão publicados progressivamente neste acervo.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="secao fundo-branco">
+    <div class="container">
+      <div class="painel-filtros" role="search" aria-label="Filtrar projetos">
+        <div class="campo campo-busca">
+          <label for="campo-busca">Buscar projetos</label>
+          <input
+            type="search"
+            id="campo-busca"
+            placeholder="Buscar por palavras-chave, temas ou nomes..."
+            autocomplete="off"
+          />
+        </div>
+
+        <div class="campo campo-categoria">
+          <label for="filtro-categoria">Categoria</label>
+          <select id="filtro-categoria">
+            <option value="">Todas as categorias</option>
+            <option value="educador">Educadores</option>
+            <option value="turma">Turmas de estudantes</option>
+          </select>
+        </div>
+
+        <div class="campo campo-tema">
+          <label for="filtro-tema">Tema oficial</label>
+          <select id="filtro-tema">
+            <option value="">Todos os temas ({temasOrdenados.length})</option>
+            {temasOrdenados.map((tema) => (
+              <option value={tema.id}>
+                {tema.numero ? `${tema.numero}. ` : ""}{tema.nome}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div class="campo campo-limpar">
+          <button type="button" id="btn-limpar" class="botao botao--contorno" style="display: none;">
+            Limpar
+          </button>
+        </div>
+      </div>
+
+      <div class="status-acervo">
+        <p class="contador-resultados" id="contador-resultados" aria-live="polite">
+          Exibindo <strong>{projetosPublicados.length}</strong> {projetosPublicados.length === 1 ? "projeto" : "projetos"}
+        </p>
+      </div>
+
+      <ul class="grade-projetos" id="grade-projetos" role="list">
+        {projetosPublicados.map((p) => {
+          const turma = getTurma(p.turmaId);
+          const responsavel = p.categoria === "turma" ? turma?.rotulo : p.professorResponsavel;
+          const textoBusca = `${p.titulo} ${p.descricao} ${responsavel || ""} ${p.ano}`.toLowerCase();
+          return (
+            <li
+              class="item-projeto"
+              data-categoria={p.categoria}
+              data-temas={p.temas.join(",")}
+              data-busca={textoBusca}
+            >
+              <CartaoProjeto projeto={p} />
+            </li>
+          );
+        })}
+      </ul>
+
+      <div class="sem-resultados" id="sem-resultados" style="display: none;">
+        <h3>Nenhum projeto encontrado</h3>
+        <p>Não foram encontrados projetos para os critérios selecionados.</p>
+        <button type="button" class="botao botao--contorno" id="btn-redefinir">
+          Ver todos os projetos
+        </button>
+      </div>
     </div>
   </section>
 </Base>
+
+<style>
+  .cabecalho-acervo {
+    padding-bottom: 1.5rem;
+  }
+  .subtitulo {
+    font-size: 1.2rem;
+    max-width: 48rem;
+    margin-bottom: 2rem;
+  }
+
+  /* Aviso institucional sobre estudantes */
+  .aviso-estudantes {
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+    background: var(--branco);
+    border: 1px solid rgb(51 40 33 / 0.12);
+    border-left: 6px solid var(--terracota);
+    border-radius: var(--raio);
+    padding: 1.25rem 1.5rem;
+    box-shadow: 0 4px 12px rgb(51 40 33 / 0.05);
+  }
+  .aviso-icone {
+    color: var(--terracota);
+    flex-shrink: 0;
+    margin-top: 0.2rem;
+  }
+  .aviso-conteudo h2 {
+    font-size: 1.25rem;
+    margin-bottom: 0.35rem;
+    color: var(--marrom);
+  }
+  .aviso-conteudo p {
+    margin: 0;
+    font-size: 1.05rem;
+    color: var(--marrom);
+    line-height: 1.5;
+  }
+
+  .fundo-branco {
+    background: var(--branco);
+    border-top: 1px solid rgb(51 40 33 / 0.1);
+  }
+
+  /* Painel de Filtros Mobile-First */
+  .painel-filtros {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    background: var(--bege);
+    padding: 1.25rem;
+    border-radius: var(--raio);
+    border: 1px solid rgb(51 40 33 / 0.1);
+    margin-bottom: 1.5rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .campo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    min-width: 0; /* Previne que o conteúdo force o grid a estourar a largura da tela */
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  .campo label {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--marrom);
+  }
+  .campo input,
+  .campo select {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    min-height: 2.75rem;
+    padding: 0.6rem 0.85rem;
+    border: 2px solid rgb(51 40 33 / 0.2);
+    border-radius: var(--raio);
+    background: var(--branco);
+    color: var(--marrom);
+    font-family: inherit;
+    font-size: 1rem;
+    box-sizing: border-box;
+  }
+  .campo input[type="search"] {
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  .campo select {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  .campo input:focus,
+  .campo select:focus {
+    outline: 3px solid var(--terracota);
+    outline-offset: 1px;
+    border-color: var(--terracota);
+  }
+  .campo-limpar {
+    justify-content: flex-end;
+  }
+  .campo-limpar .botao {
+    min-height: 2.75rem;
+    width: 100%;
+    padding-inline: 1rem;
+    text-align: center;
+    box-sizing: border-box;
+  }
+
+  /* Status */
+  .status-acervo {
+    margin-bottom: 1.5rem;
+  }
+  .contador-resultados {
+    font-size: 1rem;
+    margin: 0;
+  }
+
+  /* Grade de Projetos */
+  .grade-projetos {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 1.5rem;
+  }
+  .item-projeto.oculto {
+    display: none !important;
+  }
+
+  /* Estado vazio */
+  .sem-resultados {
+    text-align: center;
+    padding: 3rem 1.5rem;
+    background: var(--bege);
+    border-radius: var(--raio);
+    border: 2px dashed rgb(51 40 33 / 0.2);
+    margin-top: 1rem;
+  }
+  .sem-resultados h3 {
+    margin-bottom: 0.5rem;
+  }
+  .sem-resultados p {
+    margin-bottom: 1.5rem;
+  }
+
+  /* Telas intermediárias / Tablet (a partir de 42em / ~672px) */
+  @media (min-width: 42em) {
+    .painel-filtros {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .campo-busca {
+      grid-column: 1 / -1;
+    }
+    .campo-limpar {
+      grid-column: 1 / -1;
+    }
+    .campo-limpar .botao {
+      width: auto;
+      align-self: flex-start;
+    }
+    .grade-projetos {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  /* Telas grandes / Desktop (a partir de 60em / ~960px) */
+  @media (min-width: 60em) {
+    .painel-filtros {
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) minmax(0, 1.8fr) auto;
+      align-items: flex-end;
+    }
+    .campo-busca {
+      grid-column: auto;
+    }
+    .campo-limpar {
+      grid-column: auto;
+    }
+    .campo-limpar .botao {
+      width: auto;
+    }
+  }
+
+  @media (min-width: 68em) {
+    .grade-projetos {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>
+
+<script>
+  const inputBusca = document.getElementById("campo-busca") as HTMLInputElement | null;
+  const selectCategoria = document.getElementById("filtro-categoria") as HTMLSelectElement | null;
+  const selectTema = document.getElementById("filtro-tema") as HTMLSelectElement | null;
+  const btnLimpar = document.getElementById("btn-limpar") as HTMLButtonElement | null;
+  const btnRedefinir = document.getElementById("btn-redefinir") as HTMLButtonElement | null;
+  const contador = document.getElementById("contador-resultados");
+  const semResultados = document.getElementById("sem-resultados");
+  const itens = Array.from(document.querySelectorAll(".item-projeto")) as HTMLElement[];
+
+  function normalizar(texto: string): string {
+    return texto.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  }
+
+  function filtrar() {
+    const busca = normalizar(inputBusca?.value.trim() || "");
+    const categoria = selectCategoria?.value || "";
+    const tema = selectTema?.value || "";
+
+    let visiveis = 0;
+
+    itens.forEach((item) => {
+      const itemBusca = normalizar(item.getAttribute("data-busca") || "");
+      const itemCategoria = item.getAttribute("data-categoria") || "";
+      const itemTemas = (item.getAttribute("data-temas") || "").split(",").filter(Boolean);
+
+      const combinaBusca = !busca || itemBusca.includes(busca);
+      const combinaCategoria = !categoria || itemCategoria === categoria;
+      const combinaTema = !tema || itemTemas.includes(tema);
+
+      const visivel = combinaBusca && combinaCategoria && combinaTema;
+      item.classList.toggle("oculto", !visivel);
+      if (visivel) visiveis++;
+    });
+
+    if (contador) {
+      contador.innerHTML = `Exibindo <strong>${visiveis}</strong> ${visiveis === 1 ? "projeto" : "projetos"}`;
+    }
+
+    const temFiltroAtivo = busca !== "" || categoria !== "" || tema !== "";
+    if (btnLimpar) {
+      btnLimpar.style.display = temFiltroAtivo ? "inline-block" : "none";
+    }
+
+    if (semResultados) {
+      semResultados.style.display = visiveis === 0 ? "block" : "none";
+    }
+  }
+
+  function limparFiltros() {
+    if (inputBusca) inputBusca.value = "";
+    if (selectCategoria) selectCategoria.value = "";
+    if (selectTema) selectTema.value = "";
+    filtrar();
+    inputBusca?.focus();
+  }
+
+  inputBusca?.addEventListener("input", filtrar);
+  selectCategoria?.addEventListener("change", filtrar);
+  selectTema?.addEventListener("change", filtrar);
+  btnLimpar?.addEventListener("click", limparFiltros);
+  btnRedefinir?.addEventListener("click", limparFiltros);
+</script>

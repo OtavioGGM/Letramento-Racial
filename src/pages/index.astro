@@ -4,7 +4,7 @@ import CartaoProjeto from "../components/CartaoProjeto.astro";
 import { projetosDestaque } from "../lib/dados.js";
 ---
 
-<Base>
+<Base imagem="/images/banner.webp">
   <section class="banner">
     <div class="container">
       <h1>Letramento Racial na Escola</h1>
@@ -24,7 +24,7 @@ import { projetosDestaque } from "../lib/dados.js";
 
   <section class="secao">
      <div class="container duas-colunas">
-    <img src="/images/livro/capa.webp" alt="Capa do livro Pequeno Manual Antirracista" />
+    <img class="imagem-destaque imagem-scroll" src="/images/livro/capa.webp" alt="Capa do livro Pequeno Manual Antirracista" width="360" height="540" />
       <div>
         <h2>Nossa inspiração literária</h2>
         <p><strong>Pequeno Manual Antirracista</strong>, de Djamila Ribeiro.</p>
@@ -38,7 +38,7 @@ import { projetosDestaque } from "../lib/dados.js";
   <section class="secao fundo-branco">
     <div class="container duas-colunas">
       <!-- TROCAR: fotografia autorizada em /images/autora/ -->
-       <img src="/images/autora/djamila.webp" alt="Fotografia de Djamila Ribeiro" />
+       <img class="imagem-destaque imagem-scroll" src="/images/autora/djamila.webp" alt="Fotografia de Djamila Ribeiro" width="360" height="480" />
       <div>
         <h2>Sobre a autora</h2>
         <p><strong>Djamila Ribeiro</strong> é filósofa, escritora e ativista brasileira, autora de livros sobre feminismo negro, relações raciais e filosofia política, como Pequeno Manual Antirracista (2019) e O que é lugar de fala? (2017).</p>
@@ -62,11 +62,15 @@ import { projetosDestaque } from "../lib/dados.js";
 
 <style>
   .banner {
-    background:
-      repeating-linear-gradient(135deg, transparent 0 22px, rgb(211 166 75 / 0.12) 22px 24px),
-      var(--verde);
+    background-color: var(--verde);
+    background-image:
+      linear-gradient(rgba(51, 40, 33, 0.78), rgba(51, 40, 33, 0.78)),
+      url("/images/banner.webp");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     color: var(--bege);
-    padding-block: 3rem;
+    padding-block: 2.5rem;
     border-bottom: 6px solid var(--ocre);
   }
   .banner .destaque {
@@ -83,10 +87,61 @@ import { projetosDestaque } from "../lib/dados.js";
   .botao--claro:hover { background: var(--bege); border-color: var(--bege); color: var(--marrom); }
   .banner :global(:focus-visible) { outline-color: var(--ocre); }
 
+  /* Elementos responsivos mobile-first nos botões */
+  .banner .botao,
+  .duas-colunas .botao,
+  .estreito .botao {
+    width: 100%;
+    max-width: 22rem;
+    text-align: center;
+  }
+
   .estreito { max-width: 46rem; }
   .fundo-branco { background: var(--branco); }
 
-  .duas-colunas { display: grid; gap: 1.5rem; align-items: center; }
+  .duas-colunas {
+    display: grid;
+    gap: 1.75rem;
+    align-items: center;
+  }
+
+  /* Imagem mobile-first: dimensões proporcionais e centralizada em telas pequenas */
+  .imagem-destaque {
+    width: 100%;
+    max-width: 17.5rem;
+    margin-inline: auto;
+    border-radius: var(--raio);
+    box-shadow: 0 4px 16px rgb(51 40 33 / 0.12);
+    transform-origin: center center;
+    will-change: transform;
+    transition: transform 0.15s ease-out;
+  }
+
+  /* Animação acionada pelo scroll: a imagem diminui suavemente conforme o scroll avança */
+  @keyframes diminuir-scroll {
+    from {
+      transform: scale(1);
+    }
+    to {
+      transform: scale(0.85);
+    }
+  }
+
+  @supports (animation-timeline: view()) {
+    .imagem-scroll {
+      animation: diminuir-scroll linear both;
+      animation-timeline: view();
+      animation-range: entry 15% exit 85%;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .imagem-scroll {
+      animation: none !important;
+      transform: none !important;
+    }
+  }
+
   .imagem-pendente {
     display: grid;
     place-items: center;
@@ -104,10 +159,70 @@ import { projetosDestaque } from "../lib/dados.js";
   .centro { text-align: center; margin-top: 2rem; }
 
   @media (min-width: 48em) {
-    .duas-colunas { grid-template-columns: 1fr 1.5fr; }
-    .grade-cartoes { grid-template-columns: repeat(2, 1fr); }
+    .banner {
+      padding-block: 4rem;
+    }
+    .banner .botao,
+    .duas-colunas .botao,
+    .estreito .botao {
+      width: auto;
+      max-width: none;
+    }
+    .duas-colunas {
+      grid-template-columns: 1fr 1.5fr;
+      gap: 2.5rem;
+    }
+    .imagem-destaque {
+      max-width: 100%;
+      margin-inline: 0;
+    }
+    .grade-cartoes {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
   @media (min-width: 64em) {
-    .grade-cartoes { grid-template-columns: repeat(3, 1fr); }
+    .grade-cartoes {
+      grid-template-columns: repeat(3, 1fr);
+    }
   }
 </style>
+
+<script>
+  if (typeof window !== "undefined" && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    if (!("animationTimeline" in document.documentElement.style)) {
+      const imagens = document.querySelectorAll(".imagem-scroll");
+      if (imagens.length > 0) {
+        let emExecucao = false;
+
+        const atualizarEscala = () => {
+          const alturaJanela = window.innerHeight;
+          imagens.forEach((el) => {
+            const rect = el.getBoundingClientRect();
+            if (rect.bottom > 0 && rect.top < alturaJanela) {
+              const progresso = Math.min(
+                Math.max((alturaJanela - rect.top) / (alturaJanela + rect.height), 0),
+                1
+              );
+              const escala = 1 - progresso * 0.15;
+              el.style.transform = `scale(${escala.toFixed(3)})`;
+            }
+          });
+          emExecucao = false;
+        };
+
+        window.addEventListener(
+          "scroll",
+          () => {
+            if (!emExecucao) {
+              window.requestAnimationFrame(atualizarEscala);
+              emExecucao = true;
+            }
+          },
+          { passive: true }
+        );
+
+        atualizarEscala();
+      }
+    }
+  }
+</script>

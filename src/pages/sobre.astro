@@ -1,12 +1,118 @@
 ---
 import Base from "../layouts/Base.astro";
+import { temasValidos } from "../lib/dados.js";
+
+const temasOrdenados = [...temasValidos].sort((a, b) => (a.numero || 99) - (b.numero || 99));
 ---
 
-<Base titulo="Sobre o projeto">
-  <section class="secao">
-    <div class="container">
+<Base
+  titulo="Sobre o projeto"
+  descricao="Conheça o projeto pedagógico de Letramento Racial da E. E. Profª Carolina Cintra da Silveira, seus objetivos e os temas trabalhados."
+>
+  <section class="secao cabecalho-sobre">
+    <div class="container estreito">
       <h1>Sobre o projeto</h1>
-      <p>Página em construção.</p>
+      <p class="destaque">
+        Educação antirracista, reflexão crítica e valorização da história e cultura afro-brasileira no Ensino Médio.
+      </p>
+    </div>
+  </section>
+
+  <section class="secao fundo-branco">
+    <div class="container estreito">
+      <h2>O projeto pedagógico</h2>
+      <p>
+        A escola é um espaço fundamental de formação humana, social e cidadã. O projeto de <strong>Letramento Racial</strong> da <strong>E. E. Profª Carolina Cintra da Silveira</strong> foi concebido para proporcionar aos estudantes do Ensino Médio uma compreensão aprofundada de como o racismo se constituiu historicamente no Brasil e de que maneira suas consequências permanecem presentes nas estruturas sociais, nas instituições e nas relações do dia a dia.
+      </p>
+      <p>
+        Mais do que identificar desigualdades, o projeto busca instrumentalizar os jovens para a prática antirracista cotidiana, estimulando o protagonismo juvenil, o pensamento crítico e o respeito à pluralidade cultural.
+      </p>
+
+      <h2>Nossa inspiração</h2>
+      <p>
+        A base teórica e pedagógica do projeto é inspirada no livro <strong>Pequeno Manual Antirracista</strong>, de autoria da filósofa e escritora <strong>Djamila Ribeiro</strong> (Companhia das Letras, 2019).
+      </p>
+      <p>
+        A obra problematiza conceitos centrais das relações raciais no Brasil — como o mito da democracia racial, a branquitude, o privilégio estrutural e a necessidade de ações afirmativas —, convidando cada pessoa a assumir a responsabilidade pela transformação da sociedade.
+      </p>
+
+      <h2>Os 18 temas trabalhados</h2>
+      <p>
+        A partir dos debates propostos na obra e nas diretrizes curriculares para a Educação das Relações Étnico-Raciais (Lei 10.639/03), educadores e turmas desenvolveram pesquisas e produções em torno de 18 eixos temáticos:
+      </p>
+
+      <ol class="lista-temas">
+        {temasOrdenados.map((t) => (
+          <li>
+            <strong>{t.nome}</strong>
+          </li>
+        ))}
+      </ol>
+
+      <h2>O acervo digital</h2>
+      <p>
+        Este portal foi desenvolvido como um acervo aberto e permanente da comunidade escolar. Nele são reunidos os registros fotográficos, pesquisas, apresentações temáticas e produções autorais realizadas pelas turmas e pelos educadores da escola.
+      </p>
+      <p>
+        Nosso compromisso ético central é a preservação da privacidade e dignidade dos nossos estudantes, garantindo que a memória pedagógica da escola seja celebrada com segurança e responsabilidade.
+      </p>
+
+      <div class="chamada-acervo">
+        <a class="botao" href="/projetos/">Conheça nossos projetos</a>
+        <a class="botao botao--contorno" href="/referencias/">Ver referências do projeto</a>
+      </div>
     </div>
   </section>
 </Base>
+
+<style>
+  .cabecalho-sobre {
+    padding-bottom: 2rem;
+  }
+  .destaque {
+    font-family: var(--fonte-titulo);
+    font-size: clamp(1.2rem, 3.5vw, 1.5rem);
+    color: var(--marrom);
+    line-height: 1.4;
+  }
+  .estreito {
+    max-width: 48rem;
+  }
+  .fundo-branco {
+    background: var(--branco);
+    border-top: 1px solid rgb(51 40 33 / 0.1);
+  }
+  h2 {
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    color: var(--marrom);
+  }
+  .lista-temas {
+    padding-left: 1.5rem;
+    margin-block: 1.25rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .lista-temas li {
+    line-height: 1.5;
+    color: var(--marrom);
+  }
+  .chamada-acervo {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgb(51 40 33 / 0.15);
+  }
+  .chamada-acervo .botao {
+    text-align: center;
+  }
+
+  @media (max-width: 36em) {
+    .chamada-acervo .botao {
+      width: 100%;
+    }
+  }
+</style>
