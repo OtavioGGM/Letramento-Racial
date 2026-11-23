@@ -3,34 +3,28 @@ const ano = new Date().getFullYear();
 ---
 
 <footer class="rodape">
-  <div class="container grade">
-    <div>
-      <h2>Letramento Racial na Escola</h2>
-      <p>E. E. Profª Carolina Cintra da Silveira</p>
+  <div class="container barra">
+
+    <div class="identidade">
+      <strong>Letramento Racial na Escola</strong>
+      <span>E. E. Profª Carolina Cintra da Silveira</span>
     </div>
 
     <nav aria-label="Navegação rápida">
-      <h3>Navegação</h3>
       <ul>
         <li><a href="/">Início</a></li>
         <li><a href="/projetos/">Projetos</a></li>
-        <li><a href="/sobre/">Sobre o projeto</a></li>
+        <li><a href="/sobre/">Sobre</a></li>
         <li><a href="/referencias/">Referências</a></li>
         <li><a href="/privacidade/">Privacidade</a></li>
       </ul>
     </nav>
 
-    <div>
-      <h3>Créditos</h3>
-      <p>Imagens e materiais produzidos pela comunidade escolar, publicados com autorização. Referência teórica: <a href="/referencias/">veja as referências bibliográficas</a>.</p>
-      <p>Para solicitar correção ou retirada de materiais, consulte a página de <a href="/privacidade/">privacidade</a>.</p>
-    </div>
+    <p class="assinatura">
+      {ano} &#9734; Feito com amor pelo <a href="https://www.instagram.com/3bds.terceirao/">3ºB DS</a>
+    </p>
+
   </div>
-  <p class="atualizacao">
-  Site atualizado em {ano} <br> 
-  <span>&#9734;</span> <br>
-  Feito com amor pelo <a href="https://www.instagram.com/3bds.terceirao/">3ºB DS</a>
-  </p>
 </footer>
 
 <style>
@@ -38,26 +32,49 @@ const ano = new Date().getFullYear();
     background: var(--marrom);
     color: var(--bege);
     border-top: 4px solid var(--ocre);
-    padding-top: 2rem;
+    padding-block: 1rem;
   }
-  .rodape h2 { font-size: 1.4rem; }
-  .rodape h3 { font-size: 1.1rem; }
   .rodape a { color: var(--ocre); }
-  .rodape ul { list-style: none; margin: 0; padding: 0; }
-  .rodape li a { display: inline-block; padding-block: 0.3rem; }
   .rodape :focus-visible { outline-color: var(--ocre); }
-  .grade {
-    display: grid;
-    gap: 1.5rem;
+
+  /* Layout da barra */
+  .barra {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem 1.5rem;
   }
-  .atualizacao {
-    text-align: center;
-    margin: 2rem 0 0;
-    padding: 1rem;
+
+  /* Identidade */
+  .identidade {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
     font-size: 0.9rem;
-    border-top: 1px solid rgb(245 240 230 / 0.25);
+    line-height: 1.35;
   }
-  @media (min-width: 48em) {
-    .grade { grid-template-columns: 1.2fr 1fr 1.5fr; }
+  .identidade strong {
+    font-size: 1rem;
+  }
+
+  /* Navegação em linha */
+  .rodape nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 1rem;
+  }
+  .rodape nav a {
+    font-size: 0.88rem;
+    white-space: nowrap;
+  }
+
+  /* Assinatura */
+  .assinatura {
+    font-size: 0.85rem;
+    white-space: nowrap;
   }
 </style>
