@@ -118,7 +118,8 @@ Componentes existentes:
 - `CartaoProjeto.astro`: apresentação dos projetos.
 - `AvisoDemonstracao.astro`: identificação de conteúdo demonstrativo.
 - `GaleriaFotos.astro`: galeria com ampliação de imagens.
-- `CarrosselCapa.astro`: carrossel automático, com intervalo de quatro segundos, controles manuais opcionais e suporte a `prefers-reduced-motion`.
+- `CarrosselCapa.astro`: carrossel automático de fotos, com controles manuais e suporte a `prefers-reduced-motion`.
+- `CarrosselProjetos.astro`: carrossel automático de projetos em destaque, com rotação a cada cinco segundos, controles manuais, indicadores e pausa ao passar o mouse ou focar.
 
 Componentes e funcionalidades ainda pendentes incluem filtros, busca e incorporação de vídeos do YouTube sob demanda.
 

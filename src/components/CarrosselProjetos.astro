@@ -1,0 +1,333 @@
+---
+import CartaoProjeto from "./CartaoProjeto.astro";
+
+const { projetos = [] } = Astro.props;
+---
+
+<div
+  class="carrossel-projetos"
+  data-carrossel-projetos
+  role="region"
+  aria-roledescription="carrossel"
+  aria-label="Projetos em destaque"
+>
+  <div class="trilho-wrapper">
+    <div class="trilho">
+      {projetos.map((projeto, indice) => (
+        <div
+          class="slide-projeto"
+          role="group"
+          aria-roledescription="slide"
+          aria-label={`Projeto ${indice + 1} de ${projetos.length}`}
+        >
+          <CartaoProjeto projeto={projeto} compacto={true} />
+        </div>
+      ))}
+    </div>
+  </div>
+
+  {projetos.length > 1 && (
+    <div class="painel-controles">
+      <button
+        type="button"
+        class="btn-nav btn-anterior"
+        aria-label="Projeto anterior"
+      >
+        <span aria-hidden="true">&#10094;</span>
+      </button>
+
+      <div class="indicadores" role="tablist" aria-label="Navegar pelos projetos">
+        {projetos.map((_, indice) => (
+          <button
+            type="button"
+            class:list={["indicador", { ativo: indice === 0 }]}
+            role="tab"
+            aria-selected={indice === 0 ? "true" : "false"}
+            aria-label={`Ir para o projeto ${indice + 1}`}
+          />
+        ))}
+      </div>
+
+      <button
+        type="button"
+        class="btn-nav btn-proximo"
+        aria-label="Próximo projeto"
+      >
+        <span aria-hidden="true">&#10095;</span>
+      </button>
+    </div>
+  )}
+</div>
+
+<style>
+  .carrossel-projetos {
+    --slide-largura: 82%;
+    position: relative;
+    width: 100%;
+    max-width: 48rem;
+    margin-inline: auto;
+    padding-block: 0.5rem 1.25rem;
+  }
+
+  @media (min-width: 48em) {
+    .carrossel-projetos {
+      --slide-largura: 76%;
+      max-width: 52rem;
+    }
+  }
+
+  .trilho-wrapper {
+    overflow: hidden;
+    padding-block: 0.5rem;
+  }
+
+  .trilho {
+    display: flex;
+    transition: transform 0.45s cubic-bezier(0.25, 1, 0.5, 1);
+    will-change: transform;
+  }
+
+  .slide-projeto {
+    flex: 0 0 var(--slide-largura);
+    width: var(--slide-largura);
+    box-sizing: border-box;
+    padding: 0.5rem;
+    opacity: 0.55;
+    transform: scale(0.93);
+    transition: opacity 0.35s ease, transform 0.35s ease;
+  }
+
+  .slide-projeto.ativo {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  /* Controles e Indicadores */
+  .painel-controles {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.25rem;
+    margin-top: 1.5rem;
+  }
+
+  .btn-nav {
+    display: grid;
+    place-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 50%;
+    background: var(--branco);
+    border: 2px solid var(--terracota);
+    color: var(--terracota);
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, transform 0.15s;
+  }
+
+  .btn-nav:hover {
+    background: var(--terracota);
+    color: var(--branco);
+    transform: scale(1.06);
+  }
+
+  .btn-nav:focus-visible {
+    outline: 3px solid var(--marrom);
+    outline-offset: 2px;
+  }
+
+  .indicadores {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .indicador {
+    width: 0.85rem;
+    height: 0.85rem;
+    border-radius: 50%;
+    border: 2px solid var(--terracota);
+    background: transparent;
+    cursor: pointer;
+    padding: 0;
+    transition: all 0.2s ease;
+  }
+
+  .indicador.ativo {
+    background: var(--terracota);
+    transform: scale(1.2);
+  }
+
+  .indicador:focus-visible {
+    outline: 2px solid var(--marrom);
+    outline-offset: 2px;
+  }
+</style>
+
+<script>
+  document.querySelectorAll("[data-carrossel-projetos]").forEach((carrossel) => {
+    const trilhoWrapper = carrossel.querySelector(".trilho-wrapper") as HTMLElement | null;
+    const trilho = carrossel.querySelector(".trilho") as HTMLElement | null;
+    const btnAnt = carrossel.querySelector(".btn-anterior") as HTMLButtonElement | null;
+    const btnProx = carrossel.querySelector(".btn-proximo") as HTMLButtonElement | null;
+    const indicadores = Array.from(carrossel.querySelectorAll(".indicador")) as HTMLButtonElement[];
+
+    if (!trilho || !trilhoWrapper) return;
+
+    const slidesOriginais = Array.from(trilho.querySelectorAll(":scope > .slide-projeto")) as HTMLElement[];
+    const total = slidesOriginais.length;
+    if (total <= 1) return;
+
+    // Função para clonar slides de modo seguro e acessível
+    function criarClone(orig: HTMLElement) {
+      const clone = orig.cloneNode(true) as HTMLElement;
+      clone.classList.add("slide-clone");
+      clone.setAttribute("aria-hidden", "true");
+      clone.querySelectorAll("[id]").forEach((el) => el.removeAttribute("id"));
+      clone.querySelectorAll("a, button").forEach((el) => el.setAttribute("tabindex", "-1"));
+      return clone;
+    }
+
+    const cloneUltimo = criarClone(slidesOriginais[total - 1]);
+    const clonePenultimo = criarClone(slidesOriginais[total - 2] || slidesOriginais[total - 1]);
+    const clonePrimeiro = criarClone(slidesOriginais[0]);
+    const cloneSegundo = criarClone(slidesOriginais[1] || slidesOriginais[0]);
+
+    // Estrutura no trilho: [Clone Penúltimo, Clone Último, Original 0, Original 1, Original 2, Clone 0, Clone 1]
+    trilho.insertBefore(cloneUltimo, slidesOriginais[0]);
+    trilho.insertBefore(clonePenultimo, cloneUltimo);
+    trilho.appendChild(clonePrimeiro);
+    trilho.appendChild(cloneSegundo);
+
+    const todosSlides = Array.from(trilho.children) as HTMLElement[];
+    const indiceBase = 2; // Original 0 começa no índice 2
+    let atual = indiceBase;
+    let timer: number | null = null;
+    let emTransicao = false;
+
+    function atualizarClassesAtivo() {
+      todosSlides.forEach((slide, i) => {
+        slide.classList.toggle("ativo", i === atual);
+      });
+      const indiceReal = (atual - indiceBase + total * 10) % total;
+      indicadores.forEach((ind, i) => {
+        const ativo = i === indiceReal;
+        ind.classList.toggle("ativo", ativo);
+        ind.setAttribute("aria-selected", ativo ? "true" : "false");
+      });
+    }
+
+    function aplicarTransform(posicao: number, animado = true) {
+      if (!trilhoWrapper) return;
+      const wrapperW = trilhoWrapper.clientWidth;
+      const slide = todosSlides[posicao] || todosSlides[0];
+      const slideW = slide.clientWidth;
+      const offset = (wrapperW - slideW) / 2;
+      const posX = offset - (posicao * slideW);
+
+      if (animado) {
+        trilho.style.transition = "transform 0.45s cubic-bezier(0.25, 1, 0.5, 1)";
+      } else {
+        trilho.style.transition = "none";
+      }
+      trilho.style.transform = `translateX(${posX}px)`;
+      atualizarClassesAtivo();
+    }
+
+    function proximo() {
+      if (emTransicao) return;
+      emTransicao = true;
+      atual++;
+      aplicarTransform(atual, true);
+    }
+
+    function anterior() {
+      if (emTransicao) return;
+      emTransicao = true;
+      atual--;
+      aplicarTransform(atual, true);
+    }
+
+    trilho.addEventListener("transitionend", () => {
+      emTransicao = false;
+      // Ao ultrapassar o fim dos originais, reposiciona no slide original equivalente
+      if (atual >= indiceBase + total) {
+        atual = indiceBase + (atual - (indiceBase + total));
+        aplicarTransform(atual, false);
+      }
+      // Ao voltar antes dos originais, reposiciona no slide original equivalente
+      else if (atual < indiceBase) {
+        atual = indiceBase + total - (indiceBase - atual);
+        aplicarTransform(atual, false);
+      }
+    });
+
+    btnProx?.addEventListener("click", () => {
+      proximo();
+      reiniciarTimer();
+    });
+
+    btnAnt?.addEventListener("click", () => {
+      anterior();
+      reiniciarTimer();
+    });
+
+    indicadores.forEach((ind, i) => {
+      ind.addEventListener("click", () => {
+        if (emTransicao) return;
+        atual = indiceBase + i;
+        aplicarTransform(atual, true);
+        reiniciarTimer();
+      });
+    });
+
+    // Suporte a gestos de arrasto/swipe em smartphones
+    let touchStartX = 0;
+    trilho.addEventListener("touchstart", (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+      pararTimer();
+    }, { passive: true });
+
+    trilho.addEventListener("touchend", (e) => {
+      const touchEndX = e.changedTouches[0].screenX;
+      const diff = touchStartX - touchEndX;
+      if (Math.abs(diff) > 40) {
+        if (diff > 0) proximo();
+        else anterior();
+      }
+      iniciarTimer();
+    }, { passive: true });
+
+    window.addEventListener("resize", () => {
+      aplicarTransform(atual, false);
+    });
+
+    function iniciarTimer() {
+      if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        pararTimer();
+        timer = window.setInterval(proximo, 5000);
+      }
+    }
+
+    function pararTimer() {
+      if (timer !== null) {
+        clearInterval(timer);
+        timer = null;
+      }
+    }
+
+    function reiniciarTimer() {
+      pararTimer();
+      iniciarTimer();
+    }
+
+    carrossel.addEventListener("mouseenter", pararTimer);
+    carrossel.addEventListener("mouseleave", iniciarTimer);
+    carrossel.addEventListener("focusin", pararTimer);
+    carrossel.addEventListener("focusout", iniciarTimer);
+
+    // Inicializa centralizado no primeiro projeto
+    aplicarTransform(atual, false);
+    iniciarTimer();
+  });
+</script>

@@ -60,7 +60,7 @@
     "dataPublicacao": "2026-11-18",
     "destaque": true,
     "publicado": true,
-    "demonstracao": true
+    "demonstracao": false
   },
   {
     "id": "educador-002",
@@ -108,7 +108,7 @@
     "dataPublicacao": "2026-11-17",
     "destaque": true,
     "publicado": true,
-    "demonstracao": true
+    "demonstracao": false
   },
   {
     "id": "educador-003",
@@ -161,6 +161,6 @@
     "dataPublicacao": "2026-11-16",
     "destaque": true,
     "publicado": true,
-    "demonstracao": true
+    "demonstracao": false
   }
 ]

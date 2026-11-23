@@ -1,6 +1,7 @@
 ---
 import Base from "../layouts/Base.astro";
 import CartaoProjeto from "../components/CartaoProjeto.astro";
+import CarrosselProjetos from "../components/CarrosselProjetos.astro";
 import { projetosDestaque } from "../lib/dados.js";
 ---
 
@@ -76,9 +77,7 @@ import { projetosDestaque } from "../lib/dados.js";
   <section class="secao">
     <div class="container">
       <h2>Projetos em destaque</h2>
-      <div class="grade-cartoes">
-        {projetosDestaque.map((p) => <CartaoProjeto projeto={p} />)}
-      </div>
+      <CarrosselProjetos projetos={projetosDestaque} />
       <p class="centro"><a class="botao" href="/projetos/">Ver todos os projetos</a></p>
     </div>
   </section>
