@@ -27,10 +27,22 @@ import { projetosDestaque } from "../lib/dados.js";
     <img class="imagem-destaque imagem-scroll" src="/images/livro/capa.webp" alt="Capa do livro Pequeno Manual Antirracista" width="360" height="540" />
       <div>
         <h2>Nossa inspiração literária</h2>
-        <p><strong>Pequeno Manual Antirracista</strong>, de Djamila Ribeiro.</p>
-        <p>A obra é a base teórica do projeto. O capítulo sobre as bases históricas do racismo no Brasil questiona a ideia da população negra como vítima passiva da escravidão e mostra que seus efeitos continuam presentes na sociedade.</p>
-        <p class="ref">RIBEIRO, Djamila. <em>Pequeno manual antirracista</em>. São Paulo: Companhia das Letras, 2019.</p>
-        <a class="botao botao--contorno" href="/referencias/">Ver referências</a>
+        <div class="bloco-colapsavel" id="texto-inspiracao">
+          <p><strong>Pequeno Manual Antirracista</strong>, de Djamila Ribeiro.</p>
+          <p>A obra é a base teórica do projeto. O capítulo sobre as bases históricas do racismo no Brasil questiona a ideia da população negra como vítima passiva da escravidão e mostra que seus efeitos continuam presentes na sociedade.</p>
+          <p class="ref">RIBEIRO, Djamila. <em>Pequeno manual antirracista</em>. São Paulo: Companhia das Letras, 2019.</p>
+        </div>
+        <button
+          type="button"
+          class="btn-leia-mais"
+          aria-expanded="false"
+          aria-controls="texto-inspiracao"
+        >
+          Continuar lendo
+        </button>
+        <div>
+          <a class="botao botao--contorno" href="/referencias/">Ver referências</a>
+        </div>
       </div>
     </div>
   </section>
@@ -41,10 +53,22 @@ import { projetosDestaque } from "../lib/dados.js";
        <img class="imagem-destaque imagem-scroll" src="/images/autora/djamila.webp" alt="Fotografia de Djamila Ribeiro" width="360" height="480" />
       <div>
         <h2>Sobre a autora</h2>
-        <p><strong>Djamila Ribeiro</strong> é filósofa, escritora e ativista brasileira, autora de livros sobre feminismo negro, relações raciais e filosofia política, como Pequeno Manual Antirracista (2019) e O que é lugar de fala? (2017).</p>
-        <p><em>Oriunda de uma família trabalhadora de Santos (SP), teve sua formação marcada por duas grandes influências familiares: o pai, sindicalista e militante do movimento negro, despertou nela o interesse pela leitura e a consciência política; já a mãe e a avó foram responsáveis por transmitir-lhe as tradições e vivências espirituais do candomblé.</em></p>
-        <p class="ref">Divulgação/Flavio Teperman. <em>O mergulho ancestral de Djamila Ribeiro</em>. Revista ELLE, 2021.</p>
-        <a class="botao botao--contorno" href="https://elle.com.br/cultura/o-mergulho-ancestral-de-djamila-ribeiro">Ver referências</a>
+        <div class="bloco-colapsavel" id="texto-autora">
+          <p><strong>Djamila Ribeiro</strong> é filósofa, escritora e ativista brasileira, autora de livros sobre feminismo negro, relações raciais e filosofia política, como Pequeno Manual Antirracista (2019) e O que é lugar de fala? (2017).</p>
+          <p><em>Oriunda de uma família trabalhadora de Santos (SP), teve sua formação marcada por duas grandes influências familiares: o pai, sindicalista e militante do movimento negro, despertou nela o interesse pela leitura e a consciência política; já a mãe e a avó foram responsáveis por transmitir-lhe as tradições e vivências espirituais do candomblé.</em></p>
+          <p class="ref">Divulgação/Flavio Teperman. <em>O mergulho ancestral de Djamila Ribeiro</em>. Revista ELLE, 2021.</p>
+        </div>
+        <button
+          type="button"
+          class="btn-leia-mais"
+          aria-expanded="false"
+          aria-controls="texto-autora"
+        >
+          Continuar lendo
+        </button>
+        <div>
+          <a class="botao botao--contorno" href="https://elle.com.br/cultura/o-mergulho-ancestral-de-djamila-ribeiro">Ver referências</a>
+        </div>
       </div>
     </div>
   </section>
@@ -142,6 +166,66 @@ import { projetosDestaque } from "../lib/dados.js";
     }
   }
 
+  /* Blocos colapsáveis com transparência e reticências */
+  .bloco-colapsavel {
+    position: relative;
+    max-height: 4.8rem;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+  }
+
+  .bloco-colapsavel::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2.5rem;
+    background: linear-gradient(to bottom, transparent 0%, rgb(245 240 230 / 0.85) 55%, var(--bege) 100%);
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+  }
+
+  .fundo-branco .bloco-colapsavel::after {
+    background: linear-gradient(to bottom, transparent 0%, rgb(255 255 255 / 0.85) 55%, var(--branco) 100%);
+  }
+
+  .bloco-colapsavel.aberto {
+    max-height: 50rem;
+  }
+
+  .bloco-colapsavel.aberto::after {
+    opacity: 0;
+  }
+
+  .btn-leia-mais {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    background: none;
+    border: none;
+    padding: 0.2rem 0;
+    margin-top: 0.25rem;
+    margin-bottom: 1.25rem;
+    color: var(--terracota);
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .btn-leia-mais:hover {
+    color: var(--marrom);
+  }
+
+  .btn-leia-mais:focus-visible {
+    outline: 2px solid var(--terracota);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
   .imagem-pendente {
     display: grid;
     place-items: center;
@@ -188,6 +272,20 @@ import { projetosDestaque } from "../lib/dados.js";
 </style>
 
 <script>
+  // Alternância dos blocos de texto colapsáveis
+  document.querySelectorAll(".btn-leia-mais").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const idAlvo = btn.getAttribute("aria-controls");
+      const bloco = idAlvo ? document.getElementById(idAlvo) : null;
+      if (!bloco) return;
+
+      const estaAberto = bloco.classList.contains("aberto");
+      bloco.classList.toggle("aberto", !estaAberto);
+      btn.setAttribute("aria-expanded", String(!estaAberto));
+      btn.textContent = estaAberto ? "Continuar lendo" : "Recolher texto";
+    });
+  });
+
   if (typeof window !== "undefined" && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     if (!("animationTimeline" in document.documentElement.style)) {
       const imagens = document.querySelectorAll(".imagem-scroll");
