@@ -47,7 +47,7 @@ O site não tem páginas manuais para projetos. Tudo vem do arquivo `src/data/pr
 
 ## Formato de `imagens` e `videos`
 
-O formato de `imagens` é definitivo e já é lido pelo componente `GaleriaFotos`. O formato de `videos` é proposto e será usado pelo componente `VideoYoutube`, ainda não criado. Se a equipe mudar o formato de vídeos, atualize este guia e o README junto com o componente.
+O formato de `imagens` é definitivo e já é lido pelo componente `GaleriaFotos`. O formato de `videos` também é definitivo e é lido pelo componente `VideoYoutube`. Se a equipe mudar algum dos formatos, atualize este guia e o README junto com o componente.
 
 Cada item de `imagens` deve ser um objeto. Texto puro funciona na galeria, mas gera texto alternativo provisório.
 
@@ -71,6 +71,8 @@ Cada item de `imagens` deve ser um objeto. Texto puro funciona na galeria, mas g
 Regras:
 
 - Toda imagem precisa de `alt`. O build deverá falhar sem ele (validação planejada).
+- O `titulo` do vídeo deve ser preenchido. Ele vira o título do player e ajuda leitores de tela. Se ficar vazio, o site usa um título padrão com o nome do projeto.
+- Aceitos: links no formato `youtube.com/watch?v=...`, `youtu.be/...` e `youtube.com/shorts/...`. Links inválidos são ignorados e o vídeo não aparece.
 - Vídeos não ficam no repositório. Só links do YouTube, carregados quando a pessoa clica.
 - Antes de usar um vídeo, confirme a configuração de privacidade dele e a autorização de divulgação.
 
@@ -225,6 +227,7 @@ Abra `http://localhost:4321` e verifique:
 3. O selo "Conteúdo de demonstração" aparece só em projetos com `demonstracao: true`.
 4. O link do cartão abre `/projetos/<slug>/` sem erro 404.
 5. Nenhuma foto mostra rosto, crachá ou nome legível.
+6. Se o projeto tem vídeo, a página individual mostra o bloco "Vídeo" com o botão "Reproduzir vídeo", e o player só carrega depois do clique.
 
 ## Publicar
 

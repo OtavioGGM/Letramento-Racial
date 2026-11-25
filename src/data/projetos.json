@@ -3,7 +3,7 @@
     "id": "educador-001",
     "slug": "abertura-solene-letramento-racial",
     "titulo": "Abertura solene do Projeto Letramento Racial",
-    "descricao": "Descrição a preencher.",
+    "descricao": "",
     "objetivoPedagogico": "",
     "categoria": "educador",
     "turmaId": "",
@@ -66,7 +66,7 @@
     "id": "educador-002",
     "slug": "blues-como-protesto",
     "titulo": "Blues como protesto: a história da música negra",
-    "descricao": "Descrição a preencher.",
+    "descricao": "",
     "objetivoPedagogico": "",
     "categoria": "educador",
     "turmaId": "",
@@ -114,7 +114,7 @@
     "id": "educador-003",
     "slug": "olhar-negro-na-fotografia",
     "titulo": "Olhar negro na fotografia",
-    "descricao": "Descrição a preencher.",
+    "descricao": "",
     "objetivoPedagogico": "",
     "categoria": "educador",
     "turmaId": "",
@@ -162,5 +162,81 @@
     "destaque": true,
     "publicado": true,
     "demonstracao": false
+  },
+  {
+    "id": "racismo-no-brasil",
+    "slug": "racismo-no-brasil",
+    "titulo": "Peculiaridades do racismo no Brasil: o equívoco de que o Brasil não é racista",
+    "descricao": "",
+    "objetivoPedagogico": "",
+    "categoria": "turma",
+    "turmaId": "2e-ds",
+    "ano": 2026,
+    "professorResponsavel": "",
+    "disciplinas": [],
+    "temas": ["racismo-no-brasil"],
+    "imagemCapa": "/images/projetos/turmas/2e-ds/foto_3.webp",
+    "imagemCapaAlt": "Capa do projeto Peculiaridades do racismo no Brasil",
+    "imagens": [
+      {
+        "src": "/images/projetos/turmas/2e-ds/capa.webp",
+        "alt": "Capa do projeto Peculiaridades do racismo no Brasil",
+        "legenda": ""
+      },
+      {
+        "src": "/images/projetos/turmas/2e-ds/foto_0.webp",
+        "alt": "",
+        "legenda": ""
+      },
+      {
+        "src": "/images/projetos/turmas/2e-ds/foto_1.webp",
+        "alt": "",
+        "legenda": ""
+      },
+      {
+        "src": "/images/projetos/turmas/2e-ds/foto_2.webp",
+        "alt": "",
+        "legenda": ""
+      },
+      {
+        "src": "/images/projetos/turmas/2e-ds/foto_3.webp",
+        "alt": "",
+        "legenda": ""
+      },
+      {
+        "src": "/images/projetos/turmas/2e-ds/foto_4.webp",
+        "alt": "",
+        "legenda": ""
+      },
+      {
+        "src": "/images/projetos/turmas/2e-ds/foto_5.webp",
+        "alt": "",
+        "legenda": ""
+      },
+      {
+        "src": "/images/projetos/turmas/2e-ds/plateia_1.webp",
+        "alt": "Plateia do evento, com estudantes assistindo a apresentação",
+        "legenda": ""
+      },
+      {
+        "src": "/images/projetos/turmas/2e-ds/plateia_2.webp",
+        "alt": "Plateia do evento, com estudantes assistindo a apresentação",
+        "legenda": ""
+      }
+    ],
+    "videos": [
+      {
+        "url": "https://www.youtube.com/watch?v=7Vsy9d1imsM",
+        "titulo": "Peculiaridades do racismo no Brasil: o equívoco de que o Brasil não é racista",
+        "descricao": "Vídeo desenvolvido pelo 2ºE - DS em 2026"
+      }
+    ],
+    "creditos": "",
+    "dataPublicacao": "2026-11-24",
+    "destaque": false,
+    "publicado": true,
+    "demonstracao": false
   }
+
+
 ]

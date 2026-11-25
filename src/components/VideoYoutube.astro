@@ -1,0 +1,148 @@
+---
+// Vídeos do YouTube carregados somente após o clique (regra 9 do README).
+interface Video {
+  url: string;
+  titulo?: string;
+  descricao?: string;
+}
+interface Props {
+  videos?: Video[];
+  tituloProjeto?: string;
+}
+
+const { videos = [], tituloProjeto = "" } = Astro.props;
+
+function extrairId(url: string): string | null {
+  try {
+    const u = new URL(url);
+    if (u.hostname === "youtu.be") return u.pathname.slice(1) || null;
+    if (u.hostname.endsWith("youtube.com")) {
+      if (u.pathname === "/watch") return u.searchParams.get("v");
+      const m = u.pathname.match(/^\/(embed|shorts)\/([\w-]+)/);
+      if (m) return m[2];
+    }
+  } catch {
+    return null;
+  }
+  return null;
+}
+
+const itens = videos
+  .map((v) => ({ ...v, id: extrairId(v.url) }))
+  .filter((v) => v.id && /^[\w-]{11}$/.test(v.id))
+  .map((v) => ({
+    ...v,
+    tituloFinal:
+      v.titulo || (tituloProjeto ? `Vídeo do projeto: ${tituloProjeto}` : "Vídeo do projeto"),
+  }));
+---
+
+{itens.length > 0 && (
+  <section class="videos" aria-labelledby="titulo-videos">
+    <h2 id="titulo-videos">{itens.length > 1 ? "Vídeos" : "Vídeo"}</h2>
+
+    {itens.map((v) => (
+      <figure class="video">
+        <div class="video__caixa" data-id={v.id} data-titulo={v.tituloFinal}>
+          <button
+            type="button"
+            class="video__botao"
+            aria-label={`Carregar e reproduzir: ${v.tituloFinal}`}
+          >
+            <svg viewBox="0 0 24 24" width="40" height="40" aria-hidden="true" focusable="false">
+              <path d="M8 5v14l11-7z" fill="currentColor" />
+            </svg>
+            <span>Reproduzir vídeo</span>
+          </button>
+        </div>
+        <figcaption>
+          {v.titulo && <strong>{v.titulo}</strong>}
+          {v.descricao && <span class="video__desc">{v.descricao}</span>}
+          <a
+            class="video__link"
+            href={v.url}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Assistir no YouTube (abre em nova aba)
+          </a>
+        </figcaption>
+      </figure>
+    ))}
+  </section>
+)}
+
+<style>
+  .videos { margin-block: 2rem; }
+  .video { margin: 0 0 1.5rem; }
+  .video__caixa {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    background: var(--marrom);
+    border-radius: var(--raio);
+    overflow: hidden;
+  }
+  .video__botao {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    min-height: 2.75rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background: transparent;
+    color: var(--branco);
+    border: 0;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .video__botao svg {
+    background: var(--terracota);
+    border-radius: 50%;
+    padding: 1rem;
+    box-sizing: content-box;
+  }
+  .video__botao:focus-visible {
+    outline: 3px solid var(--ocre);
+    outline-offset: -6px;
+  }
+  .video__caixa :global(iframe) {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+  figcaption {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    margin-top: 0.5rem;
+    font-size: 0.95rem;
+  }
+  .video__link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>(".video__botao").forEach((botao) => {
+    botao.addEventListener("click", () => {
+      const caixa = botao.closest<HTMLElement>(".video__caixa");
+      if (!caixa) return;
+      const iframe = document.createElement("iframe");
+      iframe.src = `https://www.youtube-nocookie.com/embed/${caixa.dataset.id}?autoplay=1&rel=0`;
+      iframe.title = caixa.dataset.titulo || "Vídeo do projeto";
+      iframe.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen";
+      iframe.allowFullscreen = true;
+      iframe.referrerPolicy = "strict-origin-when-cross-origin";
+      caixa.replaceChildren(iframe);
+      iframe.focus();
+    });
+  });
+</script>

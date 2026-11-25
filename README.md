@@ -120,8 +120,9 @@ Componentes existentes:
 - `GaleriaFotos.astro`: galeria com ampliação de imagens.
 - `CarrosselCapa.astro`: carrossel automático de fotos, com controles manuais e suporte a `prefers-reduced-motion`.
 - `CarrosselProjetos.astro`: carrossel automático de projetos em destaque, com rotação a cada cinco segundos, controles manuais, indicadores e pausa ao passar o mouse ou focar.
+- `VideoYoutube.astro`: vídeos do YouTube carregados somente após o clique (domínio `youtube-nocookie.com`), com link alternativo para o YouTube. Lê o campo `videos` do projeto e é usado em `pages/projetos/[slug].astro`, depois da galeria de fotos.
 
-Componentes e funcionalidades ainda pendentes incluem filtros, busca e incorporação de vídeos do YouTube sob demanda.
+Não há componentes pendentes no momento.
 
 ## 7. Identidade visual e acessibilidade
 
@@ -253,13 +254,13 @@ Validar os arquivos JSON antes de realizar commits.
 - Página individual dos projetos.
 - Três projetos de educadores cadastrados em demonstração: Felipe Johnny, Felipe Rodrigues e Anderson Santiago.
 - Componente Carrossel de capas (`CarrosselCapa.astro`).
+- Componente de vídeo do YouTube sob demanda (`VideoYoutube.astro`), integrado à página individual do projeto.
 - Guia `docs/preencher-projetos.md`.
 - Deploy na Vercel funcionando.
 
 ### Pendente
 
 - Integração do carrossel em todos os cartões que possuem múltiplas fotos.
-- Componente de vídeo do YouTube sob demanda (previsto para quando houver vídeos disponíveis).
 - Cadastro das produções e pesquisas dos estudantes conforme as apresentações ocorrerem.
 - Script de validação dos dados durante o build.
 - Otimização e revisão contínua dos textos alternativos das imagens.

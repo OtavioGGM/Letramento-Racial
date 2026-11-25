@@ -4,6 +4,7 @@ import AvisoDemonstracao from "../../components/AvisoDemonstracao.astro";
 import GaleriaFotos from "../../components/GaleriaFotos.astro";
 import { projetosPublicados, getTurma, getTema } from "../../lib/dados.js";
 import CarrosselCapa from "../../components/CarrosselCapa.astro";
+import VideoYoutube from "../../components/VideoYoutube.astro";
 
 export function getStaticPaths() {
   return projetosPublicados.map((p) => ({
@@ -73,6 +74,8 @@ const temas = projeto.temas.map((id) => getTema(id)).filter(Boolean);
       )}
 
       <GaleriaFotos imagens={projeto.imagens} titulo={projeto.titulo} />
+
+      <VideoYoutube videos={projeto.videos ?? []} tituloProjeto={projeto.titulo} />
 
       {projeto.creditos && <p class="creditos"><strong>Créditos:</strong> {projeto.creditos}</p>}
 
