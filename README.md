@@ -92,6 +92,7 @@ Os dados são organizados em três arquivos:
 - `src/data/turmas.json`: etapas, séries, cursos e turmas.
 - `src/data/temas.json`: temas oficiais e itens reservados.
 - `src/data/projetos.json`: produções de estudantes, turmas e educadores.
+- Os campos `temas`, `imagens` e `videos` são opcionais. Quando ausentes, os componentes os tratam como lista vazia.
 
 Regras fundamentais:
 
@@ -257,6 +258,8 @@ Validar os arquivos JSON antes de realizar commits.
 - Componente de vídeo do YouTube sob demanda (`VideoYoutube.astro`), integrado à página individual do projeto.
 - Guia `docs/preencher-projetos.md`.
 - Deploy na Vercel funcionando.
+- `CartaoProjeto.astro` tolera projetos sem `temas`, `imagens` ou `videos` (campos ausentes são tratados como lista vazia).
+- Pastas e imagens provisórias para projetos de turmas ainda não cadastradas.
 
 ### Pendente
 

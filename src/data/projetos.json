@@ -236,7 +236,276 @@
     "destaque": false,
     "publicado": true,
     "demonstracao": false
+  },
+  {
+    "id": "negro-mundo-brancos",
+    "slug": "negro-mundo-brancos",
+    "titulo": "O negro no mundo dos brancos: eurocentrismo",
+    "descricao": "",
+    "objetivoPedagogico": "",
+    "categoria": "turma",
+    "turmaId": "2a-ds",
+    "ano": 2026,
+    "professorResponsavel": "",
+    "disciplinas": [],
+    "temas": [""],
+    "imagemCapa": "/images/projetos/turmas/2a-ds/em_construcao.webp",
+    "imagemCapaAlt": "Composição visual sobre eurocentrismo e a posição do negro nas narrativas ocidentais",
+    "imagens": [
+      {
+        "src": "/images/projetos/turmas/2a-ds/em_construcao.webp",
+        "alt": "",
+        "legenda": "Materiais produzidos pela turma 2A DS sobre o eurocentrismo."
+      }
+    ],
+    "creditos": "",
+    "dataPublicacao": "2026-11-26",
+    "destaque": false,
+    "publicado": true,
+    "demonstracao": false
+  },  
+  {
+    "id": "lugar-do-negro",
+    "slug": "lugar-do-negro",
+    "titulo": "O lugar do negro: desnaturalizando o olhar condicionado pelo racismo",
+    "descricao": "",
+    "objetivoPedagogico": "",
+    "categoria": "turma",
+    "turmaId": "3b",
+    "ano": 2026,
+    "professorResponsavel": "",
+    "disciplinas": [],
+    "temas": [""],
+    "imagemCapa": "/images/projetos/turmas/3b/em_construcao.webp",
+    "imagemCapaAlt": "",
+    "imagens": [
+      {
+        "src": "/images/projetos/turmas/3b/em_construcao.webp",
+        "alt": "",
+        "legenda": ""
+      }
+    ],
+    "creditos": "",
+    "dataPublicacao": "2026-11-26",
+    "destaque": false,
+    "publicado": true,
+    "demonstracao": false
+  },  
+  {
+    "id": "somos-racistas",
+    "slug": "somos-racistas",
+    "titulo": "Somos racistas? É possível não ser racista numa sociedade racista?",
+    "descricao": "",
+    "objetivoPedagogico": "",
+    "categoria": "turma",
+    "turmaId": "3c",
+    "ano": 2026,
+    "professorResponsavel": "",
+    "disciplinas": [],
+    "temas": [""],
+    "imagemCapa": "/images/projetos/turmas/3c/em_construcao.webp",
+    "imagemCapaAlt": "",
+    "imagens": [
+      {
+        "src": "/images/projetos/turmas/3c/em_construcao.webp",
+        "alt": "",
+        "legenda": ""
+      }
+    ],
+    "creditos": "",
+    "dataPublicacao": "2026-11-26",
+    "destaque": false,
+    "publicado": true,
+    "demonstracao": false
+  },
+  {
+    "id": "politicas-publicas-afirmativas",
+    "slug": "politicas-publicas-afirmativas",
+    "titulo": "",
+    "descricao": "",
+    "objetivoPedagogico": "",
+    "categoria": "turma",
+    "turmaId": "2d-adm",
+    "ano": 2026,
+    "professorResponsavel": "",
+    "disciplinas": [],
+    "temas": [""],
+    "imagemCapa": "/images/projetos/turmas/2d-adm/em_construcao.webp",
+    "imagemCapaAlt": "",
+    "imagens": [
+      {
+        "src": "/images/projetos/turmas/2d-adm/em_construcao.webp",
+        "alt": "",
+        "legenda": ""
+      }
+    ],
+    "creditos": "",
+    "dataPublicacao": "2026-11-26",
+    "destaque": false,
+    "publicado": true,
+    "demonstracao": false
+  },
+  {
+    "id": "racismo-no-trabalho",
+    "slug": "racismo-no-trabalho",
+    "titulo": "As dimensões do racismo no trabalho",
+    "descricao": "",
+    "objetivoPedagogico": "",
+    "categoria": "turma",
+    "turmaId": "1e",
+    "ano": 2026,
+    "professorResponsavel": "",
+    "disciplinas": [],
+    "temas": [""],
+    "imagemCapa": "/images/projetos/turmas/1e/em_construcao.webp",
+    "imagemCapaAlt": "",
+    "imagens": [
+      {
+        "src": "/images/projetos/turmas/1e/em_construcao.webp",
+        "alt": "",
+        "legenda": ""
+      }
+    ],
+    "creditos": "",
+    "dataPublicacao": "2026-11-26",
+    "destaque": false,
+    "publicado": true,
+    "demonstracao": false
+  },
+  {
+    "id": "epistemicidio",
+    "slug": "epistemicidio",
+    "titulo": "Epistemicídio: constatação e reações",
+    "descricao": "",
+    "objetivoPedagogico": "",
+    "categoria": "turma",
+    "turmaId": "3a-adm",
+    "ano": 2026,
+    "professorResponsavel": "",
+    "disciplinas": [],
+    "temas": [""],
+    "imagemCapa": "/images/projetos/turmas/3a-adm/em_construcao.webp",
+    "imagemCapaAlt": "",
+    "imagens": [
+      {
+        "src": "/images/projetos/turmas/3a-adm/em_construcao.webp",
+        "alt": "",
+        "legenda": ""
+      }
+    ],
+    "creditos": "",
+    "dataPublicacao": "2026-11-26",
+    "destaque": false,
+    "publicado": true,
+    "demonstracao": false
+  },
+  {
+    "id": "cultura-movimento-antirracista",
+    "slug": "cultura-movimento-antirracista",
+    "titulo": "A cultura como movimento antirracista",
+    "descricao": "",
+    "objetivoPedagogico": "",
+    "categoria": "turma",
+    "turmaId": "1a",
+    "ano": 2026,
+    "professorResponsavel": "",
+    "disciplinas": [],
+    "temas": [""],
+    "imagemCapa": "/images/projetos/turmas/1a/em_construcao.webp",
+    "imagemCapaAlt": "",
+    "imagens": [
+      {
+        "src": "/images/projetos/turmas/1a/em_construcao.webp",
+        "alt": "",
+        "legenda": ""
+      }
+    ],
+    "creditos": "",
+    "dataPublicacao": "2026-11-26",
+    "destaque": false,
+    "publicado": true,
+    "demonstracao": false
+  },
+  {
+    "id": "mulher-negra-sexualizacao",
+    "slug": "mulher-negra-sexualizacao",
+    "titulo": "O engrandecimento da mulher negra: reagindo à sexualização",
+    "descricao": "",
+    "objetivoPedagogico": "",
+    "categoria": "turma",
+    "turmaId": "2b",
+    "ano": 2026,
+    "professorResponsavel": "",
+    "disciplinas": [],
+    "temas": [""],
+    "imagemCapa": "/images/projetos/turmas/2b/em_construcao.webp",
+    "imagemCapaAlt": "",
+    "imagens": [
+      {
+        "src": "/images/projetos/turmas/2b/em_construcao.webp",
+        "alt": "",
+        "legenda": ""
+      }
+    ],
+    "creditos": "",
+    "dataPublicacao": "2026-11-26",
+    "destaque": false,
+    "publicado": true,
+    "demonstracao": false
+  },
+  {
+    "id": "combate-violencia-racial",
+    "slug": "combate-violencia-racial",
+    "titulo": "Combatendo a violência racial: assumindo o combate ao racismo",
+    "descricao": "",
+    "objetivoPedagogico": "",
+    "categoria": "turma",
+    "turmaId": "1b",
+    "ano": 2026,
+    "professorResponsavel": "",
+    "disciplinas": [],
+    "temas": [""],
+    "imagemCapa": "/images/projetos/turmas/1b/em_construcao.webp",
+    "imagemCapaAlt": "",
+    "imagens": [
+      {
+        "src": "/images/projetos/turmas/1b/em_construcao.webp",
+        "alt": "",
+        "legenda": ""
+      }
+    ],
+    "creditos": "",
+    "dataPublicacao": "2026-11-26",
+    "destaque": false,
+    "publicado": true,
+    "demonstracao": false
+  },
+  {
+    "id": "riqueza-cultura-negra",
+    "slug": "riqueza-cultura-negra",
+    "titulo": "A riqueza da cultura negra: explorando a diversidade da cultura negra",
+    "descricao": "",
+    "objetivoPedagogico": "",
+    "categoria": "turma",
+    "turmaId": "3a",
+    "ano": 2026,
+    "professorResponsavel": "",
+    "disciplinas": [],
+    "temas": [""],
+    "imagemCapa": "/images/projetos/turmas/3a/em_construcao.webp",
+    "imagemCapaAlt": "",
+    "imagens": [
+      {
+        "src": "/images/projetos/turmas/3a/em_construcao.webp",
+        "alt": "",
+        "legenda": ""
+      }
+    ],
+    "creditos": "",
+    "dataPublicacao": "2026-11-26",
+    "destaque": false,
+    "publicado": true,
+    "demonstracao": false
   }
-
 
 ]
